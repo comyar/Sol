@@ -407,7 +407,7 @@
 				ORGANIZATIONNAME = "Comyar Zaheri";
 				TargetAttributes = {
 					DD4F967017A8994300E0E7D0 = {
-						DevelopmentTeam = TRMC2X2YJ7;
+						DevelopmentTeam = 79J92XV598;
 					};
 					DD4F968B17A8994300E0E7D0 = {
 						TestTargetID = DD4F967017A8994300E0E7D0;

@@ -252,7 +252,41 @@
                 [weatherView.activityIndicator startAnimating];
                 
                 /// Make the data download request
-                [[SOLWundergroundDownloader sharedDownloader]dataForPlacemark:weatherData.placemark withTag:weatherView.tag delegate:self];
+                
+                // Delegate
+                // [[SOLWundergroundDownloader sharedDownloader]dataForPlacemark:weatherData.placemark withTag:weatherView.tag delegate:self];
+                
+                // Block based
+                [[SOLWundergroundDownloader sharedDownloader]dataForPlacemark:weatherData.placemark withTag:weatherView.tag completion:^(SOLWeatherData *data) {
+                    if (data) {
+                        // Success
+                        CZLog(@"SOLMainViewController", @"Download finished for weather view with tag: %d", weatherView.tag);
+                        
+                        // Update Weather View
+                        [self->_weatherData setObject:data forKey:[NSNumber numberWithInt:weatherView.tag]];
+                        [self updateWeatherView:weatherView withData:data];
+                        
+                        /// Save the downloaded data
+                        [SOLStateManager setWeatherData:self->_weatherData];
+                        if([self->_weatherData count] >= kMAX_NUM_WEATHER_VIEWS) {
+                            self.addLocationButton.hidden = YES;
+                        }
+                    }
+                    else {
+                        // Failure
+                        CZLog(@"SOLMainViewController", @"Download failed for weather view with tag: %d", weatherView.tag);
+                        /// If the weather view doesn't have any data, show a failure message
+                        if(!weatherView.hasData) {
+                            weatherView.conditionIconLabel.text = @"☹";
+                            weatherView.conditionDescriptionLabel.text = @"Update Failed";
+                            weatherView.locationLabel.text = @"Check your network connection";
+                        }
+                    }
+                    
+                    /// Stop the weather view's activity indicator
+                    [weatherView.activityIndicator stopAnimating];
+                }];
+                
             } else {
                 CZLog(@"SOLMainViewController", @"Not Updating Weather Data for %@, Time Since: %f", weatherData.placemark.locality, [[NSDate date]timeIntervalSinceDate:weatherData.timestamp]);
             }
