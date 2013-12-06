@@ -63,11 +63,10 @@
 }
 
 #pragma mark Using a SOLWundergroundDownloader
-
-- (void)dataForLocation:(CLLocation *)location withTag:(NSInteger)tag delegate:(id<SOLWundergroundDownloaderDelegate>)delegate
-{
-    /// Requests are not made if the location or delegate is nil
-    if(!location || !delegate) {
+- (void)dataForLocation:(CLLocation *)location withTag:(NSInteger)tag completion:(DownloadWeatherDataCompletion)completion delegate:(id<SOLWundergroundDownloaderDelegate>)delegate {
+    /// Main Weather grabbing method
+    /// Requests are not made if the (location and completion) or the delegate is nil
+    if(!location || (!delegate && !completion)) {
         return;
     }
     
@@ -82,82 +81,80 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:
      ^ (NSURLResponse * response, NSData *data, NSError *connectionError) {
          
-        /// Report connection errors as download failures to the delegate
-        if(connectionError) {
-            [delegate downloadDidFailForLocation:location withTag:tag];
-        } else {
-            
-            /// Serialize the downloaded JSON document and return the weather data to the delegate
-            @try {
-                NSDictionary *JSON = [self serializedData:data];
-                SOLWeatherData *weatherData = [self dataFromJSON:JSON];
-                
-                /// Reverse geocode the given location in order to get city, state, and country
-                [_geocoder reverseGeocodeLocation:location completionHandler: ^ (NSArray *placemarks, NSError *error) {
-                    if(error) {
-                        [delegate downloadDidFailForLocation:location withTag:tag];
-                    }
-                    weatherData.placemark = [placemarks lastObject];
-                    [delegate downloadDidFinishWithData:weatherData withTag:tag];
-                }];
-            }
-            
-            /// Report any failures during serialization as download failures to the delegate
-            @catch (NSException *exception) {
-                [delegate downloadDidFailForLocation:location withTag:tag];
-            }
-            
-            /// Always turn off the network activity indicator after requests are fulfilled
-            @finally {
-                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-            }
-        }
-    }];
+         /// Report connection errors as download failures to the delegate
+         if(connectionError) {
+             if (delegate) {
+                 [delegate downloadDidFailForLocation:location withTag:tag];
+             }
+             if (completion) {
+                 completion(nil);
+             }
+         } else {
+             
+             /// Serialize the downloaded JSON document and return the weather data to the delegate
+             @try {
+                 NSDictionary *JSON = [self serializedData:data];
+                 SOLWeatherData *weatherData = [self dataFromJSON:JSON];
+                 
+                 /// Reverse geocode the given location in order to get city, state, and country
+                 [_geocoder reverseGeocodeLocation:location completionHandler: ^ (NSArray *placemarks, NSError *error) {
+                     if(error) {
+                         [delegate downloadDidFailForLocation:location withTag:tag];
+                         if (delegate) {
+                             [delegate downloadDidFailForLocation:location withTag:tag];
+                         }
+                         if (completion) {
+                             completion(nil);
+                         }
+                     }
+                     else {
+                         weatherData.placemark = [placemarks lastObject];
+                         if (delegate) {
+                             [delegate downloadDidFinishWithData:weatherData withTag:tag];
+                         }
+                         if (completion) {
+                             completion(nil);
+                         }
+                     }
+                 }];
+             }
+             
+             /// Report any failures during serialization as download failures to the delegate
+             @catch (NSException *exception) {
+                 if (delegate) {
+                     [delegate downloadDidFailForLocation:location withTag:tag];
+                 }
+                 if (completion) {
+                     completion(nil);
+                 }
+             }
+             
+             /// Always turn off the network activity indicator after requests are fulfilled
+             @finally {
+                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+             }
+         }
+     }];
+}
+
+- (void)dataForLocation:(CLLocation *)location withTag:(NSInteger)tag delegate:(id<SOLWundergroundDownloaderDelegate>)delegate
+{
+    [self dataForLocation:location withTag:tag completion:nil delegate:delegate];
+}
+
+- (void)dataForLocation:(CLLocation *)location withTag:(NSInteger)tag completion:(DownloadWeatherDataCompletion)completion {
+    [self dataForLocation:location withTag:tag completion:completion delegate:nil];
 }
 
 - (void)dataForPlacemark:(CLPlacemark *)placemark withTag:(NSInteger)tag delegate:(id<SOLWundergroundDownloaderDelegate>)delegate
 {
-    /// Requests are not made if the placemark or delegate is nil
-    if(!placemark || !delegate) {
-        return;
-    }
-    
-    /// Turn on the network activity indicator in the status bar
-    [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:YES];
-    
-    /// Get the url request
-    NSURLRequest *request = [self urlRequestForLocation:placemark.location];
-    CZLog(@"SOLWundergroundDownloader", @"Requesting URL: %@", request.URL);
-    
-    /// Make an asynchronous request to the url
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:
-     ^ (NSURLResponse * response, NSData *data, NSError *connectionError) {
-         
-        /// Report connection errors as download failures to the delegate
-        if(connectionError) {
-            [delegate downloadDidFailForLocation:placemark.location withTag:tag];
-        } else {
-            
-            /// Serialize the downloaded JSON document and return the weather data to the delegate
-            @try {
-                NSDictionary *JSON = [self serializedData:data];
-                SOLWeatherData *weatherData = [self dataFromJSON:JSON];
-                weatherData.placemark = placemark;
-                [delegate downloadDidFinishWithData:weatherData withTag:tag];
-            }
-            
-            /// Report any failures during serialization as download failures to the delegate
-            @catch (NSException *exception) {
-                [delegate downloadDidFailForLocation:placemark.location withTag:tag];
-            }
-            
-            /// Always turn off the network activity indicator after requests are fulfilled
-            @finally {
-                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-            }
-        }
-    }];
+    [self dataForLocation:placemark.location withTag:tag completion:nil delegate:delegate];
 }
+
+- (void)dataForPlacemark:(CLPlacemark *)placemark withTag:(NSInteger)tag completion:(DownloadWeatherDataCompletion)completion {
+    [self dataForLocation:placemark.location withTag:tag completion:completion delegate:nil];
+}
+
 
 - (NSURLRequest *)urlRequestForLocation:(CLLocation *)location
 {
