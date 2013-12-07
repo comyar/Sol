@@ -32,15 +32,8 @@
     /// Initialize main view controller
     self.mainViewController = [[SOLMainViewController alloc]initWithNibName:nil bundle:nil];
     
-    /// Initialize and configure the location manager and start updating the user's current location
-    self.mainViewController.locationManager = [[CLLocationManager alloc]init];
-    self.mainViewController.locationManager.delegate = self->_mainViewController;
-    self.mainViewController.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
-    self.mainViewController.locationManager.distanceFilter = 3000;
-    [self.mainViewController.locationManager startUpdatingLocation];
-    
     /// Set our window's root view controller and make the app window visible
-    self.window.rootViewController = self->_mainViewController;
+    self.window.rootViewController = self.mainViewController;
     [self.window makeKeyAndVisible];
     
     return YES;

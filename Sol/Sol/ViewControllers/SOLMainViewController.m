@@ -77,6 +77,13 @@
         self->_dateFormatter = [[NSDateFormatter alloc]init];
         [self->_dateFormatter setDateFormat:@"EEE MMM d, h:mm a"];
         
+        /// Initialize and configure the location manager and start updating the user's current location
+        self.locationManager = [[CLLocationManager alloc]init];
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+        self.locationManager.distanceFilter = 3000;
+        self.locationManager.delegate = self;
+        [self.locationManager startUpdatingLocation];
+        
         [self initializeViewControllers];
         [self initializeSubviews];
         [self initializeSettingsButton];
