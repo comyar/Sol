@@ -47,6 +47,35 @@
     
     BOOL                    _isScrolling;
 }
+
+/// Redefinition of location manager
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
+/////////////////////////////////////////////////////////////////////////////
+/// @name View Controllers
+/////////////////////////////////////////////////////////////////////////////
+
+/// View controller for changing settings
+@property (strong, nonatomic) SOLSettingsViewController     *settingsViewController;
+/// View controller for adding new locations
+@property (strong, nonatomic) SOLAddLocationViewController  *addLocationViewController;
+
+/////////////////////////////////////////////////////////////////////////////
+/// @name Subviews
+/////////////////////////////////////////////////////////////////////////////
+
+/// Buton used to transition to the settings view controller
+@property (strong, nonatomic, readonly) UIButton            *settingsButton;
+
+/// Button used to transition to the add location view controller
+@property (strong, nonatomic, readonly) UIButton            *addLocationButton;
+
+/// Page control displaying the number of pages managed by the paging scroll view
+@property (strong, nonatomic, readonly) UIPageControl       *pageControl;
+
+/// Paging scroll view to manage weather views
+@property (strong, nonatomic, readonly) SOLPagingScrollView *pagingScrollView;
+
 @end
 
 #pragma mark - SOLMainViewController Implementation

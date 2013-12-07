@@ -12,6 +12,7 @@
 #pragma mark - SOLAppDelegate Class Extension
 
 @interface SOLAppDelegate ()
+/// The initial view controller presented to the user
 @property (strong, nonatomic) SOLMainViewController *mainViewController;
 @end
 
@@ -25,6 +26,7 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     /// Initialize our app window and make it transparent (user can see the homescreen)
+    /// NOTE: Transparency isn't visible unless UIApplicationIsOpaque is set to NO in plist (private API)
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor clearColor];
     self.window.opaque = NO;
