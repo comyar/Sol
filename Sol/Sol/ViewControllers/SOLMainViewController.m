@@ -90,15 +90,17 @@
         self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         
         /// Initialize the weather data dictionary with saved data, if it exists
-        if([SOLStateManager weatherData]) {
-            self->_weatherData = [NSMutableDictionary dictionaryWithDictionary:[SOLStateManager weatherData]];
+        NSDictionary *savedWeatherData = [SOLStateManager weatherData];
+        if(savedWeatherData) {
+            self->_weatherData = [NSMutableDictionary dictionaryWithDictionary:savedWeatherData];
         } else {
             self->_weatherData = [NSMutableDictionary dictionaryWithCapacity:5];
         }
         
         /// Initialize the weather tags array with saved data, if it exists
-        if([SOLStateManager weatherTags]) {
-            self->_weatherTags = [NSMutableArray arrayWithArray:[SOLStateManager weatherTags]];
+        NSArray *savedWeatherTags = [SOLStateManager weatherTags];
+        if(savedWeatherTags) {
+            self->_weatherTags = [NSMutableArray arrayWithArray:savedWeatherTags];
         } else {
             self->_weatherTags = [NSMutableArray arrayWithCapacity:4];
         }
