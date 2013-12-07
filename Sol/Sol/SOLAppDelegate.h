@@ -8,13 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class SOLMainViewController;
-
 @interface SOLAppDelegate : UIResponder <UIApplicationDelegate>
-{
-    /// The initial view controller presented to the user
-    SOLMainViewController   *_mainViewController;
-}
 
 /////////////////////////////////////////////////////////////////////////////
 /// @name Properties
