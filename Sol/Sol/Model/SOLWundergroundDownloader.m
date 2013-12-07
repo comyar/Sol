@@ -113,7 +113,7 @@
                              [delegate downloadDidFinishWithData:weatherData withTag:tag];
                          }
                          if (completion) {
-                             completion(nil);
+                             completion(weatherData);
                          }
                      }
                  }];
