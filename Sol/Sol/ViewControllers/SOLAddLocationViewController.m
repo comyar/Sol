@@ -12,12 +12,29 @@
 #pragma mark - SOLAddLocationViewController Class Extension
 
 @interface SOLAddLocationViewController ()
-{
-    CLGeocoder      *_geocoder;
-    NSMutableArray  *_searchResults;
-    UINavigationBar *_navigationBar;
-    UIBarButtonItem *_doneButton;
-}
+
+/// Used to geocode search location
+@property (strong, nonatomic) CLGeocoder                    *geocoder;
+
+/// Results of a search
+@property (strong, nonatomic) NSMutableArray                *searchResults;
+
+/// Location search results display controller
+@property (strong, nonatomic) UISearchDisplayController     *searchController;
+
+/////////////////////////////////////////////////////////////////////////////
+/// @name Subviews
+/////////////////////////////////////////////////////////////////////////////
+
+/// Location search bar
+@property (strong, nonatomic) UISearchBar                   *searchBar;
+
+/// Navigation bar at the top of the view
+@property (strong, nonatomic) UINavigationBar               *navigationBar;
+
+/// Done button inside navigation bar
+@property (strong, nonatomic) UIBarButtonItem               *doneButton;
+
 @end
 
 
@@ -32,28 +49,28 @@
         self.view.backgroundColor = [UIColor clearColor];
         self.view.opaque = NO;
         
-        self->_geocoder = [[CLGeocoder alloc]init];
-        self->_searchResults = [[NSMutableArray alloc]initWithCapacity:5];
+        self.geocoder = [[CLGeocoder alloc]init];
+        self.searchResults = [[NSMutableArray alloc]initWithCapacity:5];
         
-        self->_navigationBar =[[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
-        [self.view addSubview:self->_navigationBar];
+        self.navigationBar =[[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+        [self.view addSubview:self.navigationBar];
         
-        self->_doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+        self.doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                    target:self
                                                                    action:@selector(doneButtonPressed)];
-        self->_searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
-        self->_searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-        self->_searchBar.placeholder = @"Name of City";
-        self->_searchBar.delegate = self;
+        self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+        self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+        self.searchBar.placeholder = @"Name of City";
+        self.searchBar.delegate = self;
         
-        self->_searchController = [[UISearchDisplayController alloc]initWithSearchBar:_searchBar contentsController:self];
-        self->_searchController.delegate = self;
-        self->_searchController.searchResultsDelegate = self;
-        self->_searchController.searchResultsDataSource = self;
-        self->_searchController.searchResultsTitle = @"Add Location";
-        self->_searchController.displaysSearchBarInNavigationBar = YES;
-        self->_searchController.navigationItem.rightBarButtonItems = @[_doneButton];
-        self->_navigationBar.items = @[_searchController.navigationItem];
+        self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:_searchBar contentsController:self];
+        self.searchController.delegate = self;
+        self.searchController.searchResultsDelegate = self;
+        self.searchController.searchResultsDataSource = self;
+        self.searchController.searchResultsTitle = @"Add Location";
+        self.searchController.displaysSearchBarInNavigationBar = YES;
+        self.searchController.navigationItem.rightBarButtonItems = @[_doneButton];
+        self.navigationBar.items = @[_searchController.navigationItem];
     }
     return self;
 }
@@ -64,16 +81,16 @@
 {
     [super viewDidAppear:animated];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
-    [self->_searchController setActive:YES animated:NO];
-    [self->_searchController.searchBar becomeFirstResponder];
+    [self.searchController setActive:YES animated:NO];
+    [self.searchController.searchBar becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
-    [self->_searchController setActive:NO animated:NO];
-    [self->_searchController.searchBar resignFirstResponder];
+    [self.searchController setActive:NO animated:NO];
+    [self.searchController.searchBar resignFirstResponder];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -93,11 +110,11 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    [self->_geocoder geocodeAddressString:searchString completionHandler: ^ (NSArray *placemarks, NSError *error) {
-        self->_searchResults = [[NSMutableArray alloc]initWithCapacity:1];
+    [self.geocoder geocodeAddressString:searchString completionHandler: ^ (NSArray *placemarks, NSError *error) {
+        self.searchResults = [[NSMutableArray alloc]initWithCapacity:1];
         for(CLPlacemark *placemark in placemarks) {
             if(placemark.locality) {
-                [self->_searchResults addObject:placemark];
+                [self.searchResults addObject:placemark];
             }
         }
         [controller.searchResultsTableView reloadData];
@@ -107,12 +124,12 @@
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
 {
-    [tableView setFrame:CGRectMake(0, self->_navigationBar.bounds.size.height, self.view.bounds.size.width,
-                                   self.view.bounds.size.height - self->_navigationBar.bounds.size.height)];
+    [tableView setFrame:CGRectMake(0, self.navigationBar.bounds.size.height, self.view.bounds.size.width,
+                                   self.view.bounds.size.height - self.navigationBar.bounds.size.height)];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
     tableView.delegate = self;
-    [self.view bringSubviewToFront:self->_navigationBar];
+    [self.view bringSubviewToFront:self.navigationBar];
 }
 
 #pragma mark UITableViewDelegate Methods
@@ -122,10 +139,10 @@
     static NSString *cellIdentifier = @"CellIdentifier";
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(tableView == self->_searchController.searchResultsTableView) {
+    if(tableView == self.searchController.searchResultsTableView) {
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
-        CLPlacemark *placemark = [self->_searchResults objectAtIndex:indexPath.row];
+        CLPlacemark *placemark = [self.searchResults objectAtIndex:indexPath.row];
         NSString *city = placemark.locality;
         NSString *country = placemark.country;
         NSString *cellText = [NSString stringWithFormat:@"%@, %@", city, country];
@@ -140,9 +157,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(tableView == self->_searchController.searchResultsTableView) {
+    if(tableView == self.searchController.searchResultsTableView) {
         [tableView cellForRowAtIndexPath:indexPath].selected = NO;
-        CLPlacemark *placemark = [self->_searchResults objectAtIndex:indexPath.row];
+        CLPlacemark *placemark = [self.searchResults objectAtIndex:indexPath.row];
         [self.delegate didAddLocationWithPlacemark:placemark];
         [self.delegate dismissAddLocationViewController];
     }
@@ -150,7 +167,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self->_searchResults count];
+    return [self.searchResults count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -162,10 +179,10 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self->_navigationBar.frame = CGRectMake(self.view.bounds.origin.x,
+    self.navigationBar.frame = CGRectMake(self.view.bounds.origin.x,
                                       self.view.bounds.origin.y,
-                                      self->_navigationBar.frame.size.width,
-                                      self->_navigationBar.frame.size.height);
+                                      self.navigationBar.frame.size.width,
+                                      self.navigationBar.frame.size.height);
 }
 
 @end

@@ -27,13 +27,6 @@
 
 @interface SOLAddLocationViewController : UIViewController <UISearchDisplayDelegate, UITableViewDelegate,
                                                                 UITableViewDataSource, UISearchBarDelegate, UIScrollViewDelegate>
-{
-    /// Location search results display controller
-    UISearchDisplayController   *_searchController;
-    
-    /// Location search bar
-    UISearchBar                 *_searchBar;
-}
 
 /////////////////////////////////////////////////////////////////////////////
 /// @name Properties
