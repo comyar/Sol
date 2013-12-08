@@ -160,8 +160,8 @@
     [self.view addSubview:self.solLogoLabel];
 
     /// Initialize the Sol° title label
-    self.solTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
-    self.solTitleLabel.center = CGPointMake(self.view.center.x, self.view.center.y);
+    self.solTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64)];
+    self.solTitleLabel.center = self.view.center;
     self.solTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:64];
     self.solTitleLabel.backgroundColor = [UIColor clearColor];
     self.solTitleLabel.textColor = [UIColor whiteColor];
@@ -175,8 +175,8 @@
     [self.view addSubview:self.pagingScrollView];
     
     /// Initialize the page control
-    self.pageControl = [[UIPageControl alloc]initWithFrame: CGRectMake(0, self.view.bounds.size.height - 32,
-                                                                         self.view.bounds.size.width, 32)];
+    self.pageControl = [[UIPageControl alloc]initWithFrame: CGRectMake(0, CGRectGetHeight(self.view.bounds) - 32,
+                                                                       CGRectGetWidth(self.view.bounds), 32)];
     [self.pageControl setHidesForSinglePage:YES];
     [self.view addSubview:self.pageControl];
     
@@ -195,7 +195,7 @@
     [plusLabel setTextColor:[UIColor whiteColor]];
     [plusLabel setText:@"+"];
     [self.addLocationButton addSubview:plusLabel];
-    [self.addLocationButton setFrame:CGRectMake(self.view.bounds.size.width - 44, self.view.bounds.size.height - 54, 44, 44)];
+    [self.addLocationButton setFrame:CGRectMake(CGRectGetWidth(self.view.bounds) - 44, CGRectGetHeight(self.view.bounds) - 54, 44, 44)];
     [self.addLocationButton setShowsTouchWhenHighlighted:YES];
     [self.addLocationButton addTarget:self action:@selector(addLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.addLocationButton];
@@ -205,7 +205,7 @@
 {
     self.settingsButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [self.settingsButton setTintColor:[UIColor whiteColor]];
-    [self.settingsButton setFrame:CGRectMake(4, self.view.bounds.size.height - 48, 44, 44)];
+    [self.settingsButton setFrame:CGRectMake(4, CGRectGetHeight(self.view.bounds) - 48, 44, 44)];
     [self.settingsButton setShowsTouchWhenHighlighted:YES];
     [self.settingsButton addTarget:self action:@selector(settingsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.settingsButton];
