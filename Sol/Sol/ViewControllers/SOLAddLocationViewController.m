@@ -37,7 +37,6 @@
 
 @end
 
-
 #pragma mark - SOLAddLocationViewController Implementation
 
 @implementation SOLAddLocationViewController

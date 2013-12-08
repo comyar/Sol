@@ -46,21 +46,6 @@
 /// List of location metadata to display in the locations table view
 @property (strong, nonatomic)           NSMutableArray      *locations;
 
-/// Displays credits for the app
-@property (strong, nonatomic, readonly) UILabel             *creditLabel;
-
-/// Displays the title of the locations table view
-@property (strong, nonatomic, readonly) UILabel             *locationsTableViewTitleLabel;
-
-/// Displays the location metadata
-@property (strong, nonatomic, readonly) UITableView         *locationsTableView;
-
-/// Navigation bar for the controller, contains the done button
-@property (strong, nonatomic, readonly) UINavigationBar     *navigationBar;
-
-/// Control to change the temperature scale
-@property (strong, nonatomic, readonly) UISegmentedControl  *temperatureControl;
-
 /// Object that implements the SOLSettingsViewController Delegate Protocol
 @property (weak, nonatomic) id<SOLSettingsViewControllerDelegate> delegate;
 

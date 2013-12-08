@@ -11,10 +11,32 @@
 #pragma mark - SOLSettingsViewController Class Extension
 
 @interface SOLSettingsViewController ()
-{
-    UIBarButtonItem *_doneButton;
-    UIView          *_tableSeparatorView;
-}
+
+/////////////////////////////////////////////////////////////////////////////
+/// @name Subviews
+/////////////////////////////////////////////////////////////////////////////
+
+/// Displays the location metadata
+@property (strong, nonatomic) UITableView           *locationsTableView;
+
+/// Navigation bar for the controller, contains the done button
+@property (strong, nonatomic) UINavigationBar       *navigationBar;
+
+/// Done button inside navigation bar
+@property (strong, nonatomic) UIBarButtonItem       *doneButton;
+
+/// Displays the title of the locations table view
+@property (strong, nonatomic) UILabel               *locationsTableViewTitleLabel;
+
+/// Aesthetic line drawn beneath the locations table view title label
+@property (strong, nonatomic) UIView                *tableSeparatorView;
+
+/// Control to change the temperature scale
+@property (strong, nonatomic) UISegmentedControl    *temperatureControl;
+
+/// Displays credits for the app
+@property (strong, nonatomic) UILabel               *creditLabel;
+
 @end
 
 #pragma mark - SOLSettingsViewController Implementation
@@ -29,16 +51,16 @@
         self.view.backgroundColor = [UIColor clearColor];
         self.view.opaque = NO;
         
-        self->_navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
-        self->_navigationBar.alpha = 1.0;
-        [self.view addSubview:_navigationBar];
+        self.navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+        self.navigationBar.alpha = 1.0;
+        [self.view addSubview:self.navigationBar];
         
-        self->_doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+        self.doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                    target:self
                                                                    action:@selector(doneButtonPressed)];
         UINavigationItem *navigationItem = [[UINavigationItem alloc]initWithTitle:@"Settings"];
-        [navigationItem setRightBarButtonItem:_doneButton];
-        [_navigationBar setItems:@[navigationItem]];
+        [navigationItem setRightBarButtonItem:self.doneButton];
+        [self.navigationBar setItems:@[navigationItem]];
         
         [self initializeLocationsTableView];
         [self initializeTemperatureControl];
@@ -53,8 +75,8 @@
     [super viewWillAppear:animated];
     
     /// Show delete and reorder controls
-    [self->_locationsTableView setEditing:YES animated:YES];
-    [self->_locationsTableView reloadData];
+    [self.locationsTableView setEditing:YES animated:YES];
+    [self.locationsTableView reloadData];
     
     /// Change the color of the status bar text
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
@@ -62,7 +84,7 @@
     /// Fade in locations table view title if there are table view elements
     CGFloat animationDuration = ([self.locations count] == 0)? 0.0: 0.3;
     [UIView animateWithDuration:animationDuration animations: ^ {
-        self->_tableSeparatorView.alpha = ([self.locations count] == 0)? 0.0: 1.0;
+        self.tableSeparatorView.alpha = ([self.locations count] == 0)? 0.0: 1.0;
         self.locationsTableViewTitleLabel.alpha = ([self.locations count] == 0)? 0.0: 1.0;
     }];
 }
@@ -79,36 +101,36 @@
 
 - (void)initializeLocationsTableView
 {
-    self->_locationsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.view.center.y,
+    self.locationsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.view.center.y,
                                                                              self.view.bounds.size.width, self.view.center.y)
-                                                            style:UITableViewStylePlain];
-    self->_locationsTableView.dataSource = self;
-    self->_locationsTableView.delegate = self;
-    self->_locationsTableView.backgroundColor = [UIColor clearColor];
-    self->_locationsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self->_locationsTableView];
+                                                          style:UITableViewStylePlain];
+    self.locationsTableView.dataSource = self;
+    self.locationsTableView.delegate = self;
+    self.locationsTableView.backgroundColor = [UIColor clearColor];
+    self.locationsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.locationsTableView];
 }
 
 - (void)initializeTemperatureControl
 {
-    self->_temperatureControl = [[UISegmentedControl alloc]initWithItems:@[@"F°", @"C°"]];
-    [self->_temperatureControl setFrame:CGRectMake(0, 0, 0.8 * self.view.bounds.size.width, 44)];
-    [self->_temperatureControl setCenter:CGPointMake(self.view.center.x, 0.50 * self.view.center.y)];
-    [self->_temperatureControl addTarget:self action:@selector(temperatureControlChanged:) forControlEvents:UIControlEventValueChanged];
-    [self->_temperatureControl setSelectedSegmentIndex:[SOLStateManager temperatureScale]];
-    [self->_temperatureControl setTintColor:[UIColor whiteColor]];
-    [self.view addSubview:self->_temperatureControl];
+    self.temperatureControl = [[UISegmentedControl alloc]initWithItems:@[@"F°", @"C°"]];
+    [self.temperatureControl setFrame:CGRectMake(0, 0, 0.8 * self.view.bounds.size.width, 44)];
+    [self.temperatureControl setCenter:CGPointMake(self.view.center.x, 0.50 * self.view.center.y)];
+    [self.temperatureControl addTarget:self action:@selector(temperatureControlChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.temperatureControl setSelectedSegmentIndex:[SOLStateManager temperatureScale]];
+    [self.temperatureControl setTintColor:[UIColor whiteColor]];
+    [self.view addSubview:self.temperatureControl];
 }
 
 - (void)initializeCreditLabel
 {
     static const CGFloat fontSize = 16;
-    self->_creditLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.68 * self.view.center.y, self.view.bounds.size.width, 1.5 * fontSize)];
-    [self->_creditLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
-    [self->_creditLabel setTextColor:[UIColor whiteColor]];
-    [self->_creditLabel setTextAlignment:NSTextAlignmentCenter];
-    [self->_creditLabel setText:@"Created by Comyar Zaheri, for Stephanie"];
-    [self.view addSubview:_creditLabel];
+    self.creditLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.68 * self.view.center.y, self.view.bounds.size.width, 1.5 * fontSize)];
+    [self.creditLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
+    [self.creditLabel setTextColor:[UIColor whiteColor]];
+    [self.creditLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.creditLabel setText:@"Created by Comyar Zaheri, for Stephanie"];
+    [self.view addSubview:self.creditLabel];
 }
 
 - (void)initializeLocationsTableViewTitleLabel
@@ -116,19 +138,19 @@
     static const CGFloat fontSize = 28;
     
     /// Initialize table view title label
-    self->_locationsTableViewTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.825 * self.view.center.y,
+    self.locationsTableViewTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.825 * self.view.center.y,
                                                                              self.view.bounds.size.width, 1.5 * fontSize)];
-    [self->_locationsTableViewTitleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
-    [self->_locationsTableViewTitleLabel setTextColor:[UIColor whiteColor]];
-    [self->_locationsTableViewTitleLabel setTextAlignment:NSTextAlignmentCenter];
-    [self->_locationsTableViewTitleLabel setText:@"Locations"];
-    [self.view addSubview:self->_locationsTableViewTitleLabel];
+    [self.locationsTableViewTitleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
+    [self.locationsTableViewTitleLabel setTextColor:[UIColor whiteColor]];
+    [self.locationsTableViewTitleLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.locationsTableViewTitleLabel setText:@"Locations"];
+    [self.view addSubview:self.locationsTableViewTitleLabel];
     
     /// Initialize table view title separator
-    self->_tableSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
-    self->_tableSeparatorView.center = CGPointMake(self.view.center.x, self.view.center.y);
-    self->_tableSeparatorView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self->_tableSeparatorView];
+    self.tableSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
+    self.tableSeparatorView.center = CGPointMake(self.view.center.x, self.view.center.y);
+    self.tableSeparatorView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.tableSeparatorView];
 }
 
 #pragma mark Done Button Methods
@@ -193,7 +215,7 @@
         /// Fade out the locations table view title label if there are no elements
         [UIView animateWithDuration:0.3 animations: ^ {
             self.locationsTableViewTitleLabel.alpha = ([self.locations count] == 0)? 0.0: 1.0;
-            self->_tableSeparatorView.alpha = ([self.locations count] == 0)? 0.0: 1.0;
+            self.tableSeparatorView.alpha = ([self.locations count] == 0)? 0.0: 1.0;
         }];
     }
 }
