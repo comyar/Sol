@@ -29,7 +29,7 @@
 @end
 
 // Block Definition
-typedef void (^DownloadWeatherDataCompletion)(SOLWeatherData *weatherData);
+typedef void (^DownloadWeatherDataCompletion)(SOLWeatherData *data);
 
 
 /**
