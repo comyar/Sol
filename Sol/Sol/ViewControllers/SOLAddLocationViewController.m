@@ -63,14 +63,14 @@
         self.searchBar.placeholder = @"Name of City";
         self.searchBar.delegate = self;
         
-        self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:_searchBar contentsController:self];
+        self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
         self.searchController.delegate = self;
         self.searchController.searchResultsDelegate = self;
         self.searchController.searchResultsDataSource = self;
         self.searchController.searchResultsTitle = @"Add Location";
         self.searchController.displaysSearchBarInNavigationBar = YES;
-        self.searchController.navigationItem.rightBarButtonItems = @[_doneButton];
-        self.navigationBar.items = @[_searchController.navigationItem];
+        self.searchController.navigationItem.rightBarButtonItems = @[self.doneButton];
+        self.navigationBar.items = @[self.searchController.navigationItem];
     }
     return self;
 }
