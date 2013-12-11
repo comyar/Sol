@@ -29,21 +29,26 @@
 - (void)addSubview:(UIView *)weatherView
 {
     [super addSubview:weatherView];
-    [weatherView setFrame:CGRectMake(self.bounds.size.width * (self.subviews.count - 1), 0,
-                                     weatherView.bounds.size.width, weatherView.bounds.size.height)];
-    [self setContentSize:CGSizeMake(self.bounds.size.width * self.subviews.count, self.contentSize.height)];
+    NSUInteger numSubviews = [self.subviews count];
+    [weatherView setFrame:CGRectMake(CGRectGetWidth(self.bounds) * (numSubviews - 1), 0,
+                                     CGRectGetWidth(weatherView.bounds), CGRectGetHeight(weatherView.bounds))];
+    [self setContentSize:CGSizeMake(CGRectGetWidth(self.bounds) * numSubviews, self.contentSize.height)];
     CZLog(@"SOLPagingScrollView", @"Added subview");
 }
 
 - (void)insertSubview:(UIView *)weatherView atIndex:(NSInteger)index
 {
     [super insertSubview:weatherView atIndex:index];
-    [weatherView setFrame:CGRectMake(self.bounds.size.width * index, 0, weatherView.bounds.size.width, weatherView.bounds.size.height)];
-    for(int i = index + 1; i < self.subviews.count; ++i) {
+    
+    [weatherView setFrame:CGRectMake(CGRectGetWidth(self.bounds) * index, 0,
+                                     CGRectGetWidth(weatherView.bounds), CGRectGetHeight(weatherView.bounds))];
+    NSUInteger numSubviews = [self.subviews count];
+    for(int i = index + 1; i < numSubviews; ++i) {
         UIView *subview = [self.subviews objectAtIndex:i];
-        [subview setFrame:CGRectMake(self.bounds.size.width * i, 0, weatherView.bounds.size.width, weatherView.bounds.size.height)];
+        [subview setFrame:CGRectMake(CGRectGetWidth(self.bounds) * i, 0,
+                                     CGRectGetWidth(weatherView.bounds), CGRectGetHeight(weatherView.bounds))];
     }
-    [self setContentSize:CGSizeMake(self.bounds.size.width * self.subviews.count, self.contentSize.height)];
+    [self setContentSize:CGSizeMake(CGRectGetWidth(self.bounds) * numSubviews, self.contentSize.height)];
     CZLog(@"SOLPagingScrollView", @"Inserted subview at index: %d", index);
 }
 
@@ -51,13 +56,13 @@
 {
     int index = [self.subviews indexOfObject:subview];
     if(index != NSNotFound) {
-        NSInteger count = [self.subviews count];
-        for(int i = index + 1; i < count; ++i) {
+        NSUInteger numSubviews = [self.subviews count];
+        for(int i = index + 1; i < numSubviews; ++i) {
             UIView *view = [self.subviews objectAtIndex:i];
-            [view setFrame:CGRectOffset(view.frame, -subview.bounds.size.width, 0)];
+            [view setFrame:CGRectOffset(view.frame, -1.0 * CGRectGetWidth(subview.bounds), 0)];
         }
         [subview removeFromSuperview];
-        [self setContentSize:CGSizeMake(self.bounds.size.width * self.subviews.count, self.contentSize.height)];
+        [self setContentSize:CGSizeMake(CGRectGetWidth(self.bounds) * (numSubviews - 1), self.contentSize.height)];
         CZLog(@"SOLPagingScrollView", @"Removed subview");
     } else {
         CZLog(@"SOLPagingScrollView", @"Failed to find the given subview to remove");
