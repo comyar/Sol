@@ -182,12 +182,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /// Register a cell identifier
     static NSString *cellIdentifier = @"CellIdentifier";
-    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     
     /// Dequeue a cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell) {
+        /// Initialize new cell if cell is null
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
     
     /// Configure the cell
     cell.backgroundColor = [UIColor clearColor];
