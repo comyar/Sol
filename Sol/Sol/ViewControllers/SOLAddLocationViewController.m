@@ -123,8 +123,8 @@
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
 {
-    [tableView setFrame:CGRectMake(0, self.navigationBar.bounds.size.height, self.view.bounds.size.width,
-                                   self.view.bounds.size.height - self.navigationBar.bounds.size.height)];
+    [tableView setFrame:CGRectMake(0, CGRectGetHeight(self.navigationBar.bounds), CGRectGetWidth(self.view.bounds),
+                                   CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.navigationBar.bounds))];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor clearColor];
     tableView.delegate = self;
@@ -178,10 +178,9 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.navigationBar.frame = CGRectMake(self.view.bounds.origin.x,
-                                      self.view.bounds.origin.y,
-                                      self.navigationBar.frame.size.width,
-                                      self.navigationBar.frame.size.height);
+    self.navigationBar.frame = CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y,
+                                          CGRectGetWidth(self.navigationBar.frame),
+                                          CGRectGetHeight(self.navigationBar.frame));
 }
 
 @end

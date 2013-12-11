@@ -51,7 +51,7 @@
         self.view.backgroundColor = [UIColor clearColor];
         self.view.opaque = NO;
         
-        self.navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+        self.navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64)];
         self.navigationBar.alpha = 1.0;
         [self.view addSubview:self.navigationBar];
         
@@ -102,7 +102,7 @@
 - (void)initializeLocationsTableView
 {
     self.locationsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.view.center.y,
-                                                                             self.view.bounds.size.width, self.view.center.y)
+                                                                           CGRectGetWidth(self.view.bounds), self.view.center.y)
                                                           style:UITableViewStylePlain];
     self.locationsTableView.dataSource = self;
     self.locationsTableView.delegate = self;
@@ -114,7 +114,7 @@
 - (void)initializeTemperatureControl
 {
     self.temperatureControl = [[UISegmentedControl alloc]initWithItems:@[@"F°", @"C°"]];
-    [self.temperatureControl setFrame:CGRectMake(0, 0, 0.8 * self.view.bounds.size.width, 44)];
+    [self.temperatureControl setFrame:CGRectMake(0, 0, 0.8 * CGRectGetWidth(self.view.bounds), 44)];
     [self.temperatureControl setCenter:CGPointMake(self.view.center.x, 0.50 * self.view.center.y)];
     [self.temperatureControl addTarget:self action:@selector(temperatureControlChanged:) forControlEvents:UIControlEventValueChanged];
     [self.temperatureControl setSelectedSegmentIndex:[SOLStateManager temperatureScale]];
@@ -139,7 +139,7 @@
     
     /// Initialize table view title label
     self.locationsTableViewTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.825 * self.view.center.y,
-                                                                             self.view.bounds.size.width, 1.5 * fontSize)];
+                                                                                 CGRectGetWidth(self.view.bounds), 1.5 * fontSize)];
     [self.locationsTableViewTitleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
     [self.locationsTableViewTitleLabel setTextColor:[UIColor whiteColor]];
     [self.locationsTableViewTitleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -147,7 +147,7 @@
     [self.view addSubview:self.locationsTableViewTitleLabel];
     
     /// Initialize table view title separator
-    self.tableSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
+    self.tableSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 1)];
     self.tableSeparatorView.center = CGPointMake(self.view.center.x, self.view.center.y);
     self.tableSeparatorView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableSeparatorView];
