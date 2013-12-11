@@ -25,13 +25,6 @@
  of SOLWeatherView is managed by SOLMainViewController only.
  */
 @interface SOLWeatherView : UIView <UIGestureRecognizerDelegate>
-{
-    /// Light-Colored ribbon to display temperatures and forecasts on
-    UIView                  *_ribbon;
-    
-    /// Used to drag the weather view content vertically
-    UIPanGestureRecognizer  *_panGestureRecognizer;
-}
 
 /////////////////////////////////////////////////////////////////////////////
 /// @name Properties

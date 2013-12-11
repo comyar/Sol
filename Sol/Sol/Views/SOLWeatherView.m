@@ -15,10 +15,55 @@
 #pragma mark - SOLWeatherView Class Extension
 
 @interface SOLWeatherView ()
-{
-    /// Contains all label views
-    UIView  *_container;
-}
+
+/// Contains all label views
+@property (strong, nonatomic) UIView                    *container;
+
+/// Light-Colored ribbon to display temperatures and forecasts on
+@property (strong, nonatomic) UIView                    *ribbon;
+
+/// Used to drag the weather view content vertically
+@property (strong, nonatomic) UIPanGestureRecognizer    *panGestureRecognizer;
+
+/// Displays the time the weather data for this view was last updated
+@property (strong, nonatomic) UILabel                   *updatedLabel;
+
+/// Displays the icon for current conditions
+@property (strong, nonatomic) UILabel                   *conditionIconLabel;
+
+/// Displays the description of current conditions
+@property (strong, nonatomic) UILabel                   *conditionDescriptionLabel;
+
+/// Displays the location whose weather data is being represented by this weather view
+@property (strong, nonatomic) UILabel                   *locationLabel;
+
+/// Displayes the current temperature
+@property (strong, nonatomic) UILabel                   *currentTemperatureLabel;
+
+/// Displays both the high and low temperatures for today
+@property (strong, nonatomic) UILabel                   *hiloTemperatureLabel;
+
+/// Displays the day of the week for the first forecast snapshot
+@property (strong, nonatomic) UILabel                   *forecastDayOneLabel;
+
+/// Displays the day of the week for the second forecast snapshot
+@property (strong, nonatomic) UILabel                   *forecastDayTwoLabel;
+
+/// Displays the day of the week for the third forecast snapshot
+@property (strong, nonatomic) UILabel                   *forecastDayThreeLabel;
+
+/// Displays the icon representing the predicted conditions for the first forecast snapshot
+@property (strong, nonatomic) UILabel                   *forecastIconOneLabel;
+
+/// Displays the icon representing the predicted conditions for the second forecast snapshot
+@property (strong, nonatomic) UILabel                   *forecastIconTwoLabel;
+
+/// Displays the icon representing the predicted conditions for the third forecast snapshot
+@property (strong, nonatomic) UILabel                   *forecastIconThreeLabel;
+
+/// Indicates whether data is being downloaded for this weather view
+@property (strong, nonatomic) UIActivityIndicatorView   *activityIndicator;
+
 @end
 
 #pragma mark - SOLWeatherView Implementation
@@ -30,25 +75,25 @@
     if(self = [super initWithFrame:frame]) {
         
         /// Initialize Container
-        _container = [[UIView alloc]initWithFrame:self.bounds];
-        [_container setBackgroundColor:[UIColor clearColor]];
-        [self addSubview:_container];
+        self.container = [[UIView alloc]initWithFrame:self.bounds];
+        [self.container setBackgroundColor:[UIColor clearColor]];
+        [self addSubview:self.container];
         
         /// Initialize Ribbon
-        _ribbon = [[UIView alloc]initWithFrame:CGRectMake(0, 1.30 * self.center.y, self.bounds.size.width, 80)];
-        [_ribbon setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.25]];
-        [self->_container addSubview:_ribbon];
+        self.ribbon = [[UIView alloc]initWithFrame:CGRectMake(0, 1.30 * self.center.y, self.bounds.size.width, 80)];
+        [self.ribbon setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.25]];
+        [self.container addSubview:self.ribbon];
         
         /// Initialize Pan Gesture Recognizer
-        self->_panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didPan:)];
-        self->_panGestureRecognizer.minimumNumberOfTouches = 1;
-        self->_panGestureRecognizer.delegate = self;
-        [self->_container addGestureRecognizer:self->_panGestureRecognizer];
+        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didPan:)];
+        self.panGestureRecognizer.minimumNumberOfTouches = 1;
+        self.panGestureRecognizer.delegate = self;
+        [self.container addGestureRecognizer:self.panGestureRecognizer];
         
         /// Initialize Activity Indicator
-        _activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        _activityIndicator.center = self.center;
-        [self->_container addSubview:_activityIndicator];
+        self.activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.activityIndicator.center = self.center;
+        [self.container addSubview:self.activityIndicator];
         
         /// Initialize Labels
         [self initializeUpdatedLabel];
@@ -68,11 +113,11 @@
 - (void)didPan:(UIPanGestureRecognizer *)gestureRecognizer
 {
     static CGFloat initialCenterY = 0.0;
-    CGPoint translatedPoint = [gestureRecognizer translationInView:self->_container];
+    CGPoint translatedPoint = [gestureRecognizer translationInView:self.container];
     if(gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         
         /// Save the inital Y to reuse later
-        initialCenterY = self->_container.center.y;
+        initialCenterY = self.container.center.y;
         
         /// Alert the delegate that panning has begun
         [self.delegate didBeginPanningWeatherView];
@@ -85,13 +130,13 @@
         
         /// Return the container back to its original position
         [UIView animateWithDuration:0.3 animations: ^ {
-            self->_container.center = CGPointMake(self->_container.center.x, initialCenterY);
+            self.container.center = CGPointMake(self.container.center.x, initialCenterY);
         }];
         CZLog(@"SOLWeatherView", @"Did End Panning");
         
     } else if(translatedPoint.y <= 50 && translatedPoint.y > 0) {
         /// Translate the container
-        self->_container.center = CGPointMake(self->_container.center.x, self.center.y + translatedPoint.y);
+        self.container.center = CGPointMake(self.container.center.x, self.center.y + translatedPoint.y);
     }
 }
 
@@ -102,7 +147,7 @@
     if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
         /// We only want to register vertial pans
         UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer *)gestureRecognizer;
-        CGPoint velocity = [panGestureRecognizer velocityInView:self->_container];
+        CGPoint velocity = [panGestureRecognizer velocityInView:self.container];
         return fabsf(velocity.y) > fabsf(velocity.x);
     }
     return YES;
@@ -119,97 +164,96 @@
 - (void)initializeUpdatedLabel
 {
     static const NSInteger fontSize = 18;
-    _updatedLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, -1.5 * fontSize, self.bounds.size.width, 1.5 * fontSize)];
-    [_updatedLabel setNumberOfLines:0];
-    [_updatedLabel setAdjustsFontSizeToFitWidth:YES];
-    [_updatedLabel setFont:[UIFont fontWithName:ULTRALIGHT_FONT size:fontSize]];
-    [_conditionDescriptionLabel setBackgroundColor:[UIColor clearColor]];
-    [_updatedLabel setTextColor:[UIColor whiteColor]];
-    [_updatedLabel setTextAlignment:NSTextAlignmentCenter];
-    [_container addSubview:_updatedLabel];
+    self.updatedLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, -1.5 * fontSize, self.bounds.size.width, 1.5 * fontSize)];
+    [self.updatedLabel setNumberOfLines:0];
+    [self.updatedLabel setAdjustsFontSizeToFitWidth:YES];
+    [self.updatedLabel setFont:[UIFont fontWithName:ULTRALIGHT_FONT size:fontSize]];
+    [self.updatedLabel setTextColor:[UIColor whiteColor]];
+    [self.updatedLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.container addSubview:self.updatedLabel];
 }
 
 - (void)initializeConditionIconLabel
 {
-    static const NSInteger fontSize = 180;
-    _conditionIconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, fontSize)];
-    [_conditionIconLabel setCenter:CGPointMake(_container.center.x, 0.5 * self.center.y)];
-    [_conditionIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
-    [_conditionIconLabel setBackgroundColor:[UIColor clearColor]];
-    [_conditionIconLabel setTextColor:[UIColor whiteColor]];
-    [_conditionIconLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-    [_conditionIconLabel setShadowOffset:CGSizeMake(0, 1)];
-    [_conditionIconLabel setTextAlignment:NSTextAlignmentCenter];
-    [_container addSubview:_conditionIconLabel];
+    const NSInteger fontSize = 180;
+    self.conditionIconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, fontSize)];
+    [self.conditionIconLabel setCenter:CGPointMake(self.container.center.x, 0.5 * self.center.y)];
+    [self.conditionIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
+    [self.conditionIconLabel setBackgroundColor:[UIColor clearColor]];
+    [self.conditionIconLabel setTextColor:[UIColor whiteColor]];
+    [self.conditionIconLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
+    [self.conditionIconLabel setShadowOffset:CGSizeMake(0, 1)];
+    [self.conditionIconLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.container addSubview:self.conditionIconLabel];
 }
 
 - (void)initializeConditionDescriptionLabel
 {
-    static const NSInteger fontSize = 48;
-    _conditionDescriptionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 0.75 * self.bounds.size.width, 1.5 * fontSize)];
-    [_conditionDescriptionLabel setNumberOfLines:0];
-    [_conditionDescriptionLabel setAdjustsFontSizeToFitWidth:YES];
-    [_conditionDescriptionLabel setCenter:CGPointMake(_container.center.x, self.center.y)];
-    [_conditionDescriptionLabel setFont:[UIFont fontWithName:ULTRALIGHT_FONT size:fontSize]];
-    [_conditionDescriptionLabel setBackgroundColor:[UIColor clearColor]];
-    [_conditionDescriptionLabel setTextColor:[UIColor whiteColor]];
-    [_conditionDescriptionLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-    [_conditionDescriptionLabel setShadowOffset:CGSizeMake(0, 1)];
-    [_conditionDescriptionLabel setTextAlignment:NSTextAlignmentCenter];
-    [_container addSubview:_conditionDescriptionLabel];
+    const NSInteger fontSize = 48;
+    self.conditionDescriptionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 0.75 * self.bounds.size.width, 1.5 * fontSize)];
+    [self.conditionDescriptionLabel setNumberOfLines:0];
+    [self.conditionDescriptionLabel setAdjustsFontSizeToFitWidth:YES];
+    [self.conditionDescriptionLabel setCenter:CGPointMake(self.container.center.x, self.center.y)];
+    [self.conditionDescriptionLabel setFont:[UIFont fontWithName:ULTRALIGHT_FONT size:fontSize]];
+    [self.conditionDescriptionLabel setBackgroundColor:[UIColor clearColor]];
+    [self.conditionDescriptionLabel setTextColor:[UIColor whiteColor]];
+    [self.conditionDescriptionLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
+    [self.conditionDescriptionLabel setShadowOffset:CGSizeMake(0, 1)];
+    [self.conditionDescriptionLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.container addSubview:self.conditionDescriptionLabel];
 }
 
 - (void)initializeLocationLabel
 {
-    static const NSInteger fontSize = 18;
-    _locationLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 1.5 * fontSize)];
-    [_locationLabel setAdjustsFontSizeToFitWidth:YES];
-    [_locationLabel setCenter:CGPointMake(_container.center.x, 1.18 * self.center.y)];
-    [_locationLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
-    [_locationLabel setBackgroundColor:[UIColor clearColor]];
-    [_locationLabel setTextColor:[UIColor whiteColor]];
-    [_locationLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-    [_locationLabel setShadowOffset:CGSizeMake(0, 1)];
-    [_locationLabel setTextAlignment:NSTextAlignmentCenter];
-    [_container addSubview:_locationLabel];
+    const NSInteger fontSize = 18;
+    self.locationLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 1.5 * fontSize)];
+    [self.locationLabel setAdjustsFontSizeToFitWidth:YES];
+    [self.locationLabel setCenter:CGPointMake(self.container.center.x, 1.18 * self.center.y)];
+    [self.locationLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
+    [self.locationLabel setBackgroundColor:[UIColor clearColor]];
+    [self.locationLabel setTextColor:[UIColor whiteColor]];
+    [self.locationLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
+    [self.locationLabel setShadowOffset:CGSizeMake(0, 1)];
+    [self.locationLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.container addSubview:self.locationLabel];
 }
 
 - (void)initializeCurrentTemperatureLabel
 {
-    static const NSInteger fontSize = 52;
-    _currentTemperatureLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 1.305 * self.center.y, 0.4 * self.bounds.size.width, fontSize)];
-    [_currentTemperatureLabel setFont:[UIFont fontWithName:ULTRALIGHT_FONT size:fontSize]];
-    [_currentTemperatureLabel setBackgroundColor:[UIColor clearColor]];
-    [_currentTemperatureLabel setTextColor:[UIColor whiteColor]];
-    [_currentTemperatureLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-    [_currentTemperatureLabel setShadowOffset:CGSizeMake(0, 1)];
-    [_currentTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
-    [_container addSubview:_currentTemperatureLabel];
+    const NSInteger fontSize = 52;
+    self.currentTemperatureLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 1.305 * self.center.y, 0.4 * self.bounds.size.width, fontSize)];
+    [self.currentTemperatureLabel setFont:[UIFont fontWithName:ULTRALIGHT_FONT size:fontSize]];
+    [self.currentTemperatureLabel setBackgroundColor:[UIColor clearColor]];
+    [self.currentTemperatureLabel setTextColor:[UIColor whiteColor]];
+    [self.currentTemperatureLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
+    [self.currentTemperatureLabel setShadowOffset:CGSizeMake(0, 1)];
+    [self.currentTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.container addSubview:self.currentTemperatureLabel];
 }
 
 - (void)initializeHiLoTemperatureLabel
 {
-    static const NSInteger fontSize = 18;
-    _hiloTemperatureLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    [_hiloTemperatureLabel setFrame:CGRectMake(0, 0, 0.375 * self.bounds.size.width, fontSize)];
-    [_hiloTemperatureLabel setCenter:CGPointMake(_currentTemperatureLabel.center.x - 4,
-                                                 _currentTemperatureLabel.center.y + 0.5 * _currentTemperatureLabel.bounds.size.height + 12)];
-    [_hiloTemperatureLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
-    [_hiloTemperatureLabel setBackgroundColor:[UIColor clearColor]];
-    [_hiloTemperatureLabel setTextColor:[UIColor whiteColor]];
-    [_hiloTemperatureLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-    [_hiloTemperatureLabel setShadowOffset:CGSizeMake(0, 1)];
-    [_hiloTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
-    [_container addSubview:_hiloTemperatureLabel];
+    const NSInteger fontSize = 18;
+    self.hiloTemperatureLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    [self.hiloTemperatureLabel setFrame:CGRectMake(0, 0, 0.375 * self.bounds.size.width, fontSize)];
+    [self.hiloTemperatureLabel setCenter:CGPointMake(self.currentTemperatureLabel.center.x - 4,
+                                                 self.currentTemperatureLabel.center.y + 0.5 * self.currentTemperatureLabel.bounds.size.height + 12)];
+    [self.hiloTemperatureLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
+    [self.hiloTemperatureLabel setBackgroundColor:[UIColor clearColor]];
+    [self.hiloTemperatureLabel setTextColor:[UIColor whiteColor]];
+    [self.hiloTemperatureLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
+    [self.hiloTemperatureLabel setShadowOffset:CGSizeMake(0, 1)];
+    [self.hiloTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.container addSubview:self.hiloTemperatureLabel];
 }
 
 - (void)initializeForecastDayLabels
 {
-    static const NSInteger fontSize = 18;
+    const NSInteger fontSize = 18;
     
-    _forecastDayOneLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    _forecastDayTwoLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    _forecastDayThreeLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    self.forecastDayOneLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    self.forecastDayTwoLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    self.forecastDayThreeLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     NSArray *forecastDayLabels = @[self.forecastDayOneLabel, self.forecastDayTwoLabel, self.forecastDayThreeLabel];
     
     for(int i = 0; i < [forecastDayLabels count]; ++i) {
@@ -221,17 +265,17 @@
         [forecastDayLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
         [forecastDayLabel setShadowOffset:CGSizeMake(0, 1)];
         [forecastDayLabel setTextAlignment:NSTextAlignmentCenter];
-        [self->_container addSubview:forecastDayLabel];
+        [self.container addSubview:forecastDayLabel];
     }
 }
 
 - (void)initializeForecastIconLabels
 {
-    static const NSInteger fontSize = 40;
+    const NSInteger fontSize = 40;
     
-    _forecastIconOneLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    _forecastIconTwoLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    _forecastIconThreeLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    self.forecastIconOneLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    self.forecastIconTwoLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    self.forecastIconThreeLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     
     NSArray *forecastIconLabels = @[self.forecastIconOneLabel, self.forecastIconTwoLabel, self.forecastIconThreeLabel];
     for(int i = 0; i < [forecastIconLabels count]; ++i) {
@@ -243,7 +287,7 @@
         [forecastIconLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
         [forecastIconLabel setShadowOffset:CGSizeMake(0, 1)];
         [forecastIconLabel setTextAlignment:NSTextAlignmentCenter];
-        [self->_container addSubview:forecastIconLabel];
+        [self.container addSubview:forecastIconLabel];
     }
 }
 
