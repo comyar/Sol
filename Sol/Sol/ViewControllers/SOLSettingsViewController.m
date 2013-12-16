@@ -30,7 +30,17 @@
         self.view.opaque = NO;
         
         self->_navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
-        self->_navigationBar.alpha = 1.0;
+        [self->_navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        self->_navigationBar.shadowImage = [UIImage new];
+        self->_navigationBar.tintColor = [UIColor colorWithWhite:1 alpha:0.7];
+        self->_navigationBar.translucent = YES;
+        [self->_navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        
+        CALayer *bottomBorder = [CALayer layer];
+        bottomBorder.frame = CGRectMake(0.0f, self->_navigationBar.bounds.size.height-0.5, self->_navigationBar.bounds.size.width, 0.5f);
+        bottomBorder.backgroundColor = [UIColor whiteColor].CGColor;
+        [self->_navigationBar.layer addSublayer:bottomBorder];
+        
         [self.view addSubview:_navigationBar];
         
         self->_doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -56,23 +66,12 @@
     [self->_locationsTableView setEditing:YES animated:YES];
     [self->_locationsTableView reloadData];
     
-    /// Change the color of the status bar text
-    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    
     /// Fade in locations table view title if there are table view elements
     CGFloat animationDuration = ([self.locations count] == 0)? 0.0: 0.3;
     [UIView animateWithDuration:animationDuration animations: ^ {
         self->_tableSeparatorView.alpha = ([self.locations count] == 0)? 0.0: 1.0;
         self.locationsTableViewTitleLabel.alpha = ([self.locations count] == 0)? 0.0: 1.0;
     }];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    /// Change the color of the status bar text
-    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 }
 
 #pragma mark Initialize Subviews
