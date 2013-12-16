@@ -20,7 +20,7 @@
  Adds a weatherView as page in the paging scroll view
  @param weatherView View to add
  */
-- (void)addSubview:(UIView *)weatherView;
+- (void)addSubview:(UIView *)weatherView isLaunch:(BOOL)launch;
 
 /**
  Inserts a weatherView as a page at the given index
