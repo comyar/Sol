@@ -26,12 +26,17 @@
 
 #pragma mark Configuring a Paging Scroll View
 
-- (void)addSubview:(UIView *)weatherView
+- (void)addSubview:(UIView *)weatherView isLaunch:(BOOL)launch
 {
     [super addSubview:weatherView];
     [weatherView setFrame:CGRectMake(self.bounds.size.width * (self.subviews.count - 1), 0,
                                      weatherView.bounds.size.width, weatherView.bounds.size.height)];
     [self setContentSize:CGSizeMake(self.bounds.size.width * self.subviews.count, self.contentSize.height)];
+    
+    if (!launch) {
+        [self setContentOffset:CGPointMake(weatherView.bounds.size.width * (self.subviews.count - 1), 0) animated:YES];
+    }
+    
     CZLog(@"SOLPagingScrollView", @"Added subview");
 }
 
