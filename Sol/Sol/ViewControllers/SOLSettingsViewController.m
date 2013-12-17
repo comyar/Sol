@@ -50,10 +50,19 @@
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         self.view.backgroundColor = [UIColor clearColor];
         self.view.opaque = NO;
-        
+
         self.navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64)];
-        self.navigationBar.alpha = 1.0;
+        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        self.navigationBar.shadowImage = [UIImage new];
+        self.navigationBar.tintColor = [UIColor colorWithWhite:1 alpha:0.7];
+        self.navigationBar.translucent = YES;
+        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        CALayer *bottomBorder = [CALayer layer];
+        bottomBorder.frame = CGRectMake(0.0f, self.navigationBar.bounds.size.height-0.5, self.navigationBar.bounds.size.width, 0.5f);
+        bottomBorder.backgroundColor = [UIColor whiteColor].CGColor;
+        [self.navigationBar.layer addSublayer:bottomBorder];
         [self.view addSubview:self.navigationBar];
+        
         
         self.doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                    target:self
@@ -78,23 +87,12 @@
     [self.locationsTableView setEditing:YES animated:YES];
     [self.locationsTableView reloadData];
     
-    /// Change the color of the status bar text
-    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    
     /// Fade in locations table view title if there are table view elements
     CGFloat animationDuration = ([self.locations count] == 0)? 0.0: 0.3;
     [UIView animateWithDuration:animationDuration animations: ^ {
         self.tableSeparatorView.alpha = ([self.locations count] == 0)? 0.0: 1.0;
         self.locationsTableViewTitleLabel.alpha = ([self.locations count] == 0)? 0.0: 1.0;
     }];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    /// Change the color of the status bar text
-    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 }
 
 #pragma mark Initialize Subviews

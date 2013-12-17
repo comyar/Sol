@@ -238,8 +238,8 @@
             weatherView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradient5.png"]];
             weatherView.tag = tagNumber.integerValue;
             weatherView.local = NO;
-            [self.pagingScrollView addSubview:weatherView];
             self.pageControl.numberOfPages += 1;
+            [self.pagingScrollView addSubview:weatherView isLaunch:YES];
             [self updateWeatherView:weatherView withData:weatherData];
         }
     }
@@ -491,9 +491,9 @@
         [weatherView setLocal:NO];
         [weatherView setTag:placemark.locality.hash];
         [weatherView.activityIndicator startAnimating];
-        
+
         self.pageControl.numberOfPages += 1;
-        [self.pagingScrollView addSubview:weatherView];
+        [self.pagingScrollView addSubview:weatherView isLaunch:NO];
         [self.weatherTags addObject:[NSNumber numberWithInteger:weatherView.tag]];
         [SOLStateManager setWeatherTags:self.weatherTags];
         
