@@ -60,13 +60,18 @@
         self.doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                    target:self
                                                                    action:@selector(doneButtonPressed)];
+        /// Inititalize and configure search bar
         self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
         self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
         self.searchBar.placeholder = @"Name of City";
         self.searchBar.delegate = self;
         
-        [self initializeStatusBarOverlay];
+        /// Initialize and configure search bar overlay
+        self.statusBarOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
+        self.statusBarOverlay.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
+        [self.view insertSubview:self.statusBarOverlay aboveSubview:self.searchBar];
         
+        /// Initialize and configure search controller
         self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
         self.searchController.delegate = self;
         self.searchController.searchResultsDelegate = self;
@@ -87,7 +92,7 @@
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     [self.searchController setActive:YES animated:NO];
     [self.searchController.searchBar becomeFirstResponder];
-    [self addStatusBarOverlay];
+    [self showStatusBarOverlay:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -96,12 +101,12 @@
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     [self.searchController setActive:NO animated:NO];
     [self.searchController.searchBar resignFirstResponder];
-    [self removeStatusBarOverlay];
+    [self showStatusBarOverlay:NO];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self removeStatusBarOverlay];
+    [self showStatusBarOverlay:NO];
     [self.delegate dismissAddLocationViewController];
 }
 
@@ -110,38 +115,28 @@
 - (void)doneButtonPressed
 {
     CZLog(@"SOLAddLocationViewController", @"Done Button Pressed");
-    [self removeStatusBarOverlay];
+    [self showStatusBarOverlay:NO];
     [self.delegate dismissAddLocationViewController];
 }
 
 
-#pragma mark UISearchBar Methods
+#pragma mark UISearchBarDelegate Methods
 
-- (void)initializeStatusBarOverlay {
-    self.statusBarOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
-    self.statusBarOverlay.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
-    
-    [self.view insertSubview:self.statusBarOverlay aboveSubview:self.searchBar];
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    [self showStatusBarOverlay:YES];
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [self addStatusBarOverlay];
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [self showStatusBarOverlay:NO];
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    [self removeStatusBarOverlay];
-}
-
-- (void)addStatusBarOverlay {
-    [UIView animateWithDuration:0.25  animations:^{
-        self.statusBarOverlay.alpha = 1;
+- (void)showStatusBarOverlay:(BOOL)show
+{
+    [UIView animateWithDuration:0.25 animations: ^ {
+        self.statusBarOverlay.alpha = (show)? 1.0 : 0.0;
     }];
-}
-
-- (void)removeStatusBarOverlay {
-    [UIView animateWithDuration:0.25 animations:^{
-        self.statusBarOverlay.alpha = 0;
-    } completion:nil];
 }
 
 #pragma mark UISearchDisplayControllerDelegate Methods
