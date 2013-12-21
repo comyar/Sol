@@ -35,6 +35,9 @@
 /// Done button inside navigation bar
 @property (strong, nonatomic) UIBarButtonItem               *doneButton;
 
+/// Status bar overlay
+@property (strong, nonatomic) UIView                        *statusBarOverlay;
+
 @end
 
 #pragma mark - SOLAddLocationViewController Implementation
@@ -62,6 +65,8 @@
         self.searchBar.placeholder = @"Name of City";
         self.searchBar.delegate = self;
         
+        [self initializeStatusBarOverlay];
+        
         self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
         self.searchController.delegate = self;
         self.searchController.searchResultsDelegate = self;
@@ -82,6 +87,7 @@
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     [self.searchController setActive:YES animated:NO];
     [self.searchController.searchBar becomeFirstResponder];
+    [self addStatusBarOverlay];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -90,10 +96,12 @@
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     [self.searchController setActive:NO animated:NO];
     [self.searchController.searchBar resignFirstResponder];
+    [self removeStatusBarOverlay];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    [self removeStatusBarOverlay];
     [self.delegate dismissAddLocationViewController];
 }
 
@@ -102,7 +110,38 @@
 - (void)doneButtonPressed
 {
     CZLog(@"SOLAddLocationViewController", @"Done Button Pressed");
+    [self removeStatusBarOverlay];
     [self.delegate dismissAddLocationViewController];
+}
+
+
+#pragma mark UISearchBar Methods
+
+- (void)initializeStatusBarOverlay {
+    self.statusBarOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
+    self.statusBarOverlay.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
+    
+    [self.view insertSubview:self.statusBarOverlay aboveSubview:self.searchBar];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self addStatusBarOverlay];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [self removeStatusBarOverlay];
+}
+
+- (void)addStatusBarOverlay {
+    [UIView animateWithDuration:0.25  animations:^{
+        self.statusBarOverlay.alpha = 1;
+    }];
+}
+
+- (void)removeStatusBarOverlay {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.statusBarOverlay.alpha = 0;
+    } completion:nil];
 }
 
 #pragma mark UISearchDisplayControllerDelegate Methods
