@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		DD3965BC17F8DE2A00977422 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3965BB17F8DE2A00977422 /* UIImage+ImageEffects.m */; };
-		DD3965D317F8E66800977422 /* gradient0.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965BF17F8E54400977422 /* gradient0.png */; };
-		DD3965D417F8E66800977422 /* gradient1.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C017F8E54400977422 /* gradient1.png */; };
-		DD3965D517F8E66800977422 /* gradient2.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C117F8E54400977422 /* gradient2.png */; };
-		DD3965D617F8E66800977422 /* gradient3.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C217F8E54400977422 /* gradient3.png */; };
-		DD3965D717F8E66800977422 /* gradient4.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C317F8E54400977422 /* gradient4.png */; };
-		DD3965D817F8E66800977422 /* gradient5.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C417F8E54400977422 /* gradient5.png */; };
-		DD3965D917F8E66800977422 /* gradient6.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C517F8E54400977422 /* gradient6.png */; };
-		DD3965DB17F8E66800977422 /* gradient8.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C717F8E54400977422 /* gradient8.png */; };
-		DD3965DC17F8E66800977422 /* gradient9.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C817F8E54400977422 /* gradient9.png */; };
+		DD3965D317F8E66800977422 /* gradient0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965BF17F8E54400977422 /* gradient0@2x.png */; };
+		DD3965D417F8E66800977422 /* gradient1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C017F8E54400977422 /* gradient1@2x.png */; };
+		DD3965D517F8E66800977422 /* gradient2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C117F8E54400977422 /* gradient2@2x.png */; };
+		DD3965D617F8E66800977422 /* gradient3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C217F8E54400977422 /* gradient3@2x.png */; };
+		DD3965D717F8E66800977422 /* gradient4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C317F8E54400977422 /* gradient4@2x.png */; };
+		DD3965D817F8E66800977422 /* gradient5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C417F8E54400977422 /* gradient5@2x.png */; };
+		DD3965D917F8E66800977422 /* gradient6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C517F8E54400977422 /* gradient6@2x.png */; };
+		DD3965DB17F8E66800977422 /* gradient8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C717F8E54400977422 /* gradient8@2x.png */; };
+		DD3965DC17F8E66800977422 /* gradient9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3965C817F8E54400977422 /* gradient9@2x.png */; };
 		DD46272A17ADC3A1000A6A33 /* SOLWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD46272917ADC3A1000A6A33 /* SOLWeatherView.m */; };
 		DD46272D17ADC3E6000A6A33 /* SOLWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD46272C17ADC3E6000A6A33 /* SOLWeatherData.m */; };
 		DD4F967517A8994300E0E7D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F967417A8994300E0E7D0 /* Foundation.framework */; };
@@ -42,7 +42,7 @@
 		DD93A82217FA9C20006DD1BC /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = DD93A81E17FA9C20006DD1BC /* iTunesArtwork.png */; };
 		DD93A82317FA9C20006DD1BC /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD93A81F17FA9C20006DD1BC /* iTunesArtwork@2x.png */; };
 		DD93A82B17FB20B2006DD1BC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD93A82917FB20B2006DD1BC /* Default-568h@2x.png */; };
-		DD93A83217FBCDBB006DD1BC /* gradient7.png in Resources */ = {isa = PBXBuildFile; fileRef = DD93A83117FBCDBB006DD1BC /* gradient7.png */; };
+		DD93A83217FBCDBB006DD1BC /* gradient7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD93A83117FBCDBB006DD1BC /* gradient7@2x.png */; };
 		DDA08EA017B81135006AC675 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA08E9F17B81135006AC675 /* CoreLocation.framework */; };
 		DDB7B85917ECD17A00857D15 /* SOLStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B85817ECD17A00857D15 /* SOLStateManager.m */; };
 		DDB7B8E517ECF59100857D15 /* SOLAddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8E417ECF59100857D15 /* SOLAddLocationViewController.m */; };
@@ -67,15 +67,15 @@
 		DD0C344317B5179C0024AD9A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DD3965BA17F8DE2A00977422 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Model/Categories/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		DD3965BB17F8DE2A00977422 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "Model/Categories/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		DD3965BF17F8E54400977422 /* gradient0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient0.png; path = Resources/Gradients/gradient0.png; sourceTree = "<group>"; };
-		DD3965C017F8E54400977422 /* gradient1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient1.png; path = Resources/Gradients/gradient1.png; sourceTree = "<group>"; };
-		DD3965C117F8E54400977422 /* gradient2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient2.png; path = Resources/Gradients/gradient2.png; sourceTree = "<group>"; };
-		DD3965C217F8E54400977422 /* gradient3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient3.png; path = Resources/Gradients/gradient3.png; sourceTree = "<group>"; };
-		DD3965C317F8E54400977422 /* gradient4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient4.png; path = Resources/Gradients/gradient4.png; sourceTree = "<group>"; };
-		DD3965C417F8E54400977422 /* gradient5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient5.png; path = Resources/Gradients/gradient5.png; sourceTree = "<group>"; };
-		DD3965C517F8E54400977422 /* gradient6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient6.png; path = Resources/Gradients/gradient6.png; sourceTree = "<group>"; };
-		DD3965C717F8E54400977422 /* gradient8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient8.png; path = Resources/Gradients/gradient8.png; sourceTree = "<group>"; };
-		DD3965C817F8E54400977422 /* gradient9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient9.png; path = Resources/Gradients/gradient9.png; sourceTree = "<group>"; };
+		DD3965BF17F8E54400977422 /* gradient0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gradient0@2x.png"; path = "Resources/Gradients/gradient0@2x.png"; sourceTree = "<group>"; };
+		DD3965C017F8E54400977422 /* gradient1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gradient1@2x.png"; path = "Resources/Gradients/gradient1@2x.png"; sourceTree = "<group>"; };
+		DD3965C117F8E54400977422 /* gradient2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gradient2@2x.png"; path = "Resources/Gradients/gradient2@2x.png"; sourceTree = "<group>"; };
+		DD3965C217F8E54400977422 /* gradient3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gradient3@2x.png"; path = "Resources/Gradients/gradient3@2x.png"; sourceTree = "<group>"; };
+		DD3965C317F8E54400977422 /* gradient4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gradient4@2x.png"; path = "Resources/Gradients/gradient4@2x.png"; sourceTree = "<group>"; };
+		DD3965C417F8E54400977422 /* gradient5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gradient5@2x.png"; path = "Resources/Gradients/gradient5@2x.png"; sourceTree = "<group>"; };
+		DD3965C517F8E54400977422 /* gradient6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gradient6@2x.png"; path = "Resources/Gradients/gradient6@2x.png"; sourceTree = "<group>"; };
+		DD3965C717F8E54400977422 /* gradient8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gradient8@2x.png"; path = "Resources/Gradients/gradient8@2x.png"; sourceTree = "<group>"; };
+		DD3965C817F8E54400977422 /* gradient9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gradient9@2x.png"; path = "Resources/Gradients/gradient9@2x.png"; sourceTree = "<group>"; };
 		DD46272817ADC3A1000A6A33 /* SOLWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherView.h; path = Views/SOLWeatherView.h; sourceTree = "<group>"; };
 		DD46272917ADC3A1000A6A33 /* SOLWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherView.m; path = Views/SOLWeatherView.m; sourceTree = "<group>"; };
 		DD46272B17ADC3E6000A6A33 /* SOLWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherData.h; path = Model/SOLWeatherData.h; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		DD93A81F17FA9C20006DD1BC /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "Resources/Icon/iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		DD93A82417FA9D28006DD1BC /* CZDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CZDebug.h; path = Model/CZDebug.h; sourceTree = "<group>"; };
 		DD93A82917FB20B2006DD1BC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		DD93A83117FBCDBB006DD1BC /* gradient7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient7.png; path = Resources/Gradients/gradient7.png; sourceTree = "<group>"; };
+		DD93A83117FBCDBB006DD1BC /* gradient7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gradient7@2x.png"; path = "Resources/Gradients/gradient7@2x.png"; sourceTree = "<group>"; };
 		DDA08E9F17B81135006AC675 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DDB7B85717ECD17A00857D15 /* SOLStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLStateManager.h; path = Model/SOLStateManager.h; sourceTree = "<group>"; };
 		DDB7B85817ECD17A00857D15 /* SOLStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLStateManager.m; path = Model/SOLStateManager.m; sourceTree = "<group>"; };
@@ -344,16 +344,16 @@
 		DDBFDDC717B23EDF002A886D /* Gradients */ = {
 			isa = PBXGroup;
 			children = (
-				DD93A83117FBCDBB006DD1BC /* gradient7.png */,
-				DD3965BF17F8E54400977422 /* gradient0.png */,
-				DD3965C017F8E54400977422 /* gradient1.png */,
-				DD3965C117F8E54400977422 /* gradient2.png */,
-				DD3965C217F8E54400977422 /* gradient3.png */,
-				DD3965C317F8E54400977422 /* gradient4.png */,
-				DD3965C417F8E54400977422 /* gradient5.png */,
-				DD3965C517F8E54400977422 /* gradient6.png */,
-				DD3965C717F8E54400977422 /* gradient8.png */,
-				DD3965C817F8E54400977422 /* gradient9.png */,
+				DD93A83117FBCDBB006DD1BC /* gradient7@2x.png */,
+				DD3965BF17F8E54400977422 /* gradient0@2x.png */,
+				DD3965C017F8E54400977422 /* gradient1@2x.png */,
+				DD3965C117F8E54400977422 /* gradient2@2x.png */,
+				DD3965C217F8E54400977422 /* gradient3@2x.png */,
+				DD3965C317F8E54400977422 /* gradient4@2x.png */,
+				DD3965C417F8E54400977422 /* gradient5@2x.png */,
+				DD3965C517F8E54400977422 /* gradient6@2x.png */,
+				DD3965C717F8E54400977422 /* gradient8@2x.png */,
+				DD3965C817F8E54400977422 /* gradient9@2x.png */,
 			);
 			name = Gradients;
 			sourceTree = "<group>";
@@ -437,22 +437,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD3965D317F8E66800977422 /* gradient0.png in Resources */,
-				DD3965D417F8E66800977422 /* gradient1.png in Resources */,
-				DD3965D517F8E66800977422 /* gradient2.png in Resources */,
+				DD3965D317F8E66800977422 /* gradient0@2x.png in Resources */,
+				DD3965D417F8E66800977422 /* gradient1@2x.png in Resources */,
+				DD3965D517F8E66800977422 /* gradient2@2x.png in Resources */,
 				DD93A82317FA9C20006DD1BC /* iTunesArtwork@2x.png in Resources */,
 				DD93A82217FA9C20006DD1BC /* iTunesArtwork.png in Resources */,
 				DD93A82017FA9C20006DD1BC /* Icon-76@2x.png in Resources */,
-				DD3965D617F8E66800977422 /* gradient3.png in Resources */,
+				DD3965D617F8E66800977422 /* gradient3@2x.png in Resources */,
 				DD93A82B17FB20B2006DD1BC /* Default-568h@2x.png in Resources */,
-				DD3965D717F8E66800977422 /* gradient4.png in Resources */,
-				DD3965D817F8E66800977422 /* gradient5.png in Resources */,
-				DD3965D917F8E66800977422 /* gradient6.png in Resources */,
+				DD3965D717F8E66800977422 /* gradient4@2x.png in Resources */,
+				DD3965D817F8E66800977422 /* gradient5@2x.png in Resources */,
+				DD3965D917F8E66800977422 /* gradient6@2x.png in Resources */,
 				DD93A82117FA9C20006DD1BC /* Icon@2x.png in Resources */,
-				DD3965DB17F8E66800977422 /* gradient8.png in Resources */,
-				DD3965DC17F8E66800977422 /* gradient9.png in Resources */,
+				DD3965DB17F8E66800977422 /* gradient8@2x.png in Resources */,
+				DD3965DC17F8E66800977422 /* gradient9@2x.png in Resources */,
 				DD93A81B17FA9C12006DD1BC /* Climacons.ttf in Resources */,
-				DD93A83217FBCDBB006DD1BC /* gradient7.png in Resources */,
+				DD93A83217FBCDBB006DD1BC /* gradient7@2x.png in Resources */,
 				DD4F967F17A8994300E0E7D0 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
