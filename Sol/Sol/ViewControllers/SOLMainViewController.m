@@ -291,7 +291,9 @@
                 [weatherView.activityIndicator startAnimating];
                 
                 /// Make the data download request, Block based
-                [[SOLWundergroundDownloader sharedDownloader]dataForPlacemark:weatherData.placemark withTag:weatherView.tag completion:^(SOLWeatherData *data) {
+                [[SOLWundergroundDownloader sharedDownloader]dataForPlacemark:weatherData.placemark
+                                                                      withTag:weatherView.tag
+                                                                   completion: ^ (SOLWeatherData *data) {
                     if (data) {
                         // Success
                         CZLog(@"SOLMainViewController", @"Download finished for weather view with tag: %d", weatherView.tag);

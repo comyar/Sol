@@ -58,7 +58,7 @@
         self.navigationBar.translucent = YES;
         [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
         CALayer *bottomBorder = [CALayer layer];
-        bottomBorder.frame = CGRectMake(0.0f, self.navigationBar.bounds.size.height-0.5, self.navigationBar.bounds.size.width, 0.5f);
+        bottomBorder.frame = CGRectMake(0.0, self.navigationBar.bounds.size.height - 0.5, self.navigationBar.bounds.size.width, 0.5);
         bottomBorder.backgroundColor = [UIColor whiteColor].CGColor;
         [self.navigationBar.layer addSublayer:bottomBorder];
         [self.view addSubview:self.navigationBar];
@@ -145,7 +145,7 @@
     [self.view addSubview:self.locationsTableViewTitleLabel];
     
     /// Initialize table view title separator
-    self.tableSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 1)];
+    self.tableSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 0.5)];
     self.tableSeparatorView.center = CGPointMake(self.view.center.x, self.view.center.y);
     self.tableSeparatorView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableSeparatorView];
