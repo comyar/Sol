@@ -163,11 +163,11 @@
 
 - (void)initializeUpdatedLabel
 {
-    static const NSInteger fontSize = 18;
+    static const NSInteger fontSize = 16;
     self.updatedLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, -1.5 * fontSize, self.bounds.size.width, 1.5 * fontSize)];
     [self.updatedLabel setNumberOfLines:0];
     [self.updatedLabel setAdjustsFontSizeToFitWidth:YES];
-    [self.updatedLabel setFont:[UIFont fontWithName:ULTRALIGHT_FONT size:fontSize]];
+    [self.updatedLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
     [self.updatedLabel setTextColor:[UIColor whiteColor]];
     [self.updatedLabel setTextAlignment:NSTextAlignmentCenter];
     [self.container addSubview:self.updatedLabel];
@@ -181,8 +181,6 @@
     [self.conditionIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
     [self.conditionIconLabel setBackgroundColor:[UIColor clearColor]];
     [self.conditionIconLabel setTextColor:[UIColor whiteColor]];
-    [self.conditionIconLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-    [self.conditionIconLabel setShadowOffset:CGSizeMake(0, 1)];
     [self.conditionIconLabel setTextAlignment:NSTextAlignmentCenter];
     [self.container addSubview:self.conditionIconLabel];
 }
@@ -197,8 +195,6 @@
     [self.conditionDescriptionLabel setFont:[UIFont fontWithName:ULTRALIGHT_FONT size:fontSize]];
     [self.conditionDescriptionLabel setBackgroundColor:[UIColor clearColor]];
     [self.conditionDescriptionLabel setTextColor:[UIColor whiteColor]];
-    [self.conditionDescriptionLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-    [self.conditionDescriptionLabel setShadowOffset:CGSizeMake(0, 1)];
     [self.conditionDescriptionLabel setTextAlignment:NSTextAlignmentCenter];
     [self.container addSubview:self.conditionDescriptionLabel];
 }
@@ -212,8 +208,6 @@
     [self.locationLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
     [self.locationLabel setBackgroundColor:[UIColor clearColor]];
     [self.locationLabel setTextColor:[UIColor whiteColor]];
-    [self.locationLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-    [self.locationLabel setShadowOffset:CGSizeMake(0, 1)];
     [self.locationLabel setTextAlignment:NSTextAlignmentCenter];
     [self.container addSubview:self.locationLabel];
 }
@@ -225,8 +219,6 @@
     [self.currentTemperatureLabel setFont:[UIFont fontWithName:ULTRALIGHT_FONT size:fontSize]];
     [self.currentTemperatureLabel setBackgroundColor:[UIColor clearColor]];
     [self.currentTemperatureLabel setTextColor:[UIColor whiteColor]];
-    [self.currentTemperatureLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-    [self.currentTemperatureLabel setShadowOffset:CGSizeMake(0, 1)];
     [self.currentTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
     [self.container addSubview:self.currentTemperatureLabel];
 }
@@ -241,8 +233,6 @@
     [self.hiloTemperatureLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
     [self.hiloTemperatureLabel setBackgroundColor:[UIColor clearColor]];
     [self.hiloTemperatureLabel setTextColor:[UIColor whiteColor]];
-    [self.hiloTemperatureLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-    [self.hiloTemperatureLabel setShadowOffset:CGSizeMake(0, 1)];
     [self.hiloTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
     [self.container addSubview:self.hiloTemperatureLabel];
 }
@@ -262,8 +252,6 @@
         [forecastDayLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
         [forecastDayLabel setBackgroundColor:[UIColor clearColor]];
         [forecastDayLabel setTextColor:[UIColor whiteColor]];
-        [forecastDayLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-        [forecastDayLabel setShadowOffset:CGSizeMake(0, 1)];
         [forecastDayLabel setTextAlignment:NSTextAlignmentCenter];
         [self.container addSubview:forecastDayLabel];
     }
@@ -284,8 +272,6 @@
         [forecastIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
         [forecastIconLabel setBackgroundColor:[UIColor clearColor]];
         [forecastIconLabel setTextColor:[UIColor whiteColor]];
-        [forecastIconLabel setShadowColor:[UIColor colorWithWhite:0.5 alpha:0.25]];
-        [forecastIconLabel setShadowOffset:CGSizeMake(0, 1)];
         [forecastIconLabel setTextAlignment:NSTextAlignmentCenter];
         [self.container addSubview:forecastIconLabel];
     }

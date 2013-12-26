@@ -46,7 +46,6 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         self.view.backgroundColor = [UIColor clearColor];
         self.view.opaque = NO;
@@ -56,7 +55,8 @@
         self.navigationBar.shadowImage = [UIImage new];
         self.navigationBar.tintColor = [UIColor colorWithWhite:1 alpha:0.7];
         self.navigationBar.translucent = YES;
-        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
+                                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:22]}];
         CALayer *bottomBorder = [CALayer layer];
         bottomBorder.frame = CGRectMake(0.0, self.navigationBar.bounds.size.height - 0.5, self.navigationBar.bounds.size.width, 0.5);
         bottomBorder.backgroundColor = [UIColor whiteColor].CGColor;
@@ -133,10 +133,10 @@
 
 - (void)initializeLocationsTableViewTitleLabel
 {
-    static const CGFloat fontSize = 28;
+    static const CGFloat fontSize = 22;
     
     /// Initialize table view title label
-    self.locationsTableViewTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.825 * self.view.center.y,
+    self.locationsTableViewTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.835 * self.view.center.y,
                                                                                  CGRectGetWidth(self.view.bounds), 1.5 * fontSize)];
     [self.locationsTableViewTitleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
     [self.locationsTableViewTitleLabel setTextColor:[UIColor whiteColor]];
