@@ -12,8 +12,10 @@
 #pragma mark - SOLAppDelegate Class Extension
 
 @interface SOLAppDelegate ()
+
 /// The initial view controller presented to the user
 @property (strong, nonatomic) SOLMainViewController *mainViewController;
+
 @end
 
 #pragma mark - SOLAppDelegate Implementation
@@ -32,7 +34,7 @@
     self.window.opaque = NO;
     
     /// Initialize main view controller
-    self.mainViewController = [[SOLMainViewController alloc]initWithNibName:nil bundle:nil];
+    self.mainViewController = [[SOLMainViewController alloc]init];
     
     /// Set our window's root view controller and make the app window visible
     self.window.rootViewController = self.mainViewController;
@@ -50,17 +52,11 @@
     [self.mainViewController.locationManager stopUpdatingLocation];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    /// Begin updating the user's location again
-    [self.mainViewController.locationManager startUpdatingLocation];
-    [self.mainViewController updateWeatherData];
-}
-
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     /// Begin updating the user's location again
     [self.mainViewController.locationManager startUpdatingLocation];
+    [self.mainViewController updateWeatherData];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

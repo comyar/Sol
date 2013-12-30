@@ -9,7 +9,7 @@
 #ifndef CZDebug
 #define CZDebug
 
-#define CZDEBUG_ENABLED NO
+#define CZDEBUG_ENABLED YES
 #define CZLog(class, ...) if(CZDEBUG_ENABLED) NSLog(@"["class"] - "__VA_ARGS__)
 
 #endif

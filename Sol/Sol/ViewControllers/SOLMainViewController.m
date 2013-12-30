@@ -83,7 +83,6 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        
         self.modalPresentationStyle = UIModalPresentationCurrentContext;
         self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         
@@ -307,8 +306,7 @@
                         if([self.weatherData count] >= kMAX_NUM_WEATHER_VIEWS) {
                             self.addLocationButton.hidden = YES;
                         }
-                    }
-                    else {
+                    } else {
                         // Failure
                         CZLog(@"SOLMainViewController", @"Download failed for weather view with tag: %d", weatherView.tag);
                         /// If the weather view doesn't have any data, show a failure message
@@ -403,6 +401,7 @@
     } else if(status != kCLAuthorizationStatusNotDetermined) {
         CZLog(@"SOLMainViewController", @"Location Services Authorization Not Determined");
         [self initializeNonlocalWeatherViews];
+        [self updateWeatherData];
     } else if(status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
         CZLog(@"SOLMainViewController", @"Location Services Denied");
         /// If location services are disabled and no saved weather data is found, show the add location view controller
