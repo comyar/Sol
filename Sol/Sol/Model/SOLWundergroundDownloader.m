@@ -11,6 +11,7 @@
 #import "NSString+Substring.h"
 #import "Climacons.h"
 
+#warning SOLWundergroundDownloader requires a valid API key from Wunderground.com
 #define kAPI_KEY @""
 
 
@@ -52,10 +53,6 @@
 - (instancetype)initWithAPIKey:(NSString *)key
 {
     if(self = [super init]) {
-        if([key length] != 16) {
-            /// SOLWundergroundDownloader requires a valid Wunderground.com API key
-            [NSException raise:@"SOLWundergroundDownloaderException" format:@"Missing API Key"];
-        }
         self->_key = key;
         self->_geocoder = [[CLGeocoder alloc]init];
     }

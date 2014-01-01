@@ -250,21 +250,26 @@
 {
     if(show) {
         /// Take a screen shot of this controller's view
-        UIImage *screenshot = [self.view screenshot];
-        
-        /// Blur the screen shot
-        UIImage *blurredScreenshot = [screenshot applyBlurWithRadius:10.0
-                                                           tintColor:[UIColor colorWithWhite:0.0 alpha:0.25]
-                                               saturationDeltaFactor:1.0
-                                                           maskImage:nil];
-        /// Set the blurred overlay view's image with the blurred screenshot
-        [self.blurredOverlayView setImage:blurredScreenshot];
-        CZLog(@"SOLMainViewController", @"Showing Blurred Overlay View");
+        [self.view screenshotAsyncWithCompletion: ^ (UIImage *image) {
+            /// Blur the screen shot
+            UIImage *blurred = [image applyBlurWithRadius:16.0
+                                                   tintColor:[UIColor colorWithWhite:0.5 alpha:0.2]
+                                       saturationDeltaFactor:2.0
+                                                   maskImage:nil];
+            /// Set the blurred overlay view's image with the blurred screenshot
+            self.blurredOverlayView.image = blurred;
+            
+            [UIView animateWithDuration:0.3 animations: ^ {
+                self.blurredOverlayView.alpha = 1.0;
+            }];
+            
+            CZLog(@"SOLMainViewController", @"Showing Blurred Overlay View");
+        }];
     }
     
-    /// Fade the blurred overlay view in or out based on the given input
+    /// Fade the blurred overlay view out
     [UIView animateWithDuration:0.3 animations: ^ {
-        self.blurredOverlayView.alpha = (show)? 1.0: 0.0;
+        self.blurredOverlayView.alpha = 0.0;
     }];
 }
 
@@ -493,9 +498,6 @@
 - (void)addLocationButtonPressed
 {
     CZLog(@"SOLMainViewController", @"Add Location Button Pressed");
-    
-    /// Transition to the add location view controller
-    [self presentViewController:self.addLocationViewController animated:NO completion:nil];
 
     /// Only show the blurred overlay view if weather views have been added
     if([self.pagingScrollView.subviews count] > 0) {
@@ -508,6 +510,9 @@
             self.solTitleLabel.alpha = 0.0;
         }];
     }
+    
+    /// Transition to the add location view controller
+    [self presentViewController:self.addLocationViewController animated:NO completion:nil];
 }
 
 #pragma mark SOLAddLocationViewControllerDelegate Methods

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^UIViewScreenshotAsyncCompletion) (UIImage *image);
+
 @interface UIView (Screenshot)
 
 - (UIImage *)screenshot;
+- (void)screenshotAsyncWithCompletion:(UIViewScreenshotAsyncCompletion)comletion;
 
 @end

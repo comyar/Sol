@@ -35,9 +35,6 @@
 /// Done button inside navigation bar
 @property (strong, nonatomic) UIBarButtonItem               *doneButton;
 
-/// Status bar overlay
-@property (strong, nonatomic) UIView                        *statusBarOverlay;
-
 @end
 
 #pragma mark - SOLAddLocationViewController Implementation
@@ -62,15 +59,10 @@
                                                                    target:self
                                                                    action:@selector(doneButtonPressed)];
         /// Inititalize and configure search bar
-        self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+        self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 44)];
         self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
         self.searchBar.placeholder = @"Name of City";
         self.searchBar.delegate = self;
-        
-        /// Initialize and configure search bar overlay
-        self.statusBarOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
-        self.statusBarOverlay.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
-        [self.view insertSubview:self.statusBarOverlay aboveSubview:self.searchBar];
         
         /// Initialize and configure search controller
         self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
@@ -108,13 +100,6 @@
     [self.delegate dismissAddLocationViewController];
 }
 
-- (void)showStatusBarOverlay:(BOOL)show
-{
-    [UIView animateWithDuration:0.25 animations: ^ {
-        self.statusBarOverlay.alpha = (show)? 1.0 : 0.0;
-    }];
-}
-
 #pragma mark DoneButton Methods
 
 - (void)doneButtonPressed
@@ -124,16 +109,6 @@
 }
 
 #pragma mark UISearchDisplayControllerDelegate Methods
-
-- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
-{
-    [self showStatusBarOverlay:YES];
-}
-
-- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
-{
-    [self showStatusBarOverlay:NO];
-}
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
