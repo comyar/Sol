@@ -494,6 +494,9 @@
 {
     CZLog(@"SOLMainViewController", @"Add Location Button Pressed");
     
+    /// Transition to the add location view controller
+    [self presentViewController:self.addLocationViewController animated:NO completion:nil];
+
     /// Only show the blurred overlay view if weather views have been added
     if([self.pagingScrollView.subviews count] > 0) {
         [self showBlurredOverlayView:YES];
@@ -505,9 +508,6 @@
             self.solTitleLabel.alpha = 0.0;
         }];
     }
-    
-    /// Transition to the add location view controller
-    [self presentViewController:self.addLocationViewController animated:YES completion:nil];
 }
 
 #pragma mark SOLAddLocationViewControllerDelegate Methods
@@ -573,6 +573,20 @@
 {
     CZLog(@"SOLMainViewController", @"Settings Button Pressed");
     
+    /// Prepare the data (location name, tag) needed by the settings view controller
+    NSMutableArray *locations = [[NSMutableArray alloc]initWithCapacity:4];
+    for(SOLWeatherView *weatherView in self.pagingScrollView.subviews) {
+        if(weatherView.tag != kLOCAL_WEATHER_VIEW_TAG) {
+            NSArray *locationMetaData = @[weatherView.locationLabel.text, [NSNumber numberWithInteger:weatherView.tag]];
+            [locations addObject:locationMetaData];
+        }
+    }
+    
+    self.settingsViewController.locations = locations;
+    
+    /// Transition to the settings view controller
+    [self presentViewController:self.settingsViewController animated:YES completion:nil];
+    
     /// Only show the blurred overlay view if weather views have been added
     if([self.pagingScrollView.subviews count] > 0) {
         [self showBlurredOverlayView:YES];
@@ -584,19 +598,6 @@
             self.solTitleLabel.alpha = 0.0;
         }];
     }
-    
-    /// Prepare the data (location name, tag) needed by the settings view controller
-    NSMutableArray *locations = [[NSMutableArray alloc]initWithCapacity:4];
-    for(SOLWeatherView *weatherView in self.pagingScrollView.subviews) {
-        if(weatherView.tag != kLOCAL_WEATHER_VIEW_TAG) {
-            NSArray *locationMetaData = @[weatherView.locationLabel.text, [NSNumber numberWithInteger:weatherView.tag]];
-            [locations addObject:locationMetaData];
-        }
-    }
-    self.settingsViewController.locations = locations;
-    
-    /// Transition to the settings view controller
-    [self presentViewController:self.settingsViewController animated:YES completion:nil];
 }
 
 #pragma mark SOLSettingsViewControllerDelegate Methods
