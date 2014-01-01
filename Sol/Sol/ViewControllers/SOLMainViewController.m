@@ -292,39 +292,64 @@
                 /// Make the data download request, Block based
                 [[SOLWundergroundDownloader sharedDownloader]dataForPlacemark:weatherData.placemark
                                                                       withTag:weatherView.tag
-                                                                   completion: ^ (SOLWeatherData *data) {
+                                                                   completion: ^ (SOLWeatherData *data, NSError *error) {
                     if (data) {
                         // Success
                         CZLog(@"SOLMainViewController", @"Download finished for weather view with tag: %d", weatherView.tag);
-                        
-                        // Update Weather View
-                        [self.weatherData setObject:data forKey:[NSNumber numberWithInt:weatherView.tag]];
-                        [self updateWeatherView:weatherView withData:data];
-                        
-                        /// Save the downloaded data
-                        [SOLStateManager setWeatherData:self.weatherData];
-                        if([self.weatherData count] >= kMAX_NUM_WEATHER_VIEWS) {
-                            self.addLocationButton.hidden = YES;
-                        }
+                        [self downloadDidFinishWithData:data withTag:weatherView.tag];
                     } else {
                         // Failure
                         CZLog(@"SOLMainViewController", @"Download failed for weather view with tag: %d", weatherView.tag);
-                        /// If the weather view doesn't have any data, show a failure message
-                        if(!weatherView.hasData) {
-                            weatherView.conditionIconLabel.text = @"☹";
-                            weatherView.conditionDescriptionLabel.text = @"Update Failed";
-                            weatherView.locationLabel.text = @"Check your network connection";
-                        }
+                        CZLog(@"SOLMainViewController", @"%@", [error localizedDescription]);
+                        [self downloadDidFailForWeatherViewWithTag:weatherView.tag];
                     }
-                    
-                    /// Stop the weather view's activity indicator
-                    [weatherView.activityIndicator stopAnimating];
                 }];
                 
             } else {
                 CZLog(@"SOLMainViewController", @"Not Updating Weather Data for %@, Time Since: %f", weatherData.placemark.locality, [[NSDate date]timeIntervalSinceDate:weatherData.timestamp]);
             }
         }
+    }
+}
+
+- (void)downloadDidFailForWeatherViewWithTag:(NSInteger)tag
+{
+    CZLog(@"SOLMainViewController", @"Download failed for weather view with tag: %d", tag);
+    
+    for(SOLWeatherView *weatherView in self.pagingScrollView.subviews) {
+        if(weatherView.tag == tag) {
+            
+            /// If the weather view doesn't have any data, show a failure message
+            if(!weatherView.hasData) {
+                weatherView.conditionIconLabel.text = @"☹";
+                weatherView.conditionDescriptionLabel.text = @"Update Failed";
+                weatherView.locationLabel.text = @"Check your network connection";
+            }
+            
+            /// Stop the weather view's activity indicator
+            [weatherView.activityIndicator stopAnimating];
+        }
+    }
+}
+
+- (void)downloadDidFinishWithData:(SOLWeatherData *)data withTag:(NSInteger)tag
+{
+    CZLog(@"SOLMainViewController", @"Download finished for weather view with tag: %d", tag);
+    
+    for(SOLWeatherView *weatherView in self.pagingScrollView.subviews) {
+        if(weatherView.tag == tag) {
+            [self.weatherData setObject:data forKey:[NSNumber numberWithInt:tag]];
+            
+            /// Update the weather view with the downloaded data
+            [self updateWeatherView:weatherView withData:data];
+            [weatherView.activityIndicator stopAnimating];
+        }
+    }
+    
+    /// Save the downloaded data
+    [SOLStateManager setWeatherData:self.weatherData];
+    if([self.weatherData count] >= kMAX_NUM_WEATHER_VIEWS) {
+        self.addLocationButton.hidden = YES;
     }
 }
 
@@ -429,7 +454,19 @@
                 [weatherView.activityIndicator startAnimating];
                 
                 /// Initiate download request
-                [[SOLWundergroundDownloader sharedDownloader]dataForLocation:[locations lastObject] withTag:weatherView.tag delegate:self];
+                [[SOLWundergroundDownloader sharedDownloader]dataForLocation:[locations lastObject] withTag:weatherView.tag completion:^(SOLWeatherData *data, NSError *error) {
+                    
+                    if (data) {
+                        // Success
+                        CZLog(@"SOLMainViewController", @"Download finished for weather view with tag: %d", weatherView.tag);
+                        [self downloadDidFinishWithData:data withTag:weatherView.tag];
+                    } else {
+                        // Failure
+                        CZLog(@"SOLMainViewController", @"Download failed for weather view with tag: %d", weatherView.tag);
+                        CZLog(@"SOLMainViewController", @"%@", [error localizedDescription]);
+                        [self downloadDidFailForWeatherViewWithTag:weatherView.tag];
+                    }
+                }];
             } else {
                 CZLog(@"SOLMainViewController", @"Not Updating Local Weather Data, Time Since: %f", [[NSDate date]timeIntervalSinceDate:weatherData.timestamp]);
             }
@@ -499,7 +536,18 @@
         [SOLStateManager setWeatherTags:self.weatherTags];
         
         /// Download weather data for the newly created weather view
-        [[SOLWundergroundDownloader sharedDownloader]dataForPlacemark:placemark withTag:weatherView.tag delegate:self];
+        [[SOLWundergroundDownloader sharedDownloader]dataForPlacemark:placemark withTag:weatherView.tag completion:^(SOLWeatherData *data, NSError *error) {
+            if (data) {
+                // Success
+                CZLog(@"SOLMainViewController", @"Download finished for weather view with tag: %d", weatherView.tag);
+                [self downloadDidFinishWithData:data withTag:weatherView.tag];
+            } else {
+                // Failure
+                CZLog(@"SOLMainViewController", @"Download failed for weather view with tag: %d", weatherView.tag);
+                CZLog(@"SOLMainViewController", @"%@", [error localizedDescription]);
+                [self downloadDidFailForWeatherViewWithTag:weatherView.tag];
+            }
+        }];
     }
     
     /// Hide the add location button if the number of weather views is greater than or equal to the max
@@ -637,48 +685,6 @@
     [self.settingsViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark SOLWundergroundDownloaderDelegate Methods
-
-- (void)downloadDidFailForLocation:(CLLocation *)location withTag:(NSInteger)tag
-{
-    CZLog(@"SOLMainViewController", @"Download failed for weather view with tag: %d", tag);
-    
-    for(SOLWeatherView *weatherView in self.pagingScrollView.subviews) {
-        if(weatherView.tag == tag) {
-            
-            /// If the weather view doesn't have any data, show a failure message
-            if(!weatherView.hasData) {
-                weatherView.conditionIconLabel.text = @"☹";
-                weatherView.conditionDescriptionLabel.text = @"Update Failed";
-                weatherView.locationLabel.text = @"Check your network connection";
-            }
-            
-            /// Stop the weather view's activity indicator
-            [weatherView.activityIndicator stopAnimating];
-        }
-    }
-}
-
-- (void)downloadDidFinishWithData:(SOLWeatherData *)data withTag:(NSInteger)tag
-{
-    CZLog(@"SOLMainViewController", @"Download finished for weather view with tag: %d", tag);
-    
-    for(SOLWeatherView *weatherView in self.pagingScrollView.subviews) {
-        if(weatherView.tag == tag) {
-            
-            /// Update the weather view with the downloaded data
-            [self.weatherData setObject:data forKey:[NSNumber numberWithInt:tag]];
-            [self updateWeatherView:weatherView withData:data];
-            [weatherView.activityIndicator stopAnimating];
-        }
-    }
-    
-    /// Save the downloaded data
-    [SOLStateManager setWeatherData:self.weatherData];
-    if([self.weatherData count] >= kMAX_NUM_WEATHER_VIEWS) {
-        self.addLocationButton.hidden = YES;
-    }
-}
 
 #pragma mark UIScrollViewDelegate Methods
 

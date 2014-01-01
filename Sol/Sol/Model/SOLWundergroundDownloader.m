@@ -63,10 +63,11 @@
 }
 
 #pragma mark Using a SOLWundergroundDownloader
-- (void)dataForLocation:(CLLocation *)location withTag:(NSInteger)tag completion:(DownloadWeatherDataCompletion)completion delegate:(id<SOLWundergroundDownloaderDelegate>)delegate {
-    /// Main Weather grabbing method
+
+- (void)dataForLocation:(CLLocation *)location placemark:(CLPlacemark *)placemark withTag:(NSInteger)tag completion:(SOLWeatherDataDownloadCompletion)completion
+{
     /// Requests are not made if the (location and completion) or the delegate is nil
-    if(!location || (!delegate && !completion)) {
+    if(!location || !completion) {
         return;
     }
     
@@ -78,55 +79,37 @@
     CZLog(@"SOLWundergroundDownloader", @"Requesting URL: %@", request.URL);
     
     /// Make an asynchronous request to the url
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:
      ^ (NSURLResponse * response, NSData *data, NSError *connectionError) {
          
          /// Report connection errors as download failures to the delegate
          if(connectionError) {
-             if (delegate) {
-                 [delegate downloadDidFailForLocation:location withTag:tag];
-             }
-             if (completion) {
-                 completion(nil);
-             }
+             completion(nil, connectionError);
          } else {
              
              /// Serialize the downloaded JSON document and return the weather data to the delegate
              @try {
                  NSDictionary *JSON = [self serializedData:data];
                  SOLWeatherData *weatherData = [self dataFromJSON:JSON];
-                 
-                 /// Reverse geocode the given location in order to get city, state, and country
-                 [_geocoder reverseGeocodeLocation:location completionHandler: ^ (NSArray *placemarks, NSError *error) {
-                     if(error) {
-                         [delegate downloadDidFailForLocation:location withTag:tag];
-                         if (delegate) {
-                             [delegate downloadDidFailForLocation:location withTag:tag];
+                 if(placemark) {
+                     weatherData.placemark = placemark;
+                     completion(weatherData, connectionError);
+                 } else {
+                     /// Reverse geocode the given location in order to get city, state, and country
+                     [_geocoder reverseGeocodeLocation:location completionHandler: ^ (NSArray *placemarks, NSError *error) {
+                         if(placemarks) {
+                             weatherData.placemark = [placemarks lastObject];
+                             completion(weatherData, error);
+                         } else if(error) {
+                             completion(nil, error);
                          }
-                         if (completion) {
-                             completion(nil);
-                         }
-                     }
-                     else {
-                         weatherData.placemark = [placemarks lastObject];
-                         if (delegate) {
-                             [delegate downloadDidFinishWithData:weatherData withTag:tag];
-                         }
-                         if (completion) {
-                             completion(weatherData);
-                         }
-                     }
-                 }];
+                     }];
+                 }
              }
              
              /// Report any failures during serialization as download failures to the delegate
              @catch (NSException *exception) {
-                 if (delegate) {
-                     [delegate downloadDidFailForLocation:location withTag:tag];
-                 }
-                 if (completion) {
-                     completion(nil);
-                 }
+                 completion(nil, [NSError errorWithDomain:@"SOLWundergroundDownloader Internal State Error" code:-1 userInfo:nil]);
              }
              
              /// Always turn off the network activity indicator after requests are fulfilled
@@ -137,24 +120,15 @@
      }];
 }
 
-- (void)dataForLocation:(CLLocation *)location withTag:(NSInteger)tag delegate:(id<SOLWundergroundDownloaderDelegate>)delegate
+- (void)dataForPlacemark:(CLPlacemark *)placemark withTag:(NSInteger)tag completion:(SOLWeatherDataDownloadCompletion)completion
 {
-    [self dataForLocation:location withTag:tag completion:nil delegate:delegate];
+    [self dataForLocation:placemark.location placemark:placemark withTag:tag completion:completion];
 }
 
-- (void)dataForLocation:(CLLocation *)location withTag:(NSInteger)tag completion:(DownloadWeatherDataCompletion)completion {
-    [self dataForLocation:location withTag:tag completion:completion delegate:nil];
-}
-
-- (void)dataForPlacemark:(CLPlacemark *)placemark withTag:(NSInteger)tag delegate:(id<SOLWundergroundDownloaderDelegate>)delegate
+- (void)dataForLocation:(CLLocation *)location withTag:(NSInteger)tag completion:(SOLWeatherDataDownloadCompletion)completion
 {
-    [self dataForLocation:placemark.location withTag:tag completion:nil delegate:delegate];
+    [self dataForLocation:location placemark:nil withTag:tag completion:completion];
 }
-
-- (void)dataForPlacemark:(CLPlacemark *)placemark withTag:(NSInteger)tag completion:(DownloadWeatherDataCompletion)completion {
-    [self dataForLocation:placemark.location withTag:tag completion:completion delegate:nil];
-}
-
 
 - (NSURLRequest *)urlRequestForLocation:(CLLocation *)location
 {

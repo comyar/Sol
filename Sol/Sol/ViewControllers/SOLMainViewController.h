@@ -11,7 +11,7 @@
 #import "SOLSettingsViewController.h"
 #import "SOLWeatherView.h"
 
-@interface SOLMainViewController : UIViewController <UIScrollViewDelegate, CLLocationManagerDelegate, SOLWundergroundDownloaderDelegate, SOLAddLocationViewControllerDelegate, SOLSettingsViewControllerDelegate, SOLWeatherViewDelegate>
+@interface SOLMainViewController : UIViewController <UIScrollViewDelegate, CLLocationManagerDelegate, SOLAddLocationViewControllerDelegate, SOLSettingsViewControllerDelegate, SOLWeatherViewDelegate>
 
 /////////////////////////////////////////////////////////////////////////////
 /// @name Updating Weather Data
