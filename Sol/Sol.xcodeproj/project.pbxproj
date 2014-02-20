@@ -33,6 +33,7 @@
 		DD548DE317A8A95800E08E29 /* SOLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD548DE217A8A95800E08E29 /* SOLMainViewController.m */; };
 		DD548DE717A8ADCC00E08E29 /* SOLPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD548DE617A8ADCC00E08E29 /* SOLPagingScrollView.m */; };
 		DD677B8D17EEE5AC0078F41A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD677B8C17EEE5AC0078F41A /* MapKit.framework */; };
+		DD79691218B61631009ADE2A /* API_KEY in Resources */ = {isa = PBXBuildFile; fileRef = DD79691118B61631009ADE2A /* API_KEY */; };
 		DD9388E617B6D898004C5F42 /* NSString+Substring.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9388E517B6D898004C5F42 /* NSString+Substring.m */; };
 		DD9388F017B6DDA8004C5F42 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C344117B517950024AD9A /* SystemConfiguration.framework */; };
 		DD9388F117B6DDB2004C5F42 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C344317B5179C0024AD9A /* MobileCoreServices.framework */; };
@@ -100,6 +101,7 @@
 		DD548DE517A8ADCC00E08E29 /* SOLPagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLPagingScrollView.h; path = Views/SOLPagingScrollView.h; sourceTree = "<group>"; };
 		DD548DE617A8ADCC00E08E29 /* SOLPagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLPagingScrollView.m; path = Views/SOLPagingScrollView.m; sourceTree = "<group>"; };
 		DD677B8C17EEE5AC0078F41A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DD79691118B61631009ADE2A /* API_KEY */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = API_KEY; sourceTree = "<group>"; };
 		DD8AA01517D52B2E00D4F7BA /* Climacons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Climacons.h; path = Model/Climacons.h; sourceTree = "<group>"; };
 		DD8AA01817D533BA00D4F7BA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DD9388E417B6D898004C5F42 /* NSString+Substring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Substring.h"; path = "Model/Categories/NSString+Substring.h"; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		DD4F967A17A8994300E0E7D0 /* Sol */ = {
 			isa = PBXGroup;
 			children = (
+				DD79691118B61631009ADE2A /* API_KEY */,
 				DD46272517ADC18C000A6A33 /* Resources */,
 				DD548DDD17A8A90600E08E29 /* AppDelegate */,
 				DD548DE017A8A92700E08E29 /* Views */,
@@ -440,6 +443,7 @@
 				DD3965D317F8E66800977422 /* gradient0@2x.png in Resources */,
 				DD3965D417F8E66800977422 /* gradient1@2x.png in Resources */,
 				DD3965D517F8E66800977422 /* gradient2@2x.png in Resources */,
+				DD79691218B61631009ADE2A /* API_KEY in Resources */,
 				DD93A82317FA9C20006DD1BC /* iTunesArtwork@2x.png in Resources */,
 				DD93A82217FA9C20006DD1BC /* iTunesArtwork.png in Resources */,
 				DD93A82017FA9C20006DD1BC /* Icon-76@2x.png in Resources */,

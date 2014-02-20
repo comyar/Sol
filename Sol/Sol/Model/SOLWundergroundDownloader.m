@@ -11,10 +11,6 @@
 #import "NSString+Substring.h"
 #import "Climacons.h"
 
-#warning SOLWundergroundDownloader requires a valid API key from Wunderground.com
-#define kAPI_KEY @""
-
-
 #pragma mark - SOLWundergroundDownloader Class Extension
 
 @interface SOLWundergroundDownloader ()
@@ -45,7 +41,11 @@
     static SOLWundergroundDownloader *sharedDownloader = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedDownloader = [[SOLWundergroundDownloader alloc]initWithAPIKey:kAPI_KEY];
+#warning Project bundle must contain a file name "API_KEY" containing a valid Wunderground API key
+        NSString *path = [[NSBundle mainBundle]pathForResource:@"API_KEY" ofType:@""];
+        NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        NSString *apiKey = [content stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        sharedDownloader = [[SOLWundergroundDownloader alloc]initWithAPIKey:apiKey];
     });
     return sharedDownloader;
 }
