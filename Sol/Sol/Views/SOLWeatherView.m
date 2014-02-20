@@ -104,8 +104,20 @@
         [self initializeHiLoTemperatureLabel];
         [self initializeForecastDayLabels];
         [self initializeForecastIconLabels];
+        [self initializeMotionEffects];
     }
     return self;
+}
+
+#pragma mark Motion Effects
+
+- (void)initializeMotionEffects
+{
+    UIInterpolatingMotionEffect *verticalInterpolation = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    verticalInterpolation.minimumRelativeValue = @(-15);
+    verticalInterpolation.maximumRelativeValue = @(15);
+    
+    [self.container addMotionEffect:verticalInterpolation];
 }
 
 #pragma mark Pan Gesture Recognizer Methods

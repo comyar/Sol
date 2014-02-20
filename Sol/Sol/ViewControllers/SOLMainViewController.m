@@ -252,10 +252,7 @@
         /// Take a screen shot of this controller's view
         [self.view screenshotAsyncWithCompletion: ^ (UIImage *image) {
             /// Blur the screen shot
-            UIImage *blurred = [image applyBlurWithRadius:16.0
-                                                   tintColor:[UIColor colorWithWhite:0.5 alpha:0.2]
-                                       saturationDeltaFactor:2.0
-                                                   maskImage:nil];
+            UIImage *blurred = [image applyDarkEffect];
             /// Set the blurred overlay view's image with the blurred screenshot
             self.blurredOverlayView.image = blurred;
             
