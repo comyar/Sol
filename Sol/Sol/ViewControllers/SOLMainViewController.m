@@ -11,13 +11,13 @@
 #import "SOLStateManager.h"
 #import "SOLWeatherData.h"
 #import "UIImage+ImageEffects.h"
-#import "UIView+Screenshot.h"
 
 /** Constants */
 #define kMIN_TIME_SINCE_UPDATE          3600
 #define kMAX_NUM_WEATHER_VIEWS          5
 #define kLOCAL_WEATHER_VIEW_TAG         0
 #define kDEFAULT_BACKGROUND_GRADIENT    @"gradient5"
+
 
 #pragma mark - SOLMainViewController Class Extension
 
@@ -43,6 +43,7 @@
 
 /// View controller for changing settings
 @property (strong, nonatomic) SOLSettingsViewController     *settingsViewController;
+
 /// View controller for adding new locations
 @property (strong, nonatomic) SOLAddLocationViewController  *addLocationViewController;
 
@@ -75,6 +76,7 @@
 @property (strong, nonatomic) SOLPagingScrollView *pagingScrollView;
 
 @end
+
 
 #pragma mark - SOLMainViewController Implementation
 
@@ -171,6 +173,7 @@
     /// Initialize the paging scroll wiew
     self.pagingScrollView = [[SOLPagingScrollView alloc]initWithFrame:self.view.bounds];
     self.pagingScrollView.delegate = self;
+    self.pagingScrollView.bounces = NO;
     [self.view addSubview:self.pagingScrollView];
     
     /// Initialize the page control
@@ -181,6 +184,7 @@
     
     /// Initialize the blurred overlay view
     self.blurredOverlayView = [[UIImageView alloc]initWithImage:[[UIImage alloc]init]];
+    self.blurredOverlayView.alpha = 0.0;
     [self.blurredOverlayView setFrame:self.view.bounds];
     [self.view addSubview:self.blurredOverlayView];
 }
@@ -248,26 +252,34 @@
 
 - (void)showBlurredOverlayView:(BOOL)show
 {
-    if(show) {
+    [UIView animateWithDuration:0.25 animations: ^ {
+        self.blurredOverlayView.alpha = (show)? 1.0 : 0.0;;
+    }];
+            
+    CZLog(@"SOLMainViewController", @"Showing Blurred Overlay View");
+}
+
+- (void)setBlurredOverlayImage
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+        
         /// Take a screen shot of this controller's view
-        [self.view screenshotAsyncWithCompletion: ^ (UIImage *image) {
-            /// Blur the screen shot
-            UIImage *blurred = [image applyDarkEffect];
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, 0.0);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        [self.view.layer renderInContext:context];
+        UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+        /// Blur the screen shot
+        UIImage *blurred = [image applyDarkEffect];
+        
+        dispatch_async(dispatch_get_main_queue(), ^ {
             /// Set the blurred overlay view's image with the blurred screenshot
             self.blurredOverlayView.image = blurred;
-            
-            [UIView animateWithDuration:0.3 animations: ^ {
-                self.blurredOverlayView.alpha = 1.0;
-            }];
-            
-            CZLog(@"SOLMainViewController", @"Showing Blurred Overlay View");
-        }];
-    }
-    
-    /// Fade the blurred overlay view out
-    [UIView animateWithDuration:0.3 animations: ^ {
-        self.blurredOverlayView.alpha = 0.0;
-    }];
+        });
+    });
 }
 
 #pragma mark Updating Weather Data
@@ -424,10 +436,12 @@
         CZLog(@"SOLMainViewController", @"Location Services Authorized");
         [self initializeLocalWeatherView];
         [self initializeNonlocalWeatherViews];
+        [self setBlurredOverlayImage];
         [self updateWeatherData];
     } else if(status != kCLAuthorizationStatusNotDetermined) {
         CZLog(@"SOLMainViewController", @"Location Services Authorization Not Determined");
         [self initializeNonlocalWeatherViews];
+        [self setBlurredOverlayImage];
         [self updateWeatherData];
     } else if(status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
         CZLog(@"SOLMainViewController", @"Location Services Denied");
@@ -509,7 +523,7 @@
     }
     
     /// Transition to the add location view controller
-    [self presentViewController:self.addLocationViewController animated:NO completion:nil];
+    [self presentViewController:self.addLocationViewController animated:YES completion:nil];
 }
 
 #pragma mark SOLAddLocationViewControllerDelegate Methods
@@ -699,6 +713,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     self.isScrolling = NO;
+    [self setBlurredOverlayImage];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

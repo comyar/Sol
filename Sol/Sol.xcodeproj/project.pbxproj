@@ -47,7 +47,6 @@
 		DDA08EA017B81135006AC675 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA08E9F17B81135006AC675 /* CoreLocation.framework */; };
 		DDB7B85917ECD17A00857D15 /* SOLStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B85817ECD17A00857D15 /* SOLStateManager.m */; };
 		DDB7B8E517ECF59100857D15 /* SOLAddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8E417ECF59100857D15 /* SOLAddLocationViewController.m */; };
-		DDB7B8E817ECF60900857D15 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8E717ECF60900857D15 /* UIView+Screenshot.m */; };
 		DDB7B8EB17ED516500857D15 /* SOLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8EA17ED516500857D15 /* SOLSettingsViewController.m */; };
 		DDBFDDCA17B23F3F002A886D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBFDDC917B23F3F002A886D /* QuartzCore.framework */; };
 		DDBFDDCD17B286B7002A886D /* SOLWundergroundDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBFDDCC17B286B7002A886D /* SOLWundergroundDownloader.m */; };
@@ -119,8 +118,6 @@
 		DDB7B85817ECD17A00857D15 /* SOLStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLStateManager.m; path = Model/SOLStateManager.m; sourceTree = "<group>"; };
 		DDB7B8E317ECF59100857D15 /* SOLAddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLAddLocationViewController.h; path = ViewControllers/SOLAddLocationViewController.h; sourceTree = "<group>"; };
 		DDB7B8E417ECF59100857D15 /* SOLAddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLAddLocationViewController.m; path = ViewControllers/SOLAddLocationViewController.m; sourceTree = "<group>"; };
-		DDB7B8E617ECF60900857D15 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Screenshot.h"; path = "Model/Categories/UIView+Screenshot.h"; sourceTree = "<group>"; };
-		DDB7B8E717ECF60900857D15 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Screenshot.m"; path = "Model/Categories/UIView+Screenshot.m"; sourceTree = "<group>"; };
 		DDB7B8E917ED516500857D15 /* SOLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLSettingsViewController.h; path = ViewControllers/SOLSettingsViewController.h; sourceTree = "<group>"; };
 		DDB7B8EA17ED516500857D15 /* SOLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLSettingsViewController.m; path = ViewControllers/SOLSettingsViewController.m; sourceTree = "<group>"; };
 		DDBFDDC917B23F3F002A886D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -314,8 +311,6 @@
 				DD3965BB17F8DE2A00977422 /* UIImage+ImageEffects.m */,
 				DD9388E417B6D898004C5F42 /* NSString+Substring.h */,
 				DD9388E517B6D898004C5F42 /* NSString+Substring.m */,
-				DDB7B8E617ECF60900857D15 /* UIView+Screenshot.h */,
-				DDB7B8E717ECF60900857D15 /* UIView+Screenshot.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -481,7 +476,6 @@
 				DDB7B85917ECD17A00857D15 /* SOLStateManager.m in Sources */,
 				DD46272A17ADC3A1000A6A33 /* SOLWeatherView.m in Sources */,
 				DDB7B8E517ECF59100857D15 /* SOLAddLocationViewController.m in Sources */,
-				DDB7B8E817ECF60900857D15 /* UIView+Screenshot.m in Sources */,
 				DD9388E617B6D898004C5F42 /* NSString+Substring.m in Sources */,
 				DD46272D17ADC3E6000A6A33 /* SOLWeatherData.m in Sources */,
 				DD4F968117A8994300E0E7D0 /* main.m in Sources */,
