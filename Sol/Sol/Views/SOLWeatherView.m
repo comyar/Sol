@@ -61,6 +61,11 @@
 /// Displays the icon representing the predicted conditions for the third forecast snapshot
 @property (strong, nonatomic) UILabel                   *forecastIconThreeLabel;
 
+
+@property (strong, nonatomic) UILabel                   *forecastOneTempLabel;
+@property (strong, nonatomic) UILabel                   *forecastTwoTempLabel;
+@property (strong, nonatomic) UILabel                   *forecastThreeTempLabel;
+
 /// Indicates whether data is being downloaded for this weather view
 @property (strong, nonatomic) UIActivityIndicatorView   *activityIndicator;
 
@@ -104,6 +109,7 @@
         [self initializeHiLoTemperatureLabel];
         [self initializeForecastDayLabels];
         [self initializeForecastIconLabels];
+        [self initializeForecastHighTempLabels];
         [self initializeMotionEffects];
     }
     return self;
@@ -286,6 +292,28 @@
         [forecastIconLabel setTextColor:[UIColor whiteColor]];
         [forecastIconLabel setTextAlignment:NSTextAlignmentCenter];
         [self.container addSubview:forecastIconLabel];
+    }
+}
+
+
+
+- (void)initializeForecastHighTempLabels
+{
+    const NSInteger fontSize = 18;
+    
+    self.forecastOneTempLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    self.forecastTwoTempLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    self.forecastThreeTempLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    NSArray *forecastTempLabels = @[self.forecastOneTempLabel, self.forecastTwoTempLabel, self.forecastThreeTempLabel];
+    
+    for(int i = 0; i < [forecastTempLabels count]; ++i) {
+        UILabel *forecastTempLabel = [forecastTempLabels objectAtIndex:i];
+        [forecastTempLabel setFrame:CGRectMake(0.425 * self.bounds.size.width + (64 * i), 1.55 * self.center.y, 2 * fontSize, fontSize)];
+        [forecastTempLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
+        [forecastTempLabel setBackgroundColor:[UIColor clearColor]];
+        [forecastTempLabel setTextColor:[UIColor whiteColor]];
+        [forecastTempLabel setTextAlignment:NSTextAlignmentCenter];
+        [self.container addSubview:forecastTempLabel];
     }
 }
 

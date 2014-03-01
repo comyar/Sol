@@ -78,4 +78,9 @@
 /// Indicates whether data is being downloaded for this weather view
 @property (strong, nonatomic, readonly) UIActivityIndicatorView *activityIndicator;
 
+
+@property (strong, nonatomic, readonly) UILabel *forecastOneTempLabel;
+@property (strong, nonatomic, readonly) UILabel *forecastTwoTempLabel;
+@property (strong, nonatomic, readonly) UILabel *forecastThreeTempLabel;
+
 @end

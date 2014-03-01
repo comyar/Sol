@@ -421,6 +421,17 @@
     weatherView.forecastIconTwoLabel.text   = forecastDayTwoSnapshot.icon;
     weatherView.forecastIconThreeLabel.text = forecastDayThreeSnapshot.icon;
     
+    
+    if([SOLStateManager temperatureScale] == SOLFahrenheitScale) {
+        weatherView.forecastOneTempLabel.text = [NSString stringWithFormat:@"%.0f", forecastDayOneSnapshot.highTemperature.fahrenheit];
+        weatherView.forecastTwoTempLabel.text = [NSString stringWithFormat:@"%.0f", forecastDayTwoSnapshot.highTemperature.fahrenheit];
+        weatherView.forecastThreeTempLabel.text = [NSString stringWithFormat:@"%.0f", forecastDayThreeSnapshot.highTemperature.fahrenheit];
+    } else {
+        weatherView.forecastOneTempLabel.text = [NSString stringWithFormat:@"%.0f", forecastDayOneSnapshot.highTemperature.celsius];
+        weatherView.forecastTwoTempLabel.text = [NSString stringWithFormat:@"%.0f", forecastDayTwoSnapshot.highTemperature.celsius];
+        weatherView.forecastThreeTempLabel.text = [NSString stringWithFormat:@"%.0f", forecastDayThreeSnapshot.highTemperature.celsius];
+    }
+    
     /// Set the weather view's background color
     CGFloat fahrenheit = MIN(MAX(0, currentTemperature.fahrenheit), 99);
     NSString *gradientImageName = [NSString stringWithFormat:@"gradient%d.png", (int)floor(fahrenheit / 10.0)];
@@ -434,7 +445,7 @@
     /// Only add the local weather view if location services authorized
     if(status == kCLAuthorizationStatusAuthorized) {
         CZLog(@"SOLMainViewController", @"Location Services Authorized");
-        [self initializeLocalWeatherView];
+        //[self initializeLocalWeatherView];
         [self initializeNonlocalWeatherViews];
         [self setBlurredOverlayImage];
         [self updateWeatherData];
@@ -592,10 +603,10 @@
     /// Prepare the data (location name, tag) needed by the settings view controller
     NSMutableArray *locations = [[NSMutableArray alloc]initWithCapacity:4];
     for(SOLWeatherView *weatherView in self.pagingScrollView.subviews) {
-        if(weatherView.tag != kLOCAL_WEATHER_VIEW_TAG) {
+      if(weatherView.tag != kLOCAL_WEATHER_VIEW_TAG) {
             NSArray *locationMetaData = @[weatherView.locationLabel.text, [NSNumber numberWithInteger:weatherView.tag]];
             [locations addObject:locationMetaData];
-        }
+     }
     }
     
     self.settingsViewController.locations = locations;

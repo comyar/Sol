@@ -166,6 +166,12 @@
     CGFloat currentHighTemperatureC             = [[[forecastday0 valueForKey:@"high"]  valueForKey:@"celsius"]doubleValue];
     CGFloat currentLowTemperatureF              = [[[forecastday0 valueForKey:@"low"]   valueForKey:@"fahrenheit"]doubleValue];
     CGFloat currentLowTemperatureC              = [[[forecastday0 valueForKey:@"low"]   valueForKey:@"celsius"]doubleValue];
+    CGFloat forecastday1HighTemperatureC        = [[[forecastday1 valueForKey:@"high"]   valueForKey:@"celsius"]doubleValue];
+    CGFloat forecastday2HighTemperatureC        = [[[forecastday2 valueForKey:@"high"]   valueForKey:@"celsius"]doubleValue];
+    CGFloat forecastday3HighTemperatureC        = [[[forecastday3 valueForKey:@"high"]   valueForKey:@"celsius"]doubleValue];
+    CGFloat forecastday1HighTemperatureF        = [[[forecastday1 valueForKey:@"high"]   valueForKey:@"fahrenheit"]doubleValue];
+    CGFloat forecastday2HighTemperatureF        = [[[forecastday2 valueForKey:@"high"]   valueForKey:@"fahrenheit"]doubleValue];
+    CGFloat forecastday3HighTemperatureF        = [[[forecastday3 valueForKey:@"high"]   valueForKey:@"fahrenheit"]doubleValue];
     CGFloat currentTemperatureF                 = [[currentObservation valueForKey:@"temp_f"] doubleValue];
     CGFloat currentTemperatureC                 = [[currentObservation valueForKey:@"temp_c"] doubleValue];
     
@@ -178,18 +184,21 @@
     
     SOLWeatherSnapshot *forecastOne             = [[SOLWeatherSnapshot alloc]init];
     forecastOne.conditionDescription            = [forecastday1 valueForKey:@"conditions"];
+    forecastOne.highTemperature                 = SOLTemperatureMake(forecastday1HighTemperatureF,   forecastday1HighTemperatureC);
     forecastOne.icon                            = [self iconForCondition:forecastOne.conditionDescription];
     forecastOne.dayOfWeek                       = [[forecastday1 valueForKey:@"date"] valueForKey:@"weekday"];
     [data.forecastSnapshots addObject:forecastOne];
     
     SOLWeatherSnapshot *forecastTwo             = [[SOLWeatherSnapshot alloc]init];
     forecastTwo.conditionDescription            = [forecastday2 valueForKey:@"conditions"];
+    forecastTwo.highTemperature                 = SOLTemperatureMake(forecastday2HighTemperatureF,   forecastday2HighTemperatureC);
     forecastTwo.icon                            = [self iconForCondition:forecastTwo.conditionDescription];
     forecastTwo.dayOfWeek                       = [[forecastday2 valueForKey:@"date"] valueForKey:@"weekday"];
     [data.forecastSnapshots addObject:forecastTwo];
     
     SOLWeatherSnapshot *forecastThree           = [[SOLWeatherSnapshot alloc]init];
     forecastThree.conditionDescription          = [forecastday3 valueForKey:@"conditions"];
+    forecastThree.highTemperature               = SOLTemperatureMake(forecastday3HighTemperatureF,   forecastday3HighTemperatureC);
     forecastThree.icon                          = [self iconForCondition:forecastThree.conditionDescription];
     forecastThree.dayOfWeek                     = [[forecastday3 valueForKey:@"date"] valueForKey:@"weekday"];
     [data.forecastSnapshots addObject:forecastThree];
