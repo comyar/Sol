@@ -317,6 +317,7 @@
                         CZLog(@"SOLMainViewController", @"%@", [error localizedDescription]);
                         [self downloadDidFailForWeatherViewWithTag:weatherView.tag];
                     }
+                    [self setBlurredOverlayImage];
                 }];
                 
             } else {
