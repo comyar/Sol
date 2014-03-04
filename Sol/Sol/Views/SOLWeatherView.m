@@ -117,7 +117,12 @@
     verticalInterpolation.minimumRelativeValue = @(-15);
     verticalInterpolation.maximumRelativeValue = @(15);
     
-    [self.container addMotionEffect:verticalInterpolation];
+    UIInterpolatingMotionEffect *horizontalInterpolation = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    horizontalInterpolation.minimumRelativeValue = @(-15);
+    horizontalInterpolation.maximumRelativeValue = @(15);
+    
+    [self.conditionIconLabel addMotionEffect:verticalInterpolation];
+    [self.conditionIconLabel addMotionEffect:horizontalInterpolation];
 }
 
 #pragma mark Pan Gesture Recognizer Methods
