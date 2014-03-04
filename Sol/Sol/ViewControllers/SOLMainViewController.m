@@ -273,7 +273,10 @@
         UIGraphicsEndImageContext();
         
         /// Blur the screen shot
-        UIImage *blurred = [image applyDarkEffect];
+        UIImage *blurred = [image applyBlurWithRadius:20
+                                            tintColor:[UIColor colorWithWhite:0.15 alpha:0.5]
+                                saturationDeltaFactor:1.5
+                                            maskImage:nil];
         
         dispatch_async(dispatch_get_main_queue(), ^ {
             /// Set the blurred overlay view's image with the blurred screenshot
