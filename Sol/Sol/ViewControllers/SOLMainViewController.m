@@ -567,6 +567,7 @@
                 CZLog(@"SOLMainViewController", @"%@", [error localizedDescription]);
                 [self downloadDidFailForWeatherViewWithTag:weatherView.tag];
             }
+            [self setBlurredOverlayImage];
         }];
     }
     
@@ -636,7 +637,6 @@
     /// If there is a local weather view, we must increment the sourceIndex and destinationIndex to
     // compensate. Checking for the local weather view's data is a simple way of checking for the local weather view
     if([self.weatherData objectForKey:[NSNumber numberWithInteger:kLOCAL_WEATHER_VIEW_TAG]]) {
-        sourceIndex +=1 ;
         destinationIndex += 1;
     }
     
