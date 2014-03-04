@@ -99,7 +99,7 @@
 
 - (void)initializeLocationsTableView
 {
-    self.locationsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.view.center.y,
+    self.locationsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0.9 * self.view.center.y,
                                                                            CGRectGetWidth(self.view.bounds), self.view.center.y)
                                                           style:UITableViewStylePlain];
     self.locationsTableView.dataSource = self;
@@ -123,11 +123,12 @@
 - (void)initializeCreditLabel
 {
     static const CGFloat fontSize = 16;
-    self.creditLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.68 * self.view.center.y, self.view.bounds.size.width, 1.5 * fontSize)];
+    self.creditLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - 2.5 * fontSize,
+                                                                self.view.bounds.size.width, 1.5 * fontSize)];
     [self.creditLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
     [self.creditLabel setTextColor:[UIColor whiteColor]];
     [self.creditLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.creditLabel setText:@"Created by Comyar Zaheri, for Stephanie"];
+    [self.creditLabel setText:@"Created by Comyar, for Stephanie"];
     [self.view addSubview:self.creditLabel];
 }
 
@@ -136,7 +137,7 @@
     static const CGFloat fontSize = 22;
     
     /// Initialize table view title label
-    self.locationsTableViewTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.835 * self.view.center.y,
+    self.locationsTableViewTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.75 * self.view.center.y,
                                                                                  CGRectGetWidth(self.view.bounds), 1.5 * fontSize)];
     [self.locationsTableViewTitleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
     [self.locationsTableViewTitleLabel setTextColor:[UIColor whiteColor]];
@@ -146,7 +147,7 @@
     
     /// Initialize table view title separator
     self.tableSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 0.5)];
-    self.tableSeparatorView.center = CGPointMake(self.view.center.x, self.view.center.y);
+    self.tableSeparatorView.center = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
     self.tableSeparatorView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableSeparatorView];
 }
@@ -209,7 +210,7 @@
         NSNumber *weatherViewTag = [[self.locations objectAtIndex:indexPath.row]lastObject];
         [self.delegate didRemoveWeatherViewWithTag: weatherViewTag.integerValue];
         [self.locations removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [tableView reloadData];
         
         /// Fade out the locations table view title label if there are no elements
