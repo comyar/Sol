@@ -117,7 +117,7 @@
     verticalInterpolation.minimumRelativeValue = @(-15);
     verticalInterpolation.maximumRelativeValue = @(15);
     
-    UIInterpolatingMotionEffect *horizontalInterpolation = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    UIInterpolatingMotionEffect *horizontalInterpolation = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
     horizontalInterpolation.minimumRelativeValue = @(-15);
     horizontalInterpolation.maximumRelativeValue = @(15);
     
