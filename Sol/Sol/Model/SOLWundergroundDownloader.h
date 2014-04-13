@@ -8,7 +8,7 @@
 
 @class SOLWeatherData;
 
-/// Block Definition
+//  Block Definition
 typedef void (^SOLWeatherDataDownloadCompletion)(SOLWeatherData *data, NSError *error);
 
 /**
@@ -18,9 +18,9 @@ typedef void (^SOLWeatherDataDownloadCompletion)(SOLWeatherData *data, NSError *
 @interface SOLWundergroundDownloader : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 
-/////////////////////////////////////////////////////////////////////////////
-/// @name Initializing a Wunderground Downloader
-/////////////////////////////////////////////////////////////////////////////
+// -----
+// @name Initializing a Wunderground Downloader
+// -----
 
 /**
  Returns a shared instance of SOLWundergroundDownloader
@@ -29,9 +29,9 @@ typedef void (^SOLWeatherDataDownloadCompletion)(SOLWeatherData *data, NSError *
 + (SOLWundergroundDownloader *)sharedDownloader;
 
 
-/////////////////////////////////////////////////////////////////////////////
-/// @name Using a Wunderground Downloader
-/////////////////////////////////////////////////////////////////////////////
+// -----
+// @name Using a Wunderground Downloader
+// -----
 
 /**
  Queries the Wunderground Weather API and downloads weather data for the given location

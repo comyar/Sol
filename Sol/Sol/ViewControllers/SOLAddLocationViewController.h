@@ -28,11 +28,11 @@
 @interface SOLAddLocationViewController : UIViewController <UISearchDisplayDelegate, UITableViewDelegate,
                                                                 UITableViewDataSource, UISearchBarDelegate, UIScrollViewDelegate>
 
-/////////////////////////////////////////////////////////////////////////////
-/// @name Properties
-/////////////////////////////////////////////////////////////////////////////
+// -----
+// @name Properties
+// -----
 
-/// Object implementing the SOLAddLocationViewControllerDelegate protocol
+// Object implementing the SOLAddLocationViewControllerDelegate protocol
 @property (weak, nonatomic) id<SOLAddLocationViewControllerDelegate> delegate;
 
 @end

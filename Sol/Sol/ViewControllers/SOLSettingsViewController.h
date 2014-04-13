@@ -39,14 +39,14 @@
 
 @interface SOLSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-/// @name Properties
-////////////////////////////////////////////////////////////////////////////////////////////////////
+// -----
+// @name Properties
+// -----
 
-/// List of location metadata to display in the locations table view
+// List of location metadata to display in the locations table view
 @property (strong, nonatomic)           NSMutableArray      *locations;
 
-/// Object that implements the SOLSettingsViewController Delegate Protocol
+// Object that implements the SOLSettingsViewController Delegate Protocol
 @property (weak, nonatomic) id<SOLSettingsViewControllerDelegate> delegate;
 
 @end

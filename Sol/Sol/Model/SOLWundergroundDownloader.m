@@ -14,13 +14,13 @@
 #pragma mark - SOLWundergroundDownloader Class Extension
 
 @interface SOLWundergroundDownloader ()
-{
-    /// Used by the downloader to determine the names of locations based on coordinates
-    CLGeocoder  *_geocoder;
-    
-    /// API key
-    NSString    *_key;
-}
+
+//  Used by the downloader to determine the names of locations based on coordinates
+@property (nonatomic) CLGeocoder    *geocoder;
+
+//  API key
+@property (nonatomic) NSString      *key;
+
 @end
 
 #pragma mark - SOLWundergroundDownloader Implementation
@@ -29,7 +29,7 @@
 
 - (instancetype)init
 {
-    /// Instances of SOLWundergroundDownloader should be impossible to make using init
+    //  Instances of SOLWundergroundDownloader should be impossible to make using init
     [NSException raise:@"SOLSingletonException" format:@"SOLWundergroundDownloader cannot be initialized using init"];
     return nil;
 }
@@ -53,8 +53,8 @@
 - (instancetype)initWithAPIKey:(NSString *)key
 {
     if(self = [super init]) {
-        self->_key = key;
-        self->_geocoder = [[CLGeocoder alloc]init];
+        self.key = key;
+        self.geocoder = [[CLGeocoder alloc]init];
     }
     return self;
 }
@@ -63,28 +63,27 @@
 
 - (void)dataForLocation:(CLLocation *)location placemark:(CLPlacemark *)placemark withTag:(NSInteger)tag completion:(SOLWeatherDataDownloadCompletion)completion
 {
-    /// Requests are not made if the (location and completion) or the delegate is nil
+    //  Requests are not made if the (location and completion) or the delegate is nil
     if(!location || !completion) {
         return;
     }
     
-    /// Turn on the network activity indicator in the status bar
+    //  Turn on the network activity indicator in the status bar
     [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:YES];
     
-    /// Get the url request
+    //  Get the url request
     NSURLRequest *request = [self urlRequestForLocation:location];
-    CZLog(@"SOLWundergroundDownloader", @"Requesting URL: %@", request.URL);
     
-    /// Make an asynchronous request to the url
+    //  Make an asynchronous request to the url
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:
      ^ (NSURLResponse * response, NSData *data, NSError *connectionError) {
          
-         /// Report connection errors as download failures to the delegate
+         //  Report connection errors as download failures to the delegate
          if(connectionError) {
              completion(nil, connectionError);
          } else {
              
-             /// Serialize the downloaded JSON document and return the weather data to the delegate
+             //  Serialize the downloaded JSON document and return the weather data to the delegate
              @try {
                  NSDictionary *JSON = [self serializedData:data];
                  SOLWeatherData *weatherData = [self dataFromJSON:JSON];
@@ -92,8 +91,8 @@
                      weatherData.placemark = placemark;
                      completion(weatherData, connectionError);
                  } else {
-                     /// Reverse geocode the given location in order to get city, state, and country
-                     [_geocoder reverseGeocodeLocation:location completionHandler: ^ (NSArray *placemarks, NSError *error) {
+                     //  Reverse geocode the given location in order to get city, state, and country
+                     [self.geocoder reverseGeocodeLocation:location completionHandler: ^ (NSArray *placemarks, NSError *error) {
                          if(placemarks) {
                              weatherData.placemark = [placemarks lastObject];
                              completion(weatherData, error);
@@ -104,12 +103,12 @@
                  }
              }
              
-             /// Report any failures during serialization as download failures to the delegate
+             //  Report any failures during serialization as download failures to the delegate
              @catch (NSException *exception) {
                  completion(nil, [NSError errorWithDomain:@"SOLWundergroundDownloader Internal State Error" code:-1 userInfo:nil]);
              }
              
-             /// Always turn off the network activity indicator after requests are fulfilled
+             //  Always turn off the network activity indicator after requests are fulfilled
              @finally {
                  [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
              }
@@ -132,7 +131,7 @@
     static NSString *baseURL =  @"http://api.wunderground.com/api/";
     static NSString *parameters = @"/forecast/conditions/q/";
     CLLocationCoordinate2D coordinates = location.coordinate;
-    NSString *requestURL = [NSString stringWithFormat:@"%@%@%@%f,%f.json", baseURL, _key, parameters,
+    NSString *requestURL = [NSString stringWithFormat:@"%@%@%@%f,%f.json", baseURL, self.key, parameters,
                             coordinates.latitude, coordinates.longitude];
     NSURL *url = [NSURL URLWithString:requestURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

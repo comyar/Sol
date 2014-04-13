@@ -17,6 +17,5 @@
     #import <MobileCoreServices/MobileCoreServices.h>
     #import <CoreLocation/CoreLocation.h>
     #import <MapKit/MapKit.h>
-    #import "CZDebug.h"
     #import "Climacons.h"
 #endif

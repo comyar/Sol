@@ -127,7 +127,7 @@
 {
     const CGFloat EffectColorAlpha = 0.6;
     UIColor *effectColor = tintColor;
-    int componentCount = CGColorGetNumberOfComponents(tintColor.CGColor);
+    size_t componentCount = CGColorGetNumberOfComponents(tintColor.CGColor);
     if (componentCount == 2) {
         CGFloat b;
         if ([tintColor getWhite:&b alpha:NULL]) {
@@ -204,9 +204,9 @@
             if (radius % 2 != 1) {
                 radius += 1; // force radius to be odd so that the three box-blur methodology works.
             }
-            vImageBoxConvolve_ARGB8888(&effectInBuffer, &effectOutBuffer, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
-            vImageBoxConvolve_ARGB8888(&effectOutBuffer, &effectInBuffer, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
-            vImageBoxConvolve_ARGB8888(&effectInBuffer, &effectOutBuffer, NULL, 0, 0, radius, radius, 0, kvImageEdgeExtend);
+            vImageBoxConvolve_ARGB8888(&effectInBuffer, &effectOutBuffer, NULL, 0, 0, (u_int32_t)radius, (u_int32_t)radius, 0, kvImageEdgeExtend);
+            vImageBoxConvolve_ARGB8888(&effectOutBuffer, &effectInBuffer, NULL, 0, 0, (u_int32_t)radius, (u_int32_t)radius, 0, kvImageEdgeExtend);
+            vImageBoxConvolve_ARGB8888(&effectInBuffer, &effectOutBuffer, NULL, 0, 0, (u_int32_t)radius, (u_int32_t)radius, 0, kvImageEdgeExtend);
         }
         BOOL effectImageBuffersAreSwapped = NO;
         if (hasSaturationChange) {

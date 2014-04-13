@@ -12,29 +12,29 @@
 
 @interface SOLSettingsViewController ()
 
-/////////////////////////////////////////////////////////////////////////////
-/// @name Subviews
-/////////////////////////////////////////////////////////////////////////////
+// -----
+// @name Subviews
+// -----
 
-/// Displays the location metadata
+// Displays the location metadata
 @property (strong, nonatomic) UITableView           *locationsTableView;
 
-/// Navigation bar for the controller, contains the done button
+// Navigation bar for the controller, contains the done button
 @property (strong, nonatomic) UINavigationBar       *navigationBar;
 
-/// Done button inside navigation bar
+// Done button inside navigation bar
 @property (strong, nonatomic) UIBarButtonItem       *doneButton;
 
-/// Displays the title of the locations table view
+// Displays the title of the locations table view
 @property (strong, nonatomic) UILabel               *locationsTableViewTitleLabel;
 
-/// Aesthetic line drawn beneath the locations table view title label
+// Aesthetic line drawn beneath the locations table view title label
 @property (strong, nonatomic) UIView                *tableSeparatorView;
 
-/// Control to change the temperature scale
+// Control to change the temperature scale
 @property (strong, nonatomic) UISegmentedControl    *temperatureControl;
 
-/// Displays credits for the app
+// Displays credits for the app
 @property (strong, nonatomic) UILabel               *creditLabel;
 
 @end
@@ -83,11 +83,11 @@
 {
     [super viewWillAppear:animated];
     
-    /// Show delete and reorder controls
+    // Show delete and reorder controls
     [self.locationsTableView setEditing:YES animated:YES];
     [self.locationsTableView reloadData];
     
-    /// Fade in locations table view title if there are table view elements
+    // Fade in locations table view title if there are table view elements
     CGFloat animationDuration = ([self.locations count] == 0)? 0.0: 0.3;
     [UIView animateWithDuration:animationDuration animations: ^ {
         self.tableSeparatorView.alpha = ([self.locations count] == 0)? 0.0: 1.0;
@@ -136,7 +136,7 @@
 {
     static const CGFloat fontSize = 22;
     
-    /// Initialize table view title label
+    // Initialize table view title label
     self.locationsTableViewTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.75 * self.view.center.y,
                                                                                  CGRectGetWidth(self.view.bounds), 1.5 * fontSize)];
     [self.locationsTableViewTitleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
@@ -145,7 +145,7 @@
     [self.locationsTableViewTitleLabel setText:@"Locations"];
     [self.view addSubview:self.locationsTableViewTitleLabel];
     
-    /// Initialize table view title separator
+    // Initialize table view title separator
     self.tableSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 0.5)];
     self.tableSeparatorView.center = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
     self.tableSeparatorView.backgroundColor = [UIColor whiteColor];
@@ -156,7 +156,6 @@
 
 - (void)doneButtonPressed
 {
-    CZLog(@"SOLSettingsViewController", @"Done Button Pressed");
     [self.delegate dismissSettingsViewController];
 }
 
@@ -164,8 +163,7 @@
 
 - (void)temperatureControlChanged:(UISegmentedControl *)control
 {
-    CZLog(@"SOLSettingsViewController", @"Temperature Control Value Changed");
-    SOLTemperatureScale scale = [control selectedSegmentIndex];
+    SOLTemperatureScale scale = (SOLTemperatureScale)[control selectedSegmentIndex];
     [SOLStateManager setTemperatureScale:scale];
     [self.delegate didChangeTemperatureScale:scale];
 }
@@ -183,19 +181,19 @@
 {
     static NSString *cellIdentifier = @"CellIdentifier";
     
-    /// Dequeue a cell
+    // Dequeue a cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
-        /// Initialize new cell if cell is null
+        // Initialize new cell if cell is null
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    /// Configure the cell
+    // Configure the cell
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    /// Set cell's label text
+    // Set cell's label text
     NSArray *location = [self.locations objectAtIndex:indexPath.row];
     cell.textLabel.text = [location firstObject];
     
@@ -206,14 +204,14 @@
 {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
         
-        /// Remove the location with the associated tag, alert the delegate
+        // Remove the location with the associated tag, alert the delegate
         NSNumber *weatherViewTag = [[self.locations objectAtIndex:indexPath.row]lastObject];
         [self.delegate didRemoveWeatherViewWithTag: weatherViewTag.integerValue];
         [self.locations removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [tableView reloadData];
         
-        /// Fade out the locations table view title label if there are no elements
+        // Fade out the locations table view title label if there are no elements
         [UIView animateWithDuration:0.3 animations: ^ {
             self.locationsTableViewTitleLabel.alpha = ([self.locations count] == 0)? 0.0: 1.0;
             self.tableSeparatorView.alpha = ([self.locations count] == 0)? 0.0: 1.0;

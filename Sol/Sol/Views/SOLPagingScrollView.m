@@ -8,6 +8,7 @@
 
 #import "SOLPagingScrollView.h"
 
+
 #pragma mark - SOLPagingScrollView Implementation
 
 @implementation SOLPagingScrollView
@@ -38,8 +39,6 @@
     if (!launch) {
         [self setContentOffset:CGPointMake(weatherView.bounds.size.width * (self.subviews.count - 1), 0) animated:YES];
     }
-    
-    CZLog(@"SOLPagingScrollView", @"Added subview");
 }
 
 - (void)insertSubview:(UIView *)weatherView atIndex:(NSInteger)index
@@ -49,29 +48,25 @@
     [weatherView setFrame:CGRectMake(CGRectGetWidth(self.bounds) * index, 0,
                                      CGRectGetWidth(weatherView.bounds), CGRectGetHeight(weatherView.bounds))];
     NSUInteger numSubviews = [self.subviews count];
-    for(int i = index + 1; i < numSubviews; ++i) {
+    for(NSUInteger i = index + 1; i < numSubviews; ++i) {
         UIView *subview = [self.subviews objectAtIndex:i];
         [subview setFrame:CGRectMake(CGRectGetWidth(self.bounds) * i, 0,
                                      CGRectGetWidth(weatherView.bounds), CGRectGetHeight(weatherView.bounds))];
     }
     [self setContentSize:CGSizeMake(CGRectGetWidth(self.bounds) * numSubviews, self.contentSize.height)];
-    CZLog(@"SOLPagingScrollView", @"Inserted subview at index: %d", index);
 }
 
 - (void)removeSubview:(UIView *)subview
 {
-    int index = [self.subviews indexOfObject:subview];
+    NSUInteger index = [self.subviews indexOfObject:subview];
     if(index != NSNotFound) {
         NSUInteger numSubviews = [self.subviews count];
-        for(int i = index + 1; i < numSubviews; ++i) {
+        for(NSInteger i = index + 1; i < numSubviews; ++i) {
             UIView *view = [self.subviews objectAtIndex:i];
             [view setFrame:CGRectOffset(view.frame, -1.0 * CGRectGetWidth(subview.bounds), 0)];
         }
         [subview removeFromSuperview];
         [self setContentSize:CGSizeMake(CGRectGetWidth(self.bounds) * (numSubviews - 1), self.contentSize.height)];
-        CZLog(@"SOLPagingScrollView", @"Removed subview");
-    } else {
-        CZLog(@"SOLPagingScrollView", @"Failed to find the given subview to remove");
     }
 }
 

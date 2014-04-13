@@ -80,7 +80,7 @@ static const NSInteger _num_forecast_snapshots = 3;
     [coder encodeObject:self.timestamp forKey:@"timestamp"];
     [coder encodeObject:self.currentSnapshot forKey:@"current_snapshot"];
     
-    int count = [self.forecastSnapshots count];
+    NSInteger count = [self.forecastSnapshots count];
     for(int i = 0; i < count; ++i) {
         NSString *key = [NSString stringWithFormat:@"forecast_snapshot%d", i];
         [coder encodeObject:[self.forecastSnapshots objectAtIndex:i]  forKey:key];

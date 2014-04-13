@@ -12,59 +12,61 @@
 #define LIGHT_FONT      @"HelveticaNeue-Light"
 #define ULTRALIGHT_FONT @"HelveticaNeue-UltraLight"
 
+
 #pragma mark - SOLWeatherView Class Extension
 
 @interface SOLWeatherView ()
 
-/// Contains all label views
+//  Contains all label views
 @property (strong, nonatomic) UIView                    *container;
 
-/// Light-Colored ribbon to display temperatures and forecasts on
+//  Light-Colored ribbon to display temperatures and forecasts on
 @property (strong, nonatomic) UIView                    *ribbon;
 
-/// Used to drag the weather view content vertically
+//  Used to drag the weather view content vertically
 @property (strong, nonatomic) UIPanGestureRecognizer    *panGestureRecognizer;
 
-/// Displays the time the weather data for this view was last updated
+//  Displays the time the weather data for this view was last updated
 @property (strong, nonatomic) UILabel                   *updatedLabel;
 
-/// Displays the icon for current conditions
+//  Displays the icon for current conditions
 @property (strong, nonatomic) UILabel                   *conditionIconLabel;
 
-/// Displays the description of current conditions
+//  Displays the description of current conditions
 @property (strong, nonatomic) UILabel                   *conditionDescriptionLabel;
 
-/// Displays the location whose weather data is being represented by this weather view
+//  Displays the location whose weather data is being represented by this weather view
 @property (strong, nonatomic) UILabel                   *locationLabel;
 
-/// Displayes the current temperature
+//  Displayes the current temperature
 @property (strong, nonatomic) UILabel                   *currentTemperatureLabel;
 
-/// Displays both the high and low temperatures for today
+//  Displays both the high and low temperatures for today
 @property (strong, nonatomic) UILabel                   *hiloTemperatureLabel;
 
-/// Displays the day of the week for the first forecast snapshot
+//  Displays the day of the week for the first forecast snapshot
 @property (strong, nonatomic) UILabel                   *forecastDayOneLabel;
 
-/// Displays the day of the week for the second forecast snapshot
+//  Displays the day of the week for the second forecast snapshot
 @property (strong, nonatomic) UILabel                   *forecastDayTwoLabel;
 
-/// Displays the day of the week for the third forecast snapshot
+//  Displays the day of the week for the third forecast snapshot
 @property (strong, nonatomic) UILabel                   *forecastDayThreeLabel;
 
-/// Displays the icon representing the predicted conditions for the first forecast snapshot
+//  Displays the icon representing the predicted conditions for the first forecast snapshot
 @property (strong, nonatomic) UILabel                   *forecastIconOneLabel;
 
-/// Displays the icon representing the predicted conditions for the second forecast snapshot
+//  Displays the icon representing the predicted conditions for the second forecast snapshot
 @property (strong, nonatomic) UILabel                   *forecastIconTwoLabel;
 
-/// Displays the icon representing the predicted conditions for the third forecast snapshot
+//  Displays the icon representing the predicted conditions for the third forecast snapshot
 @property (strong, nonatomic) UILabel                   *forecastIconThreeLabel;
 
-/// Indicates whether data is being downloaded for this weather view
+//  Indicates whether data is being downloaded for this weather view
 @property (strong, nonatomic) UIActivityIndicatorView   *activityIndicator;
 
 @end
+
 
 #pragma mark - SOLWeatherView Implementation
 
@@ -74,28 +76,28 @@
 {
     if(self = [super initWithFrame:frame]) {
         
-        /// Initialize Container
+        //  Initialize Container
         self.container = [[UIView alloc]initWithFrame:self.bounds];
         [self.container setBackgroundColor:[UIColor clearColor]];
         [self addSubview:self.container];
         
-        /// Initialize Ribbon
+        //  Initialize Ribbon
         self.ribbon = [[UIView alloc]initWithFrame:CGRectMake(0, 1.30 * self.center.y, self.bounds.size.width, 80)];
         [self.ribbon setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.25]];
         [self.container addSubview:self.ribbon];
         
-        /// Initialize Pan Gesture Recognizer
+        //  Initialize Pan Gesture Recognizer
         self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didPan:)];
         self.panGestureRecognizer.minimumNumberOfTouches = 1;
         self.panGestureRecognizer.delegate = self;
         [self.container addGestureRecognizer:self.panGestureRecognizer];
         
-        /// Initialize Activity Indicator
+        //  Initialize Activity Indicator
         self.activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         self.activityIndicator.center = self.center;
         [self.container addSubview:self.activityIndicator];
         
-        /// Initialize Labels
+        //  Initialize Labels
         [self initializeUpdatedLabel];
         [self initializeConditionIconLabel];
         [self initializeConditionDescriptionLabel];
@@ -133,26 +135,24 @@
     CGPoint translatedPoint = [gestureRecognizer translationInView:self.container];
     if(gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         
-        /// Save the inital Y to reuse later
+        //  Save the inital Y to reuse later
         initialCenterY = self.container.center.y;
         
-        /// Alert the delegate that panning has begun
+        //  Alert the delegate that panning has begun
         [self.delegate didBeginPanningWeatherView];
-        CZLog(@"SOLWeatherView", @"Did Begin Panning");
         
     } else if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         
-        /// Alert the delegate that panning finished
+        //  Alert the delegate that panning finished
         [self.delegate didFinishPanningWeatherView];
         
-        /// Return the container back to its original position
+        //  Return the container back to its original position
         [UIView animateWithDuration:0.3 animations: ^ {
             self.container.center = CGPointMake(self.container.center.x, initialCenterY);
         }];
-        CZLog(@"SOLWeatherView", @"Did End Panning");
         
     } else if(translatedPoint.y <= 50 && translatedPoint.y > 0) {
-        /// Translate the container
+        //  Translate the container
         self.container.center = CGPointMake(self.container.center.x, self.center.y + translatedPoint.y);
     }
 }
@@ -162,7 +162,7 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
-        /// We only want to register vertial pans
+        //  We only want to register vertial pans
         UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer *)gestureRecognizer;
         CGPoint velocity = [panGestureRecognizer velocityInView:self.container];
         return fabsf(velocity.y) > fabsf(velocity.x);

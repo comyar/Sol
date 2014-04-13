@@ -13,26 +13,26 @@
 
 @interface SOLAddLocationViewController ()
 
-/// Used to geocode search location
+// Used to geocode search location
 @property (strong, nonatomic) CLGeocoder                    *geocoder;
 
-/// Results of a search
+// Results of a search
 @property (strong, nonatomic) NSMutableArray                *searchResults;
 
-/// Location search results display controller
+// Location search results display controller
 @property (strong, nonatomic) UISearchDisplayController     *searchController;
 
-/////////////////////////////////////////////////////////////////////////////
-/// @name Subviews
-/////////////////////////////////////////////////////////////////////////////
+// -----
+// @name Subviews
+// -----
 
-/// Location search bar
+// Location search bar
 @property (strong, nonatomic) UISearchBar                   *searchBar;
 
-/// Navigation bar at the top of the view
+// Navigation bar at the top of the view
 @property (strong, nonatomic) UINavigationBar               *navigationBar;
 
-/// Done button inside navigation bar
+// Done button inside navigation bar
 @property (strong, nonatomic) UIBarButtonItem               *doneButton;
 
 @end
@@ -59,13 +59,13 @@
         self.doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                    target:self
                                                                    action:@selector(doneButtonPressed)];
-        /// Inititalize and configure search bar
+        // Inititalize and configure search bar
         self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 44)];
         self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
         self.searchBar.placeholder = @"Name of City";
         self.searchBar.delegate = self;
         
-        /// Initialize and configure search controller
+        // Initialize and configure search controller
         self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
         self.searchController.delegate = self;
         self.searchController.searchResultsDelegate = self;
@@ -105,7 +105,6 @@
 
 - (void)doneButtonPressed
 {
-    CZLog(@"SOLAddLocationViewController", @"Done Button Pressed");
     [self.delegate dismissAddLocationViewController];
 }
 
@@ -141,13 +140,13 @@
 {
     static NSString *cellIdentifier = @"CellIdentifier";
     
-    /// Dequeue cell
+    // Dequeue cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    /// Configure cell for the search results table view
+    // Configure cell for the search results table view
     if(tableView == self.searchController.searchResultsTableView) {
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];

@@ -8,6 +8,7 @@
 
 #import "SOLStateManager.h"
 
+
 #pragma mark - SOLStateManager Implementation
 
 @implementation SOLStateManager
