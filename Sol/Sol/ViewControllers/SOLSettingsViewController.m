@@ -122,22 +122,22 @@
 
 - (void)initializeCreditLabel
 {
-    static const CGFloat fontSize = 16;
-    self.creditLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - 2.5 * fontSize,
+    static const CGFloat fontSize = 14;
+    self.creditLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - 2.0 * fontSize,
                                                                 self.view.bounds.size.width, 1.5 * fontSize)];
     [self.creditLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
     [self.creditLabel setTextColor:[UIColor whiteColor]];
     [self.creditLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.creditLabel setText:@"Created by Comyar, for Stephanie"];
+    [self.creditLabel setText:@"Created by Comyar Zaheri"];
     [self.view addSubview:self.creditLabel];
 }
 
 - (void)initializeLocationsTableViewTitleLabel
 {
-    static const CGFloat fontSize = 22;
+    static const CGFloat fontSize = 20;
     
     // Initialize table view title label
-    self.locationsTableViewTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.75 * self.view.center.y,
+    self.locationsTableViewTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.775 * self.view.center.y,
                                                                                  CGRectGetWidth(self.view.bounds), 1.5 * fontSize)];
     [self.locationsTableViewTitleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]];
     [self.locationsTableViewTitleLabel setTextColor:[UIColor whiteColor]];
@@ -146,9 +146,9 @@
     [self.view addSubview:self.locationsTableViewTitleLabel];
     
     // Initialize table view title separator
-    self.tableSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 0.5)];
+    self.tableSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(16, 0, CGRectGetWidth(self.view.bounds) - 32, 0.5)];
     self.tableSeparatorView.center = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
-    self.tableSeparatorView.backgroundColor = [UIColor whiteColor];
+    self.tableSeparatorView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     [self.view addSubview:self.tableSeparatorView];
 }
 
