@@ -34,6 +34,7 @@
 		DDB7B8EB17ED516500857D15 /* SOLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8EA17ED516500857D15 /* SOLSettingsViewController.m */; };
 		DDBFDDCA17B23F3F002A886D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBFDDC917B23F3F002A886D /* QuartzCore.framework */; };
 		DDBFDDCD17B286B7002A886D /* SOLWundergroundDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBFDDCC17B286B7002A886D /* SOLWundergroundDownloader.m */; };
+		F280CA0AD296435F859E19D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27545E381C0B49B9A854131D /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27545E381C0B49B9A854131D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		350FFE16664849A0BFE7624F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		DD0C344117B517950024AD9A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DD0C344317B5179C0024AD9A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DD3965BA17F8DE2A00977422 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Model/Categories/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -104,6 +107,7 @@
 				DD4F967717A8994300E0E7D0 /* CoreGraphics.framework in Frameworks */,
 				DD4F967917A8994300E0E7D0 /* UIKit.framework in Frameworks */,
 				DD4F967517A8994300E0E7D0 /* Foundation.framework in Frameworks */,
+				F280CA0AD296435F859E19D2 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +131,7 @@
 				DD4F967A17A8994300E0E7D0 /* Sol */,
 				DD4F967317A8994300E0E7D0 /* Frameworks */,
 				DD4F967217A8994300E0E7D0 /* Products */,
+				350FFE16664849A0BFE7624F /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,6 +157,7 @@
 				DD4F967617A8994300E0E7D0 /* CoreGraphics.framework */,
 				DD4F967817A8994300E0E7D0 /* UIKit.framework */,
 				DD4F968D17A8994300E0E7D0 /* XCTest.framework */,
+				27545E381C0B49B9A854131D /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -263,9 +269,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD4F969D17A8994300E0E7D0 /* Build configuration list for PBXNativeTarget "Sol" */;
 			buildPhases = (
+				93B6E1D87EB8483D9C953651 /* Check Pods Manifest.lock */,
 				DD4F966D17A8994300E0E7D0 /* Sources */,
 				DD4F966E17A8994300E0E7D0 /* Frameworks */,
 				DD4F966F17A8994300E0E7D0 /* Resources */,
+				F5530367E2BB4E5EAAD26770 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -350,6 +358,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		93B6E1D87EB8483D9C953651 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F5530367E2BB4E5EAAD26770 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DD4F966D17A8994300E0E7D0 /* Sources */ = {
@@ -470,6 +511,7 @@
 		};
 		DD4F969E17A8994300E0E7D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 350FFE16664849A0BFE7624F /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -482,7 +524,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sol/Sol-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Sol/SupportingFiles/Sol-Info.plist";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -492,6 +534,7 @@
 		};
 		DD4F969F17A8994300E0E7D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 350FFE16664849A0BFE7624F /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -504,7 +547,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sol/Sol-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Sol/SupportingFiles/Sol-Info.plist";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

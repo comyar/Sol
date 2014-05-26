@@ -1,0 +1,1 @@
+../../CZWeatherKit/CZWeatherKit/Climacon.h
