@@ -1,5 +1,5 @@
 //
-//  CZWeatherKit.h
+//  NSString+Substring.m
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -25,13 +25,23 @@
 //  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-#ifndef __CZWeatherKit__
-#define __CZWeatherKit__
-#import "Climacon.h"
-#import "CZWeatherRequest.h"
-#import "CZWeatherService.h"
-#import "CZWeatherLocation.h"
-#import "CZWeatherCondition.h"
-#import "CZWundergroundService.h"
-#import "CZOpenWeatherMapService.h"
-#endif
+#pragma mark - Imports
+
+#import "NSString+CZWeatherKit_Substring.h"
+
+
+#pragma mark - NSString Substring Implementation
+
+@implementation NSString (CZWeatherKit_Substring)
+
+#pragma mark Instance Methods
+
+- (BOOL)contains:(NSString *)substring
+{
+    if([self rangeOfString:substring].location != NSNotFound) {
+        return YES;
+    }
+    return NO;
+}
+
+@end

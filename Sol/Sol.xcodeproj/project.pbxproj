@@ -165,12 +165,8 @@
 		DD4F967A17A8994300E0E7D0 /* Sol */ = {
 			isa = PBXGroup;
 			children = (
-				DD4C7D0818FA701300129A2E /* API_KEY */,
-				DD93A81917FA9C08006DD1BC /* Fonts */,
-				DD548DDD17A8A90600E08E29 /* AppDelegate */,
-				DD548DE017A8A92700E08E29 /* Views */,
-				DD548DDF17A8A92300E08E29 /* Model */,
-				DD548DDE17A8A91B00E08E29 /* ViewControllers */,
+				DDC858DC19369DC900057252 /* Classes */,
+				DD93A81917FA9C08006DD1BC /* Resources */,
 				DD4F967B17A8994300E0E7D0 /* Supporting Files */,
 			);
 			path = Sol;
@@ -185,15 +181,6 @@
 				DD4F968217A8994300E0E7D0 /* Sol-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DD548DDD17A8A90600E08E29 /* AppDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				DD4F968317A8994300E0E7D0 /* SOLAppDelegate.h */,
-				DD4F968417A8994300E0E7D0 /* SOLAppDelegate.m */,
-			);
-			name = AppDelegate;
 			sourceTree = "<group>";
 		};
 		DD548DDE17A8A91B00E08E29 /* ViewControllers */ = {
@@ -246,12 +233,13 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		DD93A81917FA9C08006DD1BC /* Fonts */ = {
+		DD93A81917FA9C08006DD1BC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD4C7D0818FA701300129A2E /* API_KEY */,
 				DD93A81A17FA9C12006DD1BC /* Climacons.ttf */,
 			);
-			name = Fonts;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		DDB7B85617EC913300857D15 /* Climacons */ = {
@@ -260,6 +248,18 @@
 				DD8AA01517D52B2E00D4F7BA /* Climacons.h */,
 			);
 			name = Climacons;
+			sourceTree = "<group>";
+		};
+		DDC858DC19369DC900057252 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DD4F968317A8994300E0E7D0 /* SOLAppDelegate.h */,
+				DD4F968417A8994300E0E7D0 /* SOLAppDelegate.m */,
+				DD548DE017A8A92700E08E29 /* Views */,
+				DD548DDF17A8A92300E08E29 /* Model */,
+				DD548DDE17A8A91B00E08E29 /* ViewControllers */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

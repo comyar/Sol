@@ -1,5 +1,5 @@
 //
-//  CZWeatherKit.h
+//  CZWundergroundService.h
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -25,13 +25,23 @@
 //  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-#ifndef __CZWeatherKit__
-#define __CZWeatherKit__
-#import "Climacon.h"
-#import "CZWeatherRequest.h"
+#pragma mark - Imports
+
+@import Foundation;
 #import "CZWeatherService.h"
-#import "CZWeatherLocation.h"
-#import "CZWeatherCondition.h"
-#import "CZWundergroundService.h"
-#import "CZOpenWeatherMapService.h"
+#if TARGET_OS_IPHONE
+@import UIKit;
 #endif
+
+
+#pragma mark - CZWundergroundService Implementation
+
+/**
+ CZWundergroundService is the service object for interfacing with the Wunderground
+ developer API. CZWundergroundService adopts the CZWeatherService protocol.
+ 
+ CZWundergroundService should not be subclassed.
+ */
+@interface CZWundergroundService : NSObject <CZWeatherService>
+
+@end

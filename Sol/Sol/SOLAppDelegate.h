@@ -33,15 +33,4 @@
  */
 @interface SOLAppDelegate : UIResponder <UIApplicationDelegate>
 
-// -----
-// @name Properties
-// -----
-
-#pragma mark Properties
-
-/**
- App window
- */
-@property (strong, nonatomic) UIWindow *window;
-
 @end

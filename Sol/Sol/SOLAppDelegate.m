@@ -40,6 +40,9 @@
 #pragma mark - SOLAppDelegate Implementation
 
 @implementation SOLAppDelegate
+@synthesize window = _window;
+
+#pragma mark UIAppplicationDelegate Methods
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

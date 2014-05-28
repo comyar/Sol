@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Comyar Zaheri. All rights reserved.
 //
 
+
 /**
  SOLPagingScrollView manages and displays all SOLWeatherViews as individual pages in a scroll view. All subviews of
  a SOLPagingScrollView are treated as pages.

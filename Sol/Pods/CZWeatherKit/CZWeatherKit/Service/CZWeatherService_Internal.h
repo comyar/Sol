@@ -1,5 +1,5 @@
 //
-//  CZWeatherKit.h
+//  CZWeatherService_Internal.h
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -25,13 +25,29 @@
 //  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-#ifndef __CZWeatherKit__
-#define __CZWeatherKit__
+#pragma mark - Imports
+
 #import "Climacon.h"
-#import "CZWeatherRequest.h"
-#import "CZWeatherService.h"
-#import "CZWeatherLocation.h"
 #import "CZWeatherCondition.h"
-#import "CZWundergroundService.h"
-#import "CZOpenWeatherMapService.h"
-#endif
+
+
+#pragma mark - CZWeatherCondition Friend Category
+
+/**
+ Friend category for CZWeatherCondition. Allows write access to a CZWeatherCondition object's properties.
+ 
+ Should not be used outside of a weather service.
+ */
+@interface CZWeatherCondition (Friend)
+
+- (void)setDate:(NSDate *)date;
+- (void)setDescription:(NSString *)description;
+- (void)setClimaconCharacter:(Climacon)climaconCharacter;
+- (void)setTemperature:(CZTemperature)temperature;
+- (void)setHighTemperature:(CZTemperature)highTemperature;
+- (void)setLowTemperature:(CZTemperature)lowTemperature;
+- (void)setWindDegrees:(CGFloat)windDegrees;
+- (void)setWindSpeed:(CZWindSpeed)windSpeed;
+- (void)setHumidity:(CGFloat)humidity;
+
+@end
