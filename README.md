@@ -17,12 +17,12 @@ Sol° requires iOS 7 and Xcode 5.
 Screenshots
 ---
 
-<img src=https://github.com/comyarzaheri/Sol/raw/master/Screenshots/1.png width=210 height=372>
-<img src=https://github.com/comyarzaheri/Sol/raw/master/Screenshots/2.png width=210 height=372>
-<img src=https://github.com/comyarzaheri/Sol/raw/master/Screenshots/3.png width=210 height=372>
-<img src=https://github.com/comyarzaheri/Sol/raw/master/Screenshots/4.png width=210 height=372>
-<img src=https://github.com/comyarzaheri/Sol/raw/master/Screenshots/5.png width=210 height=372>
-<img src=https://github.com/comyarzaheri/Sol/raw/master/Screenshots/6.png width=210 height=372>
+<img src=/Screenshots/1.png width=210 height=372>
+<img src=/Screenshots/2.png width=210 height=372>
+<img src=/Screenshots/3.png width=210 height=372>
+<img src=/Screenshots/4.png width=210 height=372>
+<img src=/Screenshots/5.png width=210 height=372>
+<img src=Screenshots/6.png width=210 height=372>
 
 
 
