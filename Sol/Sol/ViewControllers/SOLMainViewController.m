@@ -49,7 +49,9 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        
+        self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                               options:nil];
     }
     return self;
 }
@@ -58,9 +60,6 @@
 {
     [super viewDidLoad];
     
-    self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
-                                                             navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                                                           options:nil];
     [self.pageViewController setDataSource:self];
     [self.pageViewController willMoveToParentViewController:self];
     [self.pageViewController.view setFrame:self.view.bounds];

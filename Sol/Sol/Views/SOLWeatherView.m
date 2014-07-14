@@ -20,10 +20,16 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
+#pragma mark - Imports
+
 #import "SOLWeatherView.h"
 
-#define LIGHT_FONT      @"HelveticaNeue-Light"
-#define ULTRALIGHT_FONT @"HelveticaNeue-UltraLight"
+
+#pragma mark - Constants
+
+// Fonts
+static NSString * const LIGHT_FONT      = @"HelveticaNeue-Light";
+static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 
 
 #pragma mark - SOLWeatherView Class Extension
@@ -140,7 +146,7 @@
 
 - (void)initializeUpdatedLabel
 {
-    static const NSInteger fontSize = 16;
+    static const CGFloat fontSize = 16.0;
     self.updatedLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, -1.5 * fontSize, self.bounds.size.width, 1.5 * fontSize)];
     [self.updatedLabel setNumberOfLines:0];
     [self.updatedLabel setAdjustsFontSizeToFitWidth:YES];
@@ -152,10 +158,10 @@
 
 - (void)initializeConditionIconLabel
 {
-    const NSInteger fontSize = 180;
+    static const CGFloat fontSize = 180.0;
     self.conditionIconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, fontSize)];
     [self.conditionIconLabel setCenter:CGPointMake(self.container.center.x, 0.5 * self.center.y)];
-//    [self.conditionIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
+    [self.conditionIconLabel setFont:[UIFont fontWithName:CLIMACON_FONT size:fontSize]];
     [self.conditionIconLabel setBackgroundColor:[UIColor clearColor]];
     [self.conditionIconLabel setTextColor:[UIColor whiteColor]];
     [self.conditionIconLabel setTextAlignment:NSTextAlignmentCenter];
@@ -164,7 +170,7 @@
 
 - (void)initializeConditionDescriptionLabel
 {
-    const NSInteger fontSize = 48;
+    static const CGFloat fontSize = 48.0;
     self.conditionDescriptionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 0.75 * self.bounds.size.width, 1.5 * fontSize)];
     [self.conditionDescriptionLabel setNumberOfLines:0];
     [self.conditionDescriptionLabel setAdjustsFontSizeToFitWidth:YES];
@@ -178,7 +184,7 @@
 
 - (void)initializeLocationLabel
 {
-    const NSInteger fontSize = 18;
+    static const CGFloat fontSize = 18.0;
     self.locationLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 1.5 * fontSize)];
     [self.locationLabel setAdjustsFontSizeToFitWidth:YES];
     [self.locationLabel setCenter:CGPointMake(self.container.center.x, 1.18 * self.center.y)];
@@ -202,7 +208,7 @@
 
 - (void)initializeHiLoTemperatureLabel
 {
-    const NSInteger fontSize = 18;
+    static const CGFloat fontSize = 18.0;
     self.hiloTemperatureLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     [self.hiloTemperatureLabel setFrame:CGRectMake(0, 0, 0.375 * self.bounds.size.width, fontSize)];
     [self.hiloTemperatureLabel setCenter:CGPointMake(self.currentTemperatureLabel.center.x - 4,
@@ -216,7 +222,7 @@
 
 - (void)initializeForecastDayLabels
 {
-    const NSInteger fontSize = 18;
+    static const CGFloat fontSize = 18.0;
     
     self.forecastDayOneLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     self.forecastDayTwoLabel = [[UILabel alloc]initWithFrame:CGRectZero];
@@ -236,7 +242,7 @@
 
 - (void)initializeForecastIconLabels
 {
-    const NSInteger fontSize = 40;
+    static const CGFloat fontSize = 40.0;
     
     self.forecastIconOneLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     self.forecastIconTwoLabel = [[UILabel alloc]initWithFrame:CGRectZero];
@@ -246,7 +252,7 @@
     for(int i = 0; i < [forecastIconLabels count]; ++i) {
         UILabel *forecastIconLabel = [forecastIconLabels objectAtIndex:i];
         [forecastIconLabel setFrame:CGRectMake(0.425 * self.bounds.size.width + (64 * i), 1.42 * self.center.y, fontSize, fontSize)];
-//        [forecastIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
+        [forecastIconLabel setFont:[UIFont fontWithName:CLIMACON_FONT size:fontSize]];
         [forecastIconLabel setBackgroundColor:[UIColor clearColor]];
         [forecastIconLabel setTextColor:[UIColor whiteColor]];
         [forecastIconLabel setTextAlignment:NSTextAlignmentCenter];
