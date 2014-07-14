@@ -1,5 +1,5 @@
 //
-//  SOLMainViewController.h
+//  SOLWeatherViewController.h
 //  Copyright (c) 2013 Comyar Zaheri
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,23 +22,26 @@
 
 #pragma mark - Imports
 
-#import "SOLAddLocationViewController.h"
-#import "SOLSettingsViewController.h"
-#import "SOLWeatherView.h"
+@import UIKit;
 
 
-#pragma mark - SOLMainViewController Interface
+#pragma mark - Forward Declarations
+
+@class SOLWeatherView;
+
+
+#pragma mark - SOLWeatherViewController Interface
 
 /**
  */
-@interface SOLMainViewController : UIViewController
-
+@interface SOLWeatherViewController : UIViewController
 
 // -----
 // @name Properties
 // -----
 
-//  Location manager used to track the user's current location
-@property (nonatomic, readonly) CLLocationManager   *locationManager;
+/**
+ */
+@property (nonatomic, readonly) SOLWeatherView *weatherView;
 
 @end

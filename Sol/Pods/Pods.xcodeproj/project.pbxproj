@@ -10,26 +10,141 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>01BF9F10D343455396FC7A9E</key>
+		<key>013484E9D3044C23B3684EE0</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>67BEBB85C7464C8E942E5526</string>
-				<string>C100519C39A1443F9B5B4D8B</string>
-				<string>0FE04DD8B3714CA4827E9B26</string>
-				<string>577AB3C5E1364320B0D8F3B9</string>
-				<string>5839508CAE4E4E9292D7D936</string>
-				<string>6D0187DF30AB45B081CF9662</string>
-				<string>91274D0A100D4ADEBD51C140</string>
-			</array>
+			<key>fileRef</key>
+			<string>620B0FECBF0E4E78B07BCB0E</string>
 			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
 		</dict>
-		<key>037B7DD04CB04D4594D5A66A</key>
+		<key>0170DB3A2E8D43D38D9E730B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>27CA7E3A6D984E838C17E4DF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>01D3D69B703B4E728BE42894</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>CZWeatherLocation.h</string>
+			<key>path</key>
+			<string>CZWeatherKit/Request/CZWeatherLocation.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>07D3BEEA4E504295B97A2C7B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NSString+CZWeatherKit_Substring.h</string>
+			<key>path</key>
+			<string>CZWeatherKit/Helper/NSString+CZWeatherKit_Substring.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>08BBE51D6E1C433BB6069E3B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E779B50AD2C84FEAABA1342D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>119F45DDED224BFC96EE725A</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>EBE070463B174BBCA2C75896</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DSTROOT</key>
+				<string>/tmp/xcodeproj.dst</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Pods-CZWeatherKit-prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_VERSION</key>
+				<string>com.apple.compilers.llvm.clang.1_0</string>
+				<key>INSTALL_PATH</key>
+				<string>$(BUILT_PRODUCTS_DIR)</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>13E70E62056B4FAAB9A0039F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>CZOpenWeatherMapService.m</string>
+			<key>path</key>
+			<string>CZWeatherKit/Service/CZOpenWeatherMapService.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1AE6A2A2F401434F9D43F5FC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>07D3BEEA4E504295B97A2C7B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1D3B3B5226604BC6A592FB28</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -42,7 +157,7 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0456844B7D704DCEA9FC024A</key>
+		<key>27CA7E3A6D984E838C17E4DF</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -50,50 +165,32 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>CZWundergroundService.m</string>
 			<key>path</key>
-			<string>Pods-CZWeatherKit-dummy.m</string>
+			<string>CZWeatherKit/Service/CZWundergroundService.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>079E8683B9DA41F6BF40ADA6</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>5D2B343C9FF94958AFE04B36</string>
-				<string>E77DFEED75324A69AA6605F2</string>
-				<string>3D2C979DB07C4D3D943611F7</string>
-				<string>77A8E98C24064EDA815F6931</string>
-				<string>8E39E748DF5B48C09F9F7A80</string>
-				<string>BDBBCCC463BA421F85E2CF1D</string>
-				<string>F0DB900349FF46B9B6F1D1E5</string>
-				<string>633EF17438C64380850EAF6B</string>
-				<string>A638029CAB1C45CFA5E1199B</string>
-				<string>68AF4FC5C3D34F1D8318F031</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>09999E0CA16F4DA5BC269768</key>
+		<key>2D06A93B319B4557B0633753</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>CZWeatherCondition.h</string>
 			<key>path</key>
-			<string>Pods-dummy.m</string>
+			<string>CZWeatherKit/Data/CZWeatherCondition.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0FE04DD8B3714CA4827E9B26</key>
+		<key>2DEE2A12AA184AB3A487273E</key>
 		<dict>
 			<key>fileRef</key>
-			<string>71A990217EDF42A8BB0DA8E8</string>
+			<string>53AECB76374A4FC6BA66623D</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -102,24 +199,63 @@
 				<string>-fobjc-arc</string>
 			</dict>
 		</dict>
-		<key>102405B155B04381B47C2A7A</key>
+		<key>3095E4051CA14793B5B39B26</key>
 		<dict>
-			<key>buildConfigurations</key>
+			<key>buildConfigurationList</key>
+			<string>59D5E86F35AB4FE6A335541E</string>
+			<key>buildPhases</key>
 			<array>
-				<string>F10358D7A7404606977BF95D</string>
-				<string>8553316304FD43CD892EF6EA</string>
+				<string>9841A7BACDBC4C2396EA8B2D</string>
+				<string>F0107D1542D245B9B0222067</string>
+				<string>7475EF3AF4AE490494ABEC59</string>
 			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
 			<key>isa</key>
-			<string>XCConfigurationList</string>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-CZWeatherKit</string>
+			<key>productName</key>
+			<string>Pods-CZWeatherKit</string>
+			<key>productReference</key>
+			<string>A1355FB380194300AF5372B6</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
 		</dict>
-		<key>1AFC8B0E98C0437994A53D8B</key>
+		<key>31E31CAD38C249399120D38D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>355B13E1F8434F59A29F933A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>CZOpenWeatherMapService.h</string>
+			<key>path</key>
+			<string>CZWeatherKit/Service/CZOpenWeatherMapService.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3655344FB11448209150B570</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>24B3F6EC0B054C05B5F144B9</string>
+			<string>EBE070463B174BBCA2C75896</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ALWAYS_SEARCH_USER_PATHS</key>
@@ -168,20 +304,517 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>24B3F6EC0B054C05B5F144B9</key>
+		<key>3B6EEC4134D14F349459862F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9D9342B3A43F4BC3BE74A823</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>4633A57A1AD143DB8FD6B71A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D1D6900692CF43BCB178F338</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>4E4BD45382DA4B3992876604</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
+			<string>text</string>
+			<key>name</key>
+			<string>Podfile</string>
 			<key>path</key>
-			<string>Pods-CZWeatherKit-Private.xcconfig</string>
+			<string>../Podfile</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.ruby</string>
+		</dict>
+		<key>4F19DFCF442941F6B06581B2</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D9FEC8DAE54943358DE8ECF0</string>
+			<key>buildPhases</key>
+			<array>
+				<string>8D9A39EC1C0643A18238E480</string>
+				<string>8F5E176F8AEF4CB792478A05</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>7B562CDDEAA84569B3C25279</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>productName</key>
+			<string>Pods</string>
+			<key>productReference</key>
+			<string>5725AE76BA3542F4B04CB85F</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>4FFFF0B135544DC2951C89CD</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>31E31CAD38C249399120D38D</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>DSTROOT</key>
+				<string>/tmp/xcodeproj.dst</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_VERSION</key>
+				<string>com.apple.compilers.llvm.clang.1_0</string>
+				<key>INSTALL_PATH</key>
+				<string>$(BUILT_PRODUCTS_DIR)</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>OTHER_CFLAGS</key>
+				<array>
+					<string>-DNS_BLOCK_ASSERTIONS=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>OTHER_CPLUSPLUSFLAGS</key>
+				<array>
+					<string>-DNS_BLOCK_ASSERTIONS=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>53AECB76374A4FC6BA66623D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>CZWeatherLocation.m</string>
+			<key>path</key>
+			<string>CZWeatherKit/Request/CZWeatherLocation.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>2C168141928E49CE920EB3BE</key>
+		<key>5725AE76BA3542F4B04CB85F</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>5825DEC17529430096DE6906</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A9B4889F7B4947FCA6A077CC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>598A1936FE7A4D0698347747</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>CF5E730EF95848ADA72F0F2F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>iOS</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>59D5E86F35AB4FE6A335541E</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>119F45DDED224BFC96EE725A</string>
+				<string>3655344FB11448209150B570</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>60DED841DBB7481BA1475A37</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CF5E730EF95848ADA72F0F2F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>620B0FECBF0E4E78B07BCB0E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>CZWeatherCondition.m</string>
+			<key>path</key>
+			<string>CZWeatherKit/Data/CZWeatherCondition.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>62C1836B426048D5BAB780ED</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8E57801E07034A5083BB7213</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>62EE7BA6C0CB4A83A40511F2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9F1B714ABB4C48729880E751</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6AB9F97B8F144EB8A8900540</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>CZWeatherKit.h</string>
+			<key>path</key>
+			<string>CZWeatherKit/CZWeatherKit.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7475EF3AF4AE490494ABEC59</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9C48E78EA1E84AF1A6A2CF98</string>
+				<string>B1B43F94000E418A81F5FA7D</string>
+				<string>842C5C99261942B197CE94D1</string>
+				<string>B8089AF7014D4AF5AF8D6A5F</string>
+				<string>998EE699370D40E981C99CF9</string>
+				<string>971BE4A7877A406B85775F92</string>
+				<string>5825DEC17529430096DE6906</string>
+				<string>08BBE51D6E1C433BB6069E3B</string>
+				<string>62EE7BA6C0CB4A83A40511F2</string>
+				<string>1AE6A2A2F401434F9D43F5FC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>7B562CDDEAA84569B3C25279</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>3095E4051CA14793B5B39B26</string>
+			<key>targetProxy</key>
+			<string>EAA7811844EC4380B6AB18E8</string>
+		</dict>
+		<key>7C1435AB69704EC380699E94</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>Pods-acknowledgements.markdown</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>842C5C99261942B197CE94D1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6AB9F97B8F144EB8A8900540</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>84E89D66BA6648F6A4597B08</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-acknowledgements.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>861578D24E6F4D7D9AAF613B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A1355FB380194300AF5372B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>87CE43A4578D41F7885B7E10</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>31E31CAD38C249399120D38D</string>
+				<string>7C1435AB69704EC380699E94</string>
+				<string>84E89D66BA6648F6A4597B08</string>
+				<string>CD2CF654DA564267A854F2FC</string>
+				<string>1D3B3B5226604BC6A592FB28</string>
+				<string>887FC3927C3D47B9854A4E29</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>887FC3927C3D47B9854A4E29</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8B3388CB57E44B078C13A780</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>9A74065A1BD74504A429F209</string>
+				<string>CFC14C23260F4E0AA92D97F4</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>8D9A39EC1C0643A18238E480</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>EA2DDB963CF14F029EB05410</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8E57801E07034A5083BB7213</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NSString+CZWeatherKit_Substring.m</string>
+			<key>path</key>
+			<string>CZWeatherKit/Helper/NSString+CZWeatherKit_Substring.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8F5E176F8AEF4CB792478A05</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>60DED841DBB7481BA1475A37</string>
+				<string>861578D24E6F4D7D9AAF613B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9102FF76DBD24847BB9CE35D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CF5E730EF95848ADA72F0F2F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>91907841AD3040E4BEAE192B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>CZWeatherRequest.h</string>
+			<key>path</key>
+			<string>CZWeatherKit/Request/CZWeatherRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>92B87ABB006B4E9EBF71463E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>CZWeatherService.h</string>
+			<key>path</key>
+			<string>CZWeatherKit/Service/CZWeatherService.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>942EA127282F4133BDD22B73</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>4E4BD45382DA4B3992876604</string>
+				<string>FB6033CBC31E49B6B1A33174</string>
+				<string>A4FAA467E50E44DBBCCB0E22</string>
+				<string>A9818DE32674420A94C55A15</string>
+				<string>C155E1D5DE594E85A0801CD8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>971BE4A7877A406B85775F92</key>
+		<dict>
+			<key>fileRef</key>
+			<string>92B87ABB006B4E9EBF71463E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9841A7BACDBC4C2396EA8B2D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E7D49D16CA1542429D435B55</string>
+				<string>013484E9D3044C23B3684EE0</string>
+				<string>2DEE2A12AA184AB3A487273E</string>
+				<string>4633A57A1AD143DB8FD6B71A</string>
+				<string>0170DB3A2E8D43D38D9E730B</string>
+				<string>62C1836B426048D5BAB780ED</string>
+				<string>3B6EEC4134D14F349459862F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>984CD4885DD843B79EB19F08</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0510</string>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>8B3388CB57E44B078C13A780</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>942EA127282F4133BDD22B73</string>
+			<key>productRefGroup</key>
+			<string>A9818DE32674420A94C55A15</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>4F19DFCF442941F6B06581B2</string>
+				<string>3095E4051CA14793B5B39B26</string>
+			</array>
+		</dict>
+		<key>998EE699370D40E981C99CF9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>91907841AD3040E4BEAE192B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A74065A1BD74504A429F209</key>
 		<dict>
 			<key>buildSettings</key>
 			<dict>
@@ -248,133 +881,14 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>2C5C2765DCC643E39FAA5004</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-CZWeatherKit.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>30C05608055C451886CD6023</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>CZWeatherService_Internal.h</string>
-			<key>path</key>
-			<string>CZWeatherKit/Service/CZWeatherService_Internal.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38D9552AD8FC47A68B5C21F5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CA4F77EB32B5477ABA59DFB3</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3D2C979DB07C4D3D943611F7</key>
+		<key>9C48E78EA1E84AF1A6A2CF98</key>
 		<dict>
 			<key>fileRef</key>
-			<string>6F6E8C19AE5947C1A4866FCB</string>
+			<string>355B13E1F8434F59A29F933A</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>3E9180BC373B4738A45BB212</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>24B3F6EC0B054C05B5F144B9</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>DSTROOT</key>
-				<string>/tmp/xcodeproj.dst</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Pods-CZWeatherKit-prefix.pch</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
-				<string>NO</string>
-				<key>GCC_VERSION</key>
-				<string>com.apple.compilers.llvm.clang.1_0</string>
-				<key>INSTALL_PATH</key>
-				<string>$(BUILT_PRODUCTS_DIR)</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
-				<string>$(TARGET_NAME)</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>4C73E044FB924189A2F73160</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4CF437A77BEE43BC9E294A6B</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>8034224CFFD64E7EA4846F4F</string>
-				<string>BD59263033184B3CA8E3EE9C</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>4DE1C78D0B514B468CE2AD4B</key>
+		<key>9D7B1F985C784E12BC0E6EB0</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -382,41 +896,25 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>NSString+CZWeatherKit_Substring.h</string>
 			<key>path</key>
-			<string>CZWeatherKit/Helper/NSString+CZWeatherKit_Substring.h</string>
+			<string>Pods-CZWeatherKit-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>5349F786A305442DB81686AC</key>
+		<key>9D9342B3A43F4BC3BE74A823</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
+			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>Pods-resources.sh</string>
+			<string>Pods-CZWeatherKit-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>53E7B38CA12343B6A0D34658</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>3E9180BC373B4738A45BB212</string>
-				<string>1AFC8B0E98C0437994A53D8B</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>546DC41DB06C4EBA8BE79DEF</key>
+		<key>9F1B714ABB4C48729880E751</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -431,347 +929,7 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>577AB3C5E1364320B0D8F3B9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>7A1077DDDC6847B985BD6F76</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-fobjc-arc</string>
-			</dict>
-		</dict>
-		<key>57F557A7FB4749A2BB2F5FB2</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>CZWeatherCondition.h</string>
-			<key>path</key>
-			<string>CZWeatherKit/Data/CZWeatherCondition.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5839508CAE4E4E9292D7D936</key>
-		<dict>
-			<key>fileRef</key>
-			<string>7D5786EA78AE4353BEACB3C4</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-fobjc-arc</string>
-			</dict>
-		</dict>
-		<key>5D2B343C9FF94958AFE04B36</key>
-		<dict>
-			<key>fileRef</key>
-			<string>C9EB86B1221D4D1BB77BA040</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5D6FAD6B16EE43C7BA1EEF86</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>2C5C2765DCC643E39FAA5004</string>
-				<string>24B3F6EC0B054C05B5F144B9</string>
-				<string>0456844B7D704DCEA9FC024A</string>
-				<string>7A6F222EF149481BABCD0352</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>sourceTree</key>
-			<string>SOURCE_ROOT</string>
-		</dict>
-		<key>5EB8F8DBDAE54DA5B77E9C81</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>63E7E1405ACD4E6D96223AED</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>633EF17438C64380850EAF6B</key>
-		<dict>
-			<key>fileRef</key>
-			<string>988B4C198056405C8D1C8E1C</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>6350F186BA744361A5B17E07</key>
-		<dict>
-			<key>fileRef</key>
-			<string>09999E0CA16F4DA5BC269768</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>63E7E1405ACD4E6D96223AED</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>C9EB86B1221D4D1BB77BA040</string>
-				<string>FBC26FE558AC41C680A9D5E9</string>
-				<string>57F557A7FB4749A2BB2F5FB2</string>
-				<string>C574ED476FCC4874B3CD2211</string>
-				<string>6F6E8C19AE5947C1A4866FCB</string>
-				<string>CC869D1987884AE9A78D8A06</string>
-				<string>71A990217EDF42A8BB0DA8E8</string>
-				<string>B090E37EC5CF4BDB8A6867EB</string>
-				<string>7A1077DDDC6847B985BD6F76</string>
-				<string>91F09AEA34D34A329F32FD56</string>
-				<string>30C05608055C451886CD6023</string>
-				<string>988B4C198056405C8D1C8E1C</string>
-				<string>7D5786EA78AE4353BEACB3C4</string>
-				<string>546DC41DB06C4EBA8BE79DEF</string>
-				<string>4DE1C78D0B514B468CE2AD4B</string>
-				<string>C955FECF7B2B4FF198B80B36</string>
-				<string>5D6FAD6B16EE43C7BA1EEF86</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>CZWeatherKit</string>
-			<key>path</key>
-			<string>CZWeatherKit</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>67BEBB85C7464C8E942E5526</key>
-		<dict>
-			<key>fileRef</key>
-			<string>FBC26FE558AC41C680A9D5E9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-fobjc-arc</string>
-			</dict>
-		</dict>
-		<key>68AF4FC5C3D34F1D8318F031</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4DE1C78D0B514B468CE2AD4B</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>6D0187DF30AB45B081CF9662</key>
-		<dict>
-			<key>fileRef</key>
-			<string>C955FECF7B2B4FF198B80B36</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-fobjc-arc</string>
-			</dict>
-		</dict>
-		<key>6F6E8C19AE5947C1A4866FCB</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>CZWeatherKit.h</string>
-			<key>path</key>
-			<string>CZWeatherKit/CZWeatherKit.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>71A014D226664AEEBC0402CB</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>2C168141928E49CE920EB3BE</string>
-				<string>B23578E980AC4083B96A5F56</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>71A990217EDF42A8BB0DA8E8</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>CZWeatherLocation.m</string>
-			<key>path</key>
-			<string>CZWeatherKit/Request/CZWeatherLocation.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>77A8E98C24064EDA815F6931</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CC869D1987884AE9A78D8A06</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>7A1077DDDC6847B985BD6F76</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>CZWeatherRequest.m</string>
-			<key>path</key>
-			<string>CZWeatherKit/Request/CZWeatherRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7A6F222EF149481BABCD0352</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Pods-CZWeatherKit-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7D5786EA78AE4353BEACB3C4</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>CZWundergroundService.m</string>
-			<key>path</key>
-			<string>CZWeatherKit/Service/CZWundergroundService.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8034224CFFD64E7EA4846F4F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>F94D495DC78543A295079DD9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>807214C9F16B4E12B846676F</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>53E7B38CA12343B6A0D34658</string>
-			<key>buildPhases</key>
-			<array>
-				<string>01BF9F10D343455396FC7A9E</string>
-				<string>D4FB737E33A747E89FD9AF4E</string>
-				<string>079E8683B9DA41F6BF40ADA6</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>Pods-CZWeatherKit</string>
-			<key>productName</key>
-			<string>Pods-CZWeatherKit</string>
-			<key>productReference</key>
-			<string>C8C973FC1544453281CFF52A</string>
-			<key>productType</key>
-			<string>com.apple.product-type.library.static</string>
-		</dict>
-		<key>8221D1F5BCE3412184A81DDC</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>9605004A9F0D4E029B5F4C8F</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>807214C9F16B4E12B846676F</string>
-			<key>remoteInfo</key>
-			<string>Pods-CZWeatherKit</string>
-		</dict>
-		<key>8553316304FD43CD892EF6EA</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>8D76C2DAD396439092A76297</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>YES</string>
-				<key>DSTROOT</key>
-				<string>/tmp/xcodeproj.dst</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_VERSION</key>
-				<string>com.apple.compilers.llvm.clang.1_0</string>
-				<key>INSTALL_PATH</key>
-				<string>$(BUILT_PRODUCTS_DIR)</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
-				<key>OTHER_CFLAGS</key>
-				<array>
-					<string>-DNS_BLOCK_ASSERTIONS=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>OTHER_CPLUSPLUSFLAGS</key>
-				<array>
-					<string>-DNS_BLOCK_ASSERTIONS=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
-				<string>$(TARGET_NAME)</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>86A3C8AED8C24718996B4A2C</key>
+		<key>A1355FB380194300AF5372B6</key>
 		<dict>
 			<key>explicitFileType</key>
 			<string>archive.ar</string>
@@ -780,11 +938,80 @@
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>path</key>
-			<string>libPods.a</string>
+			<string>libPods-CZWeatherKit.a</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>8D76C2DAD396439092A76297</key>
+		<key>A4FAA467E50E44DBBCCB0E22</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E24E3BCA084040E59606ADFF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A9818DE32674420A94C55A15</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5725AE76BA3542F4B04CB85F</string>
+				<string>A1355FB380194300AF5372B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A9B4889F7B4947FCA6A077CC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>CZWeatherService_Internal.h</string>
+			<key>path</key>
+			<string>CZWeatherKit/Service/CZWeatherService_Internal.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B1B43F94000E418A81F5FA7D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2D06A93B319B4557B0633753</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B8089AF7014D4AF5AF8D6A5F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>01D3D69B703B4E728BE42894</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>C155E1D5DE594E85A0801CD8</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>87CE43A4578D41F7885B7E10</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Targets Support Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C1DC42A04D4C45A3B5496242</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -793,114 +1020,37 @@
 			<key>lastKnownFileType</key>
 			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>Pods.xcconfig</string>
+			<string>Pods-CZWeatherKit.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>8E39E748DF5B48C09F9F7A80</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B090E37EC5CF4BDB8A6867EB</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>91274D0A100D4ADEBD51C140</key>
-		<dict>
-			<key>fileRef</key>
-			<string>0456844B7D704DCEA9FC024A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>91F09AEA34D34A329F32FD56</key>
+		<key>CD2CF654DA564267A854F2FC</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>CZWeatherService.h</string>
+			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>CZWeatherKit/Service/CZWeatherService.h</string>
+			<string>Pods-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>9605004A9F0D4E029B5F4C8F</key>
+		<key>CF5E730EF95848ADA72F0F2F</key>
 		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastUpgradeCheck</key>
-				<string>0510</string>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>71A014D226664AEEBC0402CB</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-			</array>
-			<key>mainGroup</key>
-			<string>EFA5A436770F4A2AAB81F8A2</string>
-			<key>productRefGroup</key>
-			<string>BAC830924BC245E3AA59A405</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>BC06CC4F03244FD3A59B5E13</string>
-				<string>807214C9F16B4E12B846676F</string>
-			</array>
-		</dict>
-		<key>988B4C198056405C8D1C8E1C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>CZWundergroundService.h</string>
+			<string>Foundation.framework</string>
 			<key>path</key>
-			<string>CZWeatherKit/Service/CZWundergroundService.h</string>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework</string>
 			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>DEVELOPER_DIR</string>
 		</dict>
-		<key>A638029CAB1C45CFA5E1199B</key>
-		<dict>
-			<key>fileRef</key>
-			<string>546DC41DB06C4EBA8BE79DEF</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>B090E37EC5CF4BDB8A6867EB</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>CZWeatherRequest.h</string>
-			<key>path</key>
-			<string>CZWeatherKit/Request/CZWeatherRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B23578E980AC4083B96A5F56</key>
+		<key>CFC14C23260F4E0AA92D97F4</key>
 		<dict>
 			<key>buildSettings</key>
 			<dict>
@@ -958,120 +1108,7 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>B57D9AA0CCE24F3C9BE09644</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>807214C9F16B4E12B846676F</string>
-			<key>targetProxy</key>
-			<string>8221D1F5BCE3412184A81DDC</string>
-		</dict>
-		<key>B5DE56CB2D80493BA0F8CDEC</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>6350F186BA744361A5B17E07</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>B5F5FC2FF4B54A808A9D7778</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8D76C2DAD396439092A76297</string>
-				<string>C7B5A307D255410494353D54</string>
-				<string>4C73E044FB924189A2F73160</string>
-				<string>09999E0CA16F4DA5BC269768</string>
-				<string>037B7DD04CB04D4594D5A66A</string>
-				<string>5349F786A305442DB81686AC</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BAC830924BC245E3AA59A405</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>86A3C8AED8C24718996B4A2C</string>
-				<string>C8C973FC1544453281CFF52A</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BC06CC4F03244FD3A59B5E13</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>102405B155B04381B47C2A7A</string>
-			<key>buildPhases</key>
-			<array>
-				<string>B5DE56CB2D80493BA0F8CDEC</string>
-				<string>4CF437A77BEE43BC9E294A6B</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>B57D9AA0CCE24F3C9BE09644</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>productName</key>
-			<string>Pods</string>
-			<key>productReference</key>
-			<string>86A3C8AED8C24718996B4A2C</string>
-			<key>productType</key>
-			<string>com.apple.product-type.library.static</string>
-		</dict>
-		<key>BD59263033184B3CA8E3EE9C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>C8C973FC1544453281CFF52A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>BDBBCCC463BA421F85E2CF1D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>91F09AEA34D34A329F32FD56</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>C100519C39A1443F9B5B4D8B</key>
-		<dict>
-			<key>fileRef</key>
-			<string>C574ED476FCC4874B3CD2211</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-fobjc-arc</string>
-			</dict>
-		</dict>
-		<key>C475D1E2A2F740E393E51BED</key>
-		<dict>
-			<key>fileRef</key>
-			<string>F94D495DC78543A295079DD9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>C574ED476FCC4874B3CD2211</key>
+		<key>D1D6900692CF43BCB178F338</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1080,159 +1117,32 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>CZWeatherCondition.m</string>
+			<string>CZWeatherRequest.m</string>
 			<key>path</key>
-			<string>CZWeatherKit/Data/CZWeatherCondition.m</string>
+			<string>CZWeatherKit/Request/CZWeatherRequest.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>C7B5A307D255410494353D54</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>path</key>
-			<string>Pods-acknowledgements.markdown</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>C8C973FC1544453281CFF52A</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods-CZWeatherKit.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>C955FECF7B2B4FF198B80B36</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>NSString+CZWeatherKit_Substring.m</string>
-			<key>path</key>
-			<string>CZWeatherKit/Helper/NSString+CZWeatherKit_Substring.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>C9EB86B1221D4D1BB77BA040</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>CZOpenWeatherMapService.h</string>
-			<key>path</key>
-			<string>CZWeatherKit/Service/CZOpenWeatherMapService.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CA4F77EB32B5477ABA59DFB3</key>
+		<key>D3252382073D40B1B2E0A5CE</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>F94D495DC78543A295079DD9</string>
+				<string>C1DC42A04D4C45A3B5496242</string>
+				<string>EBE070463B174BBCA2C75896</string>
+				<string>9D9342B3A43F4BC3BE74A823</string>
+				<string>9D7B1F985C784E12BC0E6EB0</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>iOS</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CC869D1987884AE9A78D8A06</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>CZWeatherLocation.h</string>
-			<key>path</key>
-			<string>CZWeatherKit/Request/CZWeatherLocation.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D4FB737E33A747E89FD9AF4E</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>C475D1E2A2F740E393E51BED</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>DCA80D0826204743B97894DC</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>name</key>
-			<string>Podfile</string>
-			<key>path</key>
-			<string>../Podfile</string>
+			<string>Support Files</string>
 			<key>sourceTree</key>
 			<string>SOURCE_ROOT</string>
-			<key>xcLanguageSpecificationIdentifier</key>
-			<string>xcode.lang.ruby</string>
 		</dict>
-		<key>E77DFEED75324A69AA6605F2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>57F557A7FB4749A2BB2F5FB2</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>EFA5A436770F4A2AAB81F8A2</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>DCA80D0826204743B97894DC</string>
-				<string>38D9552AD8FC47A68B5C21F5</string>
-				<string>5EB8F8DBDAE54DA5B77E9C81</string>
-				<string>BAC830924BC245E3AA59A405</string>
-				<string>FE5D9B96DD8741E997D8A2E3</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F0DB900349FF46B9B6F1D1E5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>30C05608055C451886CD6023</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>F10358D7A7404606977BF95D</key>
+		<key>D52731BC100A467090296A6C</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>8D76C2DAD396439092A76297</string>
+			<string>31E31CAD38C249399120D38D</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ALWAYS_SEARCH_USER_PATHS</key>
@@ -1278,49 +1188,139 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>F94D495DC78543A295079DD9</key>
+		<key>D9FEC8DAE54943358DE8ECF0</key>
 		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D52731BC100A467090296A6C</string>
+				<string>4FFFF0B135544DC2951C89CD</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
+			<string>XCConfigurationList</string>
 		</dict>
-		<key>FBC26FE558AC41C680A9D5E9</key>
+		<key>E24E3BCA084040E59606ADFF</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>355B13E1F8434F59A29F933A</string>
+				<string>13E70E62056B4FAAB9A0039F</string>
+				<string>2D06A93B319B4557B0633753</string>
+				<string>620B0FECBF0E4E78B07BCB0E</string>
+				<string>6AB9F97B8F144EB8A8900540</string>
+				<string>01D3D69B703B4E728BE42894</string>
+				<string>53AECB76374A4FC6BA66623D</string>
+				<string>91907841AD3040E4BEAE192B</string>
+				<string>D1D6900692CF43BCB178F338</string>
+				<string>92B87ABB006B4E9EBF71463E</string>
+				<string>A9B4889F7B4947FCA6A077CC</string>
+				<string>E779B50AD2C84FEAABA1342D</string>
+				<string>27CA7E3A6D984E838C17E4DF</string>
+				<string>9F1B714ABB4C48729880E751</string>
+				<string>07D3BEEA4E504295B97A2C7B</string>
+				<string>8E57801E07034A5083BB7213</string>
+				<string>D3252382073D40B1B2E0A5CE</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>CZWeatherKit</string>
+			<key>path</key>
+			<string>CZWeatherKit</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E779B50AD2C84FEAABA1342D</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>CZOpenWeatherMapService.m</string>
+			<string>CZWundergroundService.h</string>
 			<key>path</key>
-			<string>CZWeatherKit/Service/CZOpenWeatherMapService.m</string>
+			<string>CZWeatherKit/Service/CZWundergroundService.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>FE5D9B96DD8741E997D8A2E3</key>
+		<key>E7D49D16CA1542429D435B55</key>
+		<dict>
+			<key>fileRef</key>
+			<string>13E70E62056B4FAAB9A0039F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>EA2DDB963CF14F029EB05410</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CD2CF654DA564267A854F2FC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>EAA7811844EC4380B6AB18E8</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>984CD4885DD843B79EB19F08</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>3095E4051CA14793B5B39B26</string>
+			<key>remoteInfo</key>
+			<string>Pods-CZWeatherKit</string>
+		</dict>
+		<key>EBE070463B174BBCA2C75896</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-CZWeatherKit-Private.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F0107D1542D245B9B0222067</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9102FF76DBD24847BB9CE35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>FB6033CBC31E49B6B1A33174</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>B5F5FC2FF4B54A808A9D7778</string>
+				<string>598A1936FE7A4D0698347747</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Targets Support Files</string>
+			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>
-	<string>9605004A9F0D4E029B5F4C8F</string>
+	<string>984CD4885DD843B79EB19F08</string>
 </dict>
 </plist>

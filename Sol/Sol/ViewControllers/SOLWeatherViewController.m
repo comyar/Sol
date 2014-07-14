@@ -1,5 +1,5 @@
 //
-//  SOLMainViewController.h
+//  SOLWeatherViewController.m
 //  Copyright (c) 2013 Comyar Zaheri
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,23 +22,38 @@
 
 #pragma mark - Imports
 
-#import "SOLAddLocationViewController.h"
-#import "SOLSettingsViewController.h"
+#import "SOLWeatherViewController.h"
 #import "SOLWeatherView.h"
 
 
-#pragma mark - SOLMainViewController Interface
+#pragma mark - SOLWeatherViewController Class Extension
 
-/**
- */
-@interface SOLMainViewController : UIViewController
+@interface SOLWeatherViewController ()
+
+@property (nonatomic) SOLWeatherView *weatherView;
+
+@end
 
 
-// -----
-// @name Properties
-// -----
+#pragma mark - SOLWeatherViewController Implementation
 
-//  Location manager used to track the user's current location
-@property (nonatomic, readonly) CLLocationManager   *locationManager;
+@implementation SOLWeatherViewController
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.weatherView = [[SOLWeatherView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:self.weatherView];
+    
+}
 
 @end

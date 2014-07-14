@@ -28,9 +28,6 @@
 
 #pragma mark - SOLAppDelegate Interface
 
-/**
- UIApplication Delegate
- */
 @interface SOLAppDelegate : UIResponder <UIApplicationDelegate>
 
 @end

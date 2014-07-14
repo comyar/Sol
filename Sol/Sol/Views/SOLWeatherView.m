@@ -1,10 +1,23 @@
 //
 //  SOLWeatherView.m
-//  Sol
+//  Copyright (c) 2013 Comyar Zaheri
 //
-//  Created by Comyar Zaheri on 8/3/13.
-//  Copyright (c) 2013 Comyar Zaheri. All rights reserved.
+//  Permission is hereby granted, free of charge, to any person obtaining a copy of
+//  this software and associated documentation files (the "Software"), to deal in
+//  the Software without restriction, including without limitation the rights to
+//  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+//  the Software, and to permit persons to whom the Software is furnished to do so,
+//  subject to the following conditions:
 //
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+//  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+//  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+//  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+//  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 #import "SOLWeatherView.h"
@@ -22,9 +35,6 @@
 
 //  Light-Colored ribbon to display temperatures and forecasts on
 @property (strong, nonatomic) UIView                    *ribbon;
-
-//  Used to drag the weather view content vertically
-@property (strong, nonatomic) UIPanGestureRecognizer    *panGestureRecognizer;
 
 //  Displays the time the weather data for this view was last updated
 @property (strong, nonatomic) UILabel                   *updatedLabel;
@@ -86,12 +96,6 @@
         [self.ribbon setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.25]];
         [self.container addSubview:self.ribbon];
         
-        //  Initialize Pan Gesture Recognizer
-        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didPan:)];
-        self.panGestureRecognizer.minimumNumberOfTouches = 1;
-        self.panGestureRecognizer.delegate = self;
-        [self.container addGestureRecognizer:self.panGestureRecognizer];
-        
         //  Initialize Activity Indicator
         self.activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         self.activityIndicator.center = self.center;
@@ -127,50 +131,6 @@
     [self.conditionIconLabel addMotionEffect:horizontalInterpolation];
 }
 
-#pragma mark Pan Gesture Recognizer Methods
-
-- (void)didPan:(UIPanGestureRecognizer *)gestureRecognizer
-{
-    static CGFloat initialCenterY = 0.0;
-    CGPoint translatedPoint = [gestureRecognizer translationInView:self.container];
-    if(gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        
-        //  Save the inital Y to reuse later
-        initialCenterY = self.container.center.y;
-        
-        //  Alert the delegate that panning has begun
-        [self.delegate didBeginPanningWeatherView];
-        
-    } else if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        
-        //  Alert the delegate that panning finished
-        [self.delegate didFinishPanningWeatherView];
-        
-        //  Return the container back to its original position
-        [UIView animateWithDuration:0.3 animations: ^ {
-            self.container.center = CGPointMake(self.container.center.x, initialCenterY);
-        }];
-        
-    } else if(translatedPoint.y <= 50 && translatedPoint.y > 0) {
-        //  Translate the container
-        self.container.center = CGPointMake(self.container.center.x, self.center.y + translatedPoint.y);
-    }
-}
-
-#pragma mark UIGestureRecognizerDelegate Methods
-
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
-        //  We only want to register vertial pans
-        UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer *)gestureRecognizer;
-        CGPoint velocity = [panGestureRecognizer velocityInView:self.container];
-        return fabsf(velocity.y) > fabsf(velocity.x);
-    }
-    return YES;
-}
-
-
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
@@ -195,7 +155,7 @@
     const NSInteger fontSize = 180;
     self.conditionIconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, fontSize)];
     [self.conditionIconLabel setCenter:CGPointMake(self.container.center.x, 0.5 * self.center.y)];
-    [self.conditionIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
+//    [self.conditionIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
     [self.conditionIconLabel setBackgroundColor:[UIColor clearColor]];
     [self.conditionIconLabel setTextColor:[UIColor whiteColor]];
     [self.conditionIconLabel setTextAlignment:NSTextAlignmentCenter];
@@ -286,7 +246,7 @@
     for(int i = 0; i < [forecastIconLabels count]; ++i) {
         UILabel *forecastIconLabel = [forecastIconLabels objectAtIndex:i];
         [forecastIconLabel setFrame:CGRectMake(0.425 * self.bounds.size.width + (64 * i), 1.42 * self.center.y, fontSize, fontSize)];
-        [forecastIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
+//        [forecastIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
         [forecastIconLabel setBackgroundColor:[UIColor clearColor]];
         [forecastIconLabel setTextColor:[UIColor whiteColor]];
         [forecastIconLabel setTextAlignment:NSTextAlignmentCenter];

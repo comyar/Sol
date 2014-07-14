@@ -31,7 +31,7 @@
 
 @interface SOLAppDelegate ()
 
-//  The initial view controller presented to the user
+//  The initial view controller presented
 @property (strong, nonatomic) SOLMainViewController *mainViewController;
 
 @end
@@ -49,7 +49,7 @@
     //  Set the status bar text color to white
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor blackColor];
     
     //  Initialize main view controller
@@ -67,15 +67,12 @@
     //  Make sure any changes to userdefaults are saved to disk
     [[NSUserDefaults standardUserDefaults]synchronize];
     
-    //  Stop updating the user's location
-    [self.mainViewController.locationManager stopUpdatingLocation];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    //  Begin updating the user's location again
-    [self.mainViewController.locationManager startUpdatingLocation];
-    [self.mainViewController updateWeatherData];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
