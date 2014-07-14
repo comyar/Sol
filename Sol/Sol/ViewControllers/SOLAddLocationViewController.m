@@ -20,12 +20,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+
+#pragma mark - Imports
+
 #import "SOLAddLocationViewController.h"
 
 
 #pragma mark - SOLAddLocationViewController Class Extension
 
-@interface SOLAddLocationViewController ()
+@interface SOLAddLocationViewController () <UISearchDisplayDelegate, UITableViewDelegate,
+                                            UITableViewDataSource, UISearchBarDelegate, UIScrollViewDelegate>
 
 // Used to geocode search location
 @property (strong, nonatomic) CLGeocoder                    *geocoder;

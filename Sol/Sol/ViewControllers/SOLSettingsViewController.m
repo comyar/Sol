@@ -20,11 +20,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+
+#pragma mark - Imports
+
 #import "SOLSettingsViewController.h"
+
 
 #pragma mark - SOLSettingsViewController Class Extension
 
-@interface SOLSettingsViewController ()
+@interface SOLSettingsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 // -----
 // @name Subviews
@@ -52,6 +56,7 @@
 @property (strong, nonatomic) UILabel               *creditLabel;
 
 @end
+
 
 #pragma mark - SOLSettingsViewController Implementation
 
@@ -129,7 +134,7 @@
     [self.temperatureControl setFrame:CGRectMake(0, 0, 0.8 * CGRectGetWidth(self.view.bounds), 44)];
     [self.temperatureControl setCenter:CGPointMake(self.view.center.x, 0.50 * self.view.center.y)];
     [self.temperatureControl addTarget:self action:@selector(temperatureControlChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.temperatureControl setSelectedSegmentIndex:[SOLStateManager temperatureScale]];
+//    [self.temperatureControl setSelectedSegmentIndex:[SOLStateManager temperatureScale]];
     [self.temperatureControl setTintColor:[UIColor whiteColor]];
     [self.view addSubview:self.temperatureControl];
 }
@@ -177,9 +182,9 @@
 
 - (void)temperatureControlChanged:(UISegmentedControl *)control
 {
-    SOLTemperatureScale scale = (SOLTemperatureScale)[control selectedSegmentIndex];
-    [SOLStateManager setTemperatureScale:scale];
-    [self.delegate didChangeTemperatureScale:scale];
+//    SOLTemperatureScale scale = (SOLTemperatureScale)[control selectedSegmentIndex];
+//    [SOLStateManager setTemperatureScale:scale];
+//    [self.delegate didChangeTemperatureScale:scale];
 }
 
 #pragma mark UITableViewDelegate Methods

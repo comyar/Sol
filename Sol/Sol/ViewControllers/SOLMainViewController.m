@@ -68,67 +68,8 @@
     [self addChildViewController:self.pageViewController];
     [self.pageViewController didMoveToParentViewController:self];
     
-}
-
-#pragma mark Using a SOLMainViewController
-
-
-- (void)updateWeatherView:(SOLWeatherView *)weatherView withData:(SOLWeatherData *)data
-{
-//    if(!data) {
-//        return;
-//    }
-//    
-//    weatherView.hasData = YES;
-//    
-//    //  Set the update time
-//    weatherView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", [self.dateFormatter stringFromDate:data.timestamp]];
-//    
-//    //  Set the current condition icon and description
-//    weatherView.conditionIconLabel.text         = data.currentSnapshot.icon;
-//    weatherView.conditionDescriptionLabel.text  = data.currentSnapshot.conditionDescription;
-//    
-//    //  Only show the country name if not the United States
-//    NSString *city      = data.placemark.locality;
-//    NSString *state     = data.placemark.administrativeArea;
-//    NSString *country   = data.placemark.country;
-//    if([[country lowercaseString] isEqualToString:@"united states"]) {
-//        weatherView.locationLabel.text = [NSString stringWithFormat:@"%@, %@", city, state];
-//    } else {
-//        weatherView.locationLabel.text = [NSString stringWithFormat:@"%@, %@", city, country];
-//    }
-//    
-//    SOLTemperature currentTemperature   = data.currentSnapshot.currentTemperature;
-//    SOLTemperature highTemperature      = data.currentSnapshot.highTemperature;
-//    SOLTemperature lowTemperature       = data.currentSnapshot.lowTemperature;
-//    
-//    //  Set the temperature labels depending on the current scale set in the settings
-//    if([SOLStateManager temperatureScale] == SOLFahrenheitScale) {
-//        weatherView.currentTemperatureLabel.text = [NSString stringWithFormat:@"%.0f°", currentTemperature.fahrenheit];
-//        weatherView.hiloTemperatureLabel.text = [NSString stringWithFormat:@"H %.0f  L %.0f", highTemperature.fahrenheit, lowTemperature.fahrenheit];
-//    } else {
-//        weatherView.currentTemperatureLabel.text = [NSString stringWithFormat:@"%.0f°", currentTemperature.celsius];
-//        weatherView.hiloTemperatureLabel.text = [NSString stringWithFormat:@"H %.0f  L %.0f", highTemperature.celsius, lowTemperature.celsius];
-//    }
-//    
-//    SOLWeatherSnapshot *forecastDayOneSnapshot      = [data.forecastSnapshots objectAtIndex:0];
-//    SOLWeatherSnapshot *forecastDayTwoSnapshot      = [data.forecastSnapshots objectAtIndex:1];
-//    SOLWeatherSnapshot *forecastDayThreeSnapshot    = [data.forecastSnapshots objectAtIndex:2];
-//    
-//    //  Set the weather view's forcast day labels
-//    weatherView.forecastDayOneLabel.text    = [forecastDayOneSnapshot.dayOfWeek substringWithRange:NSMakeRange(0, 3)];
-//    weatherView.forecastDayTwoLabel.text    = [forecastDayTwoSnapshot.dayOfWeek substringWithRange:NSMakeRange(0, 3)];
-//    weatherView.forecastDayThreeLabel.text  = [forecastDayThreeSnapshot.dayOfWeek substringWithRange:NSMakeRange(0, 3)];
-//    
-//    //  Set the weather view's forecast icons
-//    weatherView.forecastIconOneLabel.text   = forecastDayOneSnapshot.icon;
-//    weatherView.forecastIconTwoLabel.text   = forecastDayTwoSnapshot.icon;
-//    weatherView.forecastIconThreeLabel.text = forecastDayThreeSnapshot.icon;
-//    
-//    //  Set the weather view's background color
-//    CGFloat fahrenheit = MIN(MAX(0, currentTemperature.fahrenheit), 99);
-//    NSString *gradientImageName = [NSString stringWithFormat:@"gradient%d.png", (int)floor(fahrenheit / 10.0)];
-//    weatherView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:gradientImageName]];
+    // Load non local weather view controllers
+    
 }
 
 #pragma mark UIPageViewControllerDataSource Methods

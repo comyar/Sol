@@ -20,9 +20,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
-#import "SOLStateManager.h"
 
+#pragma mark - Imports
+
+@import UIKit;
+
+
+#pragma mark - SOLSettingsViewControllerDelegate Protocol
+
+/**
+ */
 @protocol SOLSettingsViewControllerDelegate <NSObject>
 
 /**
@@ -42,7 +49,7 @@
  Called by a SOLSettingsViewController when the user changes the temperature scale
  @param scale New temperature scale set by the user
  */
-- (void)didChangeTemperatureScale:(SOLTemperatureScale)scale;
+//- (void)didChangeTemperatureScale:(SOLTemperatureScale)scale;
 
 /**
  Called by a SOLSettingsViewController when the controller needs to be dismissed
@@ -51,7 +58,12 @@
 
 @end
 
-@interface SOLSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+#pragma mark - SOLSettingsViewController Interface
+
+/**
+ */
+@interface SOLSettingsViewController : UIViewController 
 
 // -----
 // @name Properties

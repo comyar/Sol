@@ -20,8 +20,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
 
+#pragma mark - Imports
+
+@import UIKit;
+
+
+#pragma mark - SOLAddLocationViewControllerDelegate Protocol
+
+/**
+ */
 @protocol SOLAddLocationViewControllerDelegate <NSObject>
 
 /**
@@ -39,8 +47,12 @@
 
 @end
 
-@interface SOLAddLocationViewController : UIViewController <UISearchDisplayDelegate, UITableViewDelegate,
-                                                                UITableViewDataSource, UISearchBarDelegate, UIScrollViewDelegate>
+
+#pragma mark - SOLAddLocationViewController Interface
+
+/**
+ */
+@interface SOLAddLocationViewController : UIViewController
 
 // -----
 // @name Properties
