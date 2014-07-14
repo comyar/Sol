@@ -30,9 +30,10 @@
 #pragma mark - SOLMainViewController Interface
 
 /**
+ SOLMainViewController is the first view controller presented. It manages a colleciton of weather view 
+ controllers and allows for navigation to the add location view controller and the settings view controller.
  */
 @interface SOLMainViewController : UIViewController
-
 
 // -----
 // @name Properties
