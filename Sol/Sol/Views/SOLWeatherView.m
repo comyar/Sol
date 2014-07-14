@@ -1,23 +1,24 @@
 //
 //  SOLWeatherView.m
-//  Copyright (c) 2013 Comyar Zaheri
+//  Copyright (c) 2014 Comyar Zaheri, http://comyar.io
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a copy of
-//  this software and associated documentation files (the "Software"), to deal in
-//  the Software without restriction, including without limitation the rights to
-//  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-//  the Software, and to permit persons to whom the Software is furnished to do so,
-//  subject to the following conditions:
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
 //
-//  The above copyright notice and this permission notice shall be included in all
-//  copies or substantial portions of the Software.
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
 //
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-//  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-//  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-//  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-//  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 
 #pragma mark - Imports
@@ -125,21 +126,17 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 
 - (void)initializeMotionEffects
 {
+    static const NSInteger relativeValue = 15;
     UIInterpolatingMotionEffect *verticalInterpolation = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-    verticalInterpolation.minimumRelativeValue = @(-15);
-    verticalInterpolation.maximumRelativeValue = @(15);
+    verticalInterpolation.minimumRelativeValue = @(-relativeValue);
+    verticalInterpolation.maximumRelativeValue = @(relativeValue);
     
     UIInterpolatingMotionEffect *horizontalInterpolation = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-    horizontalInterpolation.minimumRelativeValue = @(-15);
-    horizontalInterpolation.maximumRelativeValue = @(15);
+    horizontalInterpolation.minimumRelativeValue = @(-relativeValue);
+    horizontalInterpolation.maximumRelativeValue = @(relativeValue);
     
     [self.conditionIconLabel addMotionEffect:verticalInterpolation];
     [self.conditionIconLabel addMotionEffect:horizontalInterpolation];
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
 }
 
 #pragma mark Label Initialization Methods
@@ -223,7 +220,6 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 - (void)initializeForecastDayLabels
 {
     static const CGFloat fontSize = 18.0;
-    
     self.forecastDayOneLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     self.forecastDayTwoLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     self.forecastDayThreeLabel = [[UILabel alloc]initWithFrame:CGRectZero];
@@ -243,7 +239,6 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 - (void)initializeForecastIconLabels
 {
     static const CGFloat fontSize = 40.0;
-    
     self.forecastIconOneLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     self.forecastIconTwoLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     self.forecastIconThreeLabel = [[UILabel alloc]initWithFrame:CGRectZero];

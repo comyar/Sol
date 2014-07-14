@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DD24A49B19740E380079A4C9 /* SOLWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24A49A19740E380079A4C9 /* SOLWeatherViewController.m */; };
 		DD24A49E197410E70079A4C9 /* SOLLocalWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24A49D197410E70079A4C9 /* SOLLocalWeatherViewController.m */; };
+		DD24A4A1197419BF0079A4C9 /* SOLWeatherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24A4A0197419BF0079A4C9 /* SOLWeatherViewModel.m */; };
 		DD43184418C5D2540022E87E /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD43184318C5D2540022E87E /* Resources.xcassets */; };
 		DD46272A17ADC3A1000A6A33 /* SOLWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD46272917ADC3A1000A6A33 /* SOLWeatherView.m */; };
 		DD4F967517A8994300E0E7D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F967417A8994300E0E7D0 /* Foundation.framework */; };
@@ -23,7 +24,6 @@
 		DD9388F117B6DDB2004C5F42 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C344317B5179C0024AD9A /* MobileCoreServices.framework */; };
 		DD93A81B17FA9C12006DD1BC /* Climacons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD93A81A17FA9C12006DD1BC /* Climacons.ttf */; };
 		DDA08EA017B81135006AC675 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA08E9F17B81135006AC675 /* CoreLocation.framework */; };
-		DDB7B85917ECD17A00857D15 /* SOLStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B85817ECD17A00857D15 /* SOLStateManager.m */; };
 		DDB7B8E517ECF59100857D15 /* SOLAddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8E417ECF59100857D15 /* SOLAddLocationViewController.m */; };
 		DDB7B8EB17ED516500857D15 /* SOLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8EA17ED516500857D15 /* SOLSettingsViewController.m */; };
 		DDBFDDCA17B23F3F002A886D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBFDDC917B23F3F002A886D /* QuartzCore.framework */; };
@@ -39,10 +39,11 @@
 		DD24A49A19740E380079A4C9 /* SOLWeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherViewController.m; path = ViewControllers/SOLWeatherViewController.m; sourceTree = "<group>"; };
 		DD24A49C197410E70079A4C9 /* SOLLocalWeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLLocalWeatherViewController.h; path = ViewControllers/SOLLocalWeatherViewController.h; sourceTree = "<group>"; };
 		DD24A49D197410E70079A4C9 /* SOLLocalWeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLLocalWeatherViewController.m; path = ViewControllers/SOLLocalWeatherViewController.m; sourceTree = "<group>"; };
-		DD43184318C5D2540022E87E /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
+		DD24A49F197419BF0079A4C9 /* SOLWeatherViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherViewModel.h; path = Models/SOLWeatherViewModel.h; sourceTree = "<group>"; };
+		DD24A4A0197419BF0079A4C9 /* SOLWeatherViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherViewModel.m; path = Models/SOLWeatherViewModel.m; sourceTree = "<group>"; };
+		DD43184318C5D2540022E87E /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Resources.xcassets; path = ../Resources.xcassets; sourceTree = "<group>"; };
 		DD46272817ADC3A1000A6A33 /* SOLWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherView.h; path = Views/SOLWeatherView.h; sourceTree = "<group>"; };
 		DD46272917ADC3A1000A6A33 /* SOLWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherView.m; path = Views/SOLWeatherView.m; sourceTree = "<group>"; };
-		DD4C7D0818FA701300129A2E /* API_KEY */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = API_KEY; path = Resources/API_KEY; sourceTree = "<group>"; };
 		DD4F967117A8994300E0E7D0 /* Sol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4F967417A8994300E0E7D0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DD4F967617A8994300E0E7D0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,8 +61,6 @@
 		DD8AA01817D533BA00D4F7BA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DD93A81A17FA9C12006DD1BC /* Climacons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Climacons.ttf; path = Resources/Fonts/Climacons.ttf; sourceTree = "<group>"; };
 		DDA08E9F17B81135006AC675 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		DDB7B85717ECD17A00857D15 /* SOLStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLStateManager.h; path = Model/SOLStateManager.h; sourceTree = "<group>"; };
-		DDB7B85817ECD17A00857D15 /* SOLStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLStateManager.m; path = Model/SOLStateManager.m; sourceTree = "<group>"; };
 		DDB7B8E317ECF59100857D15 /* SOLAddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLAddLocationViewController.h; path = ViewControllers/SOLAddLocationViewController.h; sourceTree = "<group>"; };
 		DDB7B8E417ECF59100857D15 /* SOLAddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLAddLocationViewController.m; path = ViewControllers/SOLAddLocationViewController.m; sourceTree = "<group>"; };
 		DDB7B8E917ED516500857D15 /* SOLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLSettingsViewController.h; path = ViewControllers/SOLSettingsViewController.h; sourceTree = "<group>"; };
@@ -92,7 +91,6 @@
 		DD4F966817A8994200E0E7D0 = {
 			isa = PBXGroup;
 			children = (
-				DD43184318C5D2540022E87E /* Resources.xcassets */,
 				DD4F967A17A8994300E0E7D0 /* Sol */,
 				DD4F967317A8994300E0E7D0 /* Frameworks */,
 				DD4F967217A8994300E0E7D0 /* Products */,
@@ -167,8 +165,8 @@
 		DD548DDF17A8A92300E08E29 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DDB7B85717ECD17A00857D15 /* SOLStateManager.h */,
-				DDB7B85817ECD17A00857D15 /* SOLStateManager.m */,
+				DD24A49F197419BF0079A4C9 /* SOLWeatherViewModel.h */,
+				DD24A4A0197419BF0079A4C9 /* SOLWeatherViewModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -185,7 +183,7 @@
 		DD93A81917FA9C08006DD1BC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DD4C7D0818FA701300129A2E /* API_KEY */,
+				DD43184318C5D2540022E87E /* Resources.xcassets */,
 				DD93A81A17FA9C12006DD1BC /* Climacons.ttf */,
 			);
 			name = Resources;
@@ -308,8 +306,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD24A4A1197419BF0079A4C9 /* SOLWeatherViewModel.m in Sources */,
 				DD548DE317A8A95800E08E29 /* SOLMainViewController.m in Sources */,
-				DDB7B85917ECD17A00857D15 /* SOLStateManager.m in Sources */,
 				DD46272A17ADC3A1000A6A33 /* SOLWeatherView.m in Sources */,
 				DD24A49E197410E70079A4C9 /* SOLLocalWeatherViewController.m in Sources */,
 				DDB7B8E517ECF59100857D15 /* SOLAddLocationViewController.m in Sources */,

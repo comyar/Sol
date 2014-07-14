@@ -1,5 +1,5 @@
 //
-//  SOLMainViewController.h
+//  SOLWeatherViewModel.m
 //  Copyright (c) 2014 Comyar Zaheri, http://comyar.io
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,27 +20,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
-#pragma mark - Imports
-
-#import "SOLAddLocationViewController.h"
-#import "SOLSettingsViewController.h"
-#import "SOLWeatherView.h"
+#import "SOLWeatherViewModel.h"
 
 
-#pragma mark - SOLMainViewController Interface
+#pragma mark - SOLWeatherViewModel Implementation
 
-/**
- SOLMainViewController is the first view controller presented. It manages a colleciton of weather view 
- controllers and allows for navigation to the add location view controller and the settings view controller.
- */
-@interface SOLMainViewController : UIViewController
+@implementation SOLWeatherViewModel
 
-// -----
-// @name Properties
-// -----
++ (SOLWeatherViewModel *)weatherViewModelForLocalWeatherCondition:(CZWeatherCondition *)localWeatherCondition
+                                        forecastWeatherConditions:(NSArray *)forecastWeatherConditions
+{
+    return [[SOLWeatherViewModel alloc]initWithLocalWeatherCondition:localWeatherCondition
+                                           forecastWeatherConditions:forecastWeatherConditions];
+}
 
-//  Location manager used to track the user's current location
-@property (nonatomic, readonly) CLLocationManager   *locationManager;
+- (instancetype)initWithLocalWeatherCondition:(CZWeatherCondition *)localWeatherCondition
+                    forecastWeatherConditions:(NSArray *)forecastWeatherConditions;
+{
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
 
 @end

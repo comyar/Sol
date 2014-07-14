@@ -1,5 +1,5 @@
 //
-//  SOLMainViewController.h
+//  SOLWeatherViewModel.h
 //  Copyright (c) 2014 Comyar Zaheri, http://comyar.io
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,24 +23,58 @@
 
 #pragma mark - Imports
 
-#import "SOLAddLocationViewController.h"
-#import "SOLSettingsViewController.h"
-#import "SOLWeatherView.h"
+#import <Foundation/Foundation.h>
 
 
-#pragma mark - SOLMainViewController Interface
+#pragma mark - Forward Declarations
+
+@class CZWeatherCondition;
+
+
+#pragma mark - SOLWeatherViewModel Interface
 
 /**
- SOLMainViewController is the first view controller presented. It manages a colleciton of weather view 
- controllers and allows for navigation to the add location view controller and the settings view controller.
  */
-@interface SOLMainViewController : UIViewController
+@interface SOLWeatherViewModel : NSObject
+
+// -----
+// @name Creating a SOLWeatherViewModel
+// -----
+
+/**
+ */
++ (SOLWeatherViewModel *)weatherViewModelForLocalWeatherCondition:(CZWeatherCondition *)localWeatherCondition
+                                        forecastWeatherConditions:(NSArray *)forecastWeatherConditions;
 
 // -----
 // @name Properties
 // -----
 
-//  Location manager used to track the user's current location
-@property (nonatomic, readonly) CLLocationManager   *locationManager;
+//
+@property (nonatomic, readonly) NSString *conditionLabelString;
+
+//
+@property (nonatomic, readonly) NSString *locationLabelString;
+
+//
+@property (nonatomic, readonly) NSString *highLowTemperatureLabelString;
+
+//
+@property (nonatomic, readonly) NSString *forecastDayOneLabelString;
+
+//
+@property (nonatomic, readonly) NSString *forecastIconOneLabelString;
+
+//
+@property (nonatomic, readonly) NSString *forecastDayTwoLabelString;
+
+//
+@property (nonatomic, readonly) NSString *forecastIconTwoLabelString;
+
+//
+@property (nonatomic, readonly) NSString *forecastDayThreeLabelString;
+
+//
+@property (nonatomic, readonly) NSString *forecastIconThreeLabelString;
 
 @end
