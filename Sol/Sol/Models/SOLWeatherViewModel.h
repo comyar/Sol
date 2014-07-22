@@ -24,11 +24,7 @@
 #pragma mark - Imports
 
 #import <Foundation/Foundation.h>
-
-
-#pragma mark - Forward Declarations
-
-@class CZWeatherCondition;
+#import <CZWeatherKit/CZWeatherKit.h>
 
 
 #pragma mark - SOLWeatherViewModel Interface
@@ -43,8 +39,9 @@
 
 /**
  */
-+ (SOLWeatherViewModel *)weatherViewModelForLocalWeatherCondition:(CZWeatherCondition *)localWeatherCondition
-                                        forecastWeatherConditions:(NSArray *)forecastWeatherConditions;
++ (SOLWeatherViewModel *)weatherViewModelForPlacemark:(CLPlacemark *)placemark
+                              currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
+                            forecastWeatherConditions:(NSArray *)forecastWeatherConditions;
 
 // -----
 // @name Properties

@@ -24,7 +24,6 @@
 #pragma mark - Imports
 
 #import "SOLMainViewController.h"
-#import "SOLStateManager.h"
 
 
 #pragma mark - Constants

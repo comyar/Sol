@@ -32,7 +32,7 @@
 @interface SOLAppDelegate ()
 
 //  The initial view controller presented
-@property (strong, nonatomic) SOLMainViewController *mainViewController;
+@property (nonatomic) SOLMainViewController *mainViewController;
 
 @end
 

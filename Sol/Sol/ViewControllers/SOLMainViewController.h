@@ -25,7 +25,6 @@
 
 #import "SOLAddLocationViewController.h"
 #import "SOLSettingsViewController.h"
-#import "SOLWeatherView.h"
 
 
 #pragma mark - SOLMainViewController Interface
