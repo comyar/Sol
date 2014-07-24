@@ -41,7 +41,8 @@
  */
 + (SOLWeatherViewModel *)weatherViewModelForPlacemark:(CLPlacemark *)placemark
                               currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
-                            forecastWeatherConditions:(NSArray *)forecastWeatherConditions;
+                            forecastWeatherConditions:(NSArray *)forecastWeatherConditions
+                                              celsius:(BOOL)celsius;
 
 // -----
 // @name Properties
@@ -52,6 +53,9 @@
 
 //
 @property (nonatomic, readonly) NSString *locationLabelString;
+
+//
+@property (nonatomic, readonly) NSString *currentTemperatureLabelString;
 
 //
 @property (nonatomic, readonly) NSString *highLowTemperatureLabelString;

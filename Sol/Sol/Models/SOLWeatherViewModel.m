@@ -26,12 +26,22 @@
 #import "SOLWeatherViewModel.h"
 
 
+#pragma mark - Constants
+
+// Minimum number of forecast conditions to create a valid SOLWeatherViewModel
+static const NSUInteger minNumForecastConditions    = 4;
+
+// Number of seconds in a day
+static const NSTimeInterval dayLength               = 86400.0;
+
+
 #pragma mark - SOLWeatherViewModel Class Extension
 
 @interface SOLWeatherViewModel ()
 
 @property (nonatomic) NSString *conditionLabelString;
 @property (nonatomic) NSString *locationLabelString;
+@property (nonatomic) NSString *currentTemperatureLabelString;
 @property (nonatomic) NSString *highLowTemperatureLabelString;
 @property (nonatomic) NSString *forecastDayOneLabelString;
 @property (nonatomic) NSString *forecastIconOneLabelString;
@@ -50,42 +60,67 @@
 + (SOLWeatherViewModel *)weatherViewModelForPlacemark:(CLPlacemark *)placemark
                               currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
                             forecastWeatherConditions:(NSArray *)forecastWeatherConditions
+                                              celsius:(BOOL)celsius
 {
-    return [[SOLWeatherViewModel alloc]initWithPlacemark:placemark
-                                 currentWeatherCondition:currentWeatherCondition
-                               forecastWeatherConditions:forecastWeatherConditions];
+    if ([SOLWeatherViewModel validCurrentWeatherCondition:currentWeatherCondition]     &&
+        [SOLWeatherViewModel validForecastWeatherConditions:forecastWeatherConditions] &&
+        [SOLWeatherViewModel validPlacemark:placemark]) {
+        return [[SOLWeatherViewModel alloc]initWithPlacemark:placemark
+                                     currentWeatherCondition:currentWeatherCondition
+                                   forecastWeatherConditions:forecastWeatherConditions
+                                                     celsius:celsius];
+    }
+    return nil;
 }
 
-- (instancetype)initWithPlacemark:(CLPlacemark *)placemark currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
-                    forecastWeatherConditions:(NSArray *)forecastWeatherConditions;
+- (instancetype)initWithPlacemark:(CLPlacemark *)placemark
+          currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
+        forecastWeatherConditions:(NSArray *)forecastWeatherConditions
+                          celsius:(BOOL)celsius
 {
     if (self = [super init]) {
-        if ([self validCurrentWeatherCondition:currentWeatherCondition]     &&
-            [self validForecastWeatherConditions:forecastWeatherConditions] &&
-            [self validPlacemark:placemark]) {
-            
-            self.conditionLabelString = currentWeatherCondition.description;
-            self.locationLabelString = [NSString stringWithFormat:@"%@, %@", placemark.locality,
-                                        [placemark.ISOcountryCode isEqualToString:@"US"]? placemark.administrativeArea : placemark.country];
-//            self.highLowTemperatureLabelString = [NSString stringWithFormat:@"%.0f / %.0f"]
-        }
+        self.conditionLabelString = currentWeatherCondition.description;
+        self.locationLabelString = [NSString stringWithFormat:@"%@, %@", placemark.locality,
+                                    [placemark.ISOcountryCode isEqualToString:@"US"]? placemark.administrativeArea : placemark.country];
+        
+        CZWeatherCondition *todayForecastCondition = [forecastWeatherConditions firstObject];
+        CGFloat todayCurrentTemperature         = (celsius)? todayForecastCondition.temperature.c : todayForecastCondition.temperature.f;
+        CGFloat todayForecastHighTemperature    = (celsius)? todayForecastCondition.highTemperature.c : todayForecastCondition.highTemperature.f;
+        CGFloat todayForecastLowTemperature     = (celsius)? todayForecastCondition.lowTemperature.c : todayForecastCondition.lowTemperature.f;
+        self.currentTemperatureLabelString = [NSString stringWithFormat:@"%.0f°", todayCurrentTemperature];
+        self.highLowTemperatureLabelString = [NSString stringWithFormat:@"%.0f/%.0f", todayForecastHighTemperature, todayForecastLowTemperature];
+        
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"EEE";
+        
+        self.forecastDayOneLabelString      = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:1.0 * dayLength]];
+        self.forecastDayTwoLabelString      = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:2.0 * dayLength]];
+        self.forecastDayThreeLabelString    = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:3.0 * dayLength]];
+        
+        CZWeatherCondition *dayOneForecastCondition     = forecastWeatherConditions[1];
+        CZWeatherCondition *dayTwoForecastCondition     = forecastWeatherConditions[2];
+        CZWeatherCondition *dayThreeForecastCondition   = forecastWeatherConditions[3];
+        
+        self.forecastIconOneLabelString = [NSString stringWithFormat:@"%c",     dayOneForecastCondition.climaconCharacter];
+        self.forecastIconTwoLabelString = [NSString stringWithFormat:@"%c",     dayTwoForecastCondition.climaconCharacter];
+        self.forecastIconThreeLabelString = [NSString stringWithFormat:@"%c",   dayThreeForecastCondition.climaconCharacter];
     }
     return self;
 }
 
-- (BOOL)validPlacemark:(CLPlacemark *)placemark
++ (BOOL)validPlacemark:(CLPlacemark *)placemark
 {
     return placemark.locality && (placemark.administrativeArea || placemark.country);
 }
 
-- (BOOL)validCurrentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
++ (BOOL)validCurrentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
 {
     return  currentWeatherCondition.description                             &&
             currentWeatherCondition.temperature.f != CZWeatherKitNoValue    &&
             currentWeatherCondition.temperature.c != CZWeatherKitNoValue;
 }
 
-- (BOOL)validForecastWeatherConditions:(NSArray *)forecastWeatherConditions
++ (BOOL)validForecastWeatherConditions:(NSArray *)forecastWeatherConditions
 {
     BOOL valid = NO;
     
@@ -100,7 +135,7 @@
         }
     }
     
-    valid = [forecastWeatherConditions count] >= 3;
+    valid = [forecastWeatherConditions count] >= minNumForecastConditions;
     
     return valid;
 }
