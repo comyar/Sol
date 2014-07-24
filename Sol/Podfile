@@ -2,4 +2,4 @@
 
 
 pod 'CZWeatherKit'
-
+pod 'SVGeocoder'

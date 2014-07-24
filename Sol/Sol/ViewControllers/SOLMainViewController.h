@@ -23,8 +23,9 @@
 
 #pragma mark - Imports
 
-#import "SOLAddLocationViewController.h"
+@import CoreLocation;
 #import "SOLSettingsViewController.h"
+#import "SOLAddLocationViewController.h"
 
 
 #pragma mark - SOLMainViewController Interface

@@ -24,6 +24,7 @@
 #pragma mark - Imports
 
 @import UIKit;
+#import <CZWeatherKit/CZWeatherKit.h>
 
 
 #pragma mark - Forward Declarations

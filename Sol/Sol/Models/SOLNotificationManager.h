@@ -1,5 +1,5 @@
 //
-//  SOLLocalWeatherViewController.h
+//  SOLNotificationManager.h
 //  Copyright (c) 2014 Comyar Zaheri, http://comyar.io
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,8 +21,28 @@
 //  THE SOFTWARE.
 
 
-#import "SOLWeatherViewController.h"
+#pragma mark - Imports
 
-@interface SOLLocalWeatherViewController : SOLWeatherViewController
+@import Foundation;
+
+
+#pragma mark - Constants
+
+extern NSString * const SOLAppDidBecomeActiveNotification;
+
+
+#pragma mark - SOLNotificationManager Interface
+
+/**
+ */
+@interface SOLNotificationManager : NSObject
+
+// -----
+// @name Getting the Notification Manager
+// -----
+
+/**
+ */
++ (SOLNotificationManager *)sharedManager;
 
 @end

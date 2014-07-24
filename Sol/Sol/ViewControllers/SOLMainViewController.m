@@ -34,10 +34,13 @@
 
 #pragma mark - SOLMainViewController Class Extension
 
-@interface SOLMainViewController () <UIPageViewControllerDataSource>
+@interface SOLMainViewController () <UIPageViewControllerDataSource, CLLocationManagerDelegate>
+
+// Location manager to get the user's current location
+@property (nonatomic) CLLocationManager             *locationManager;
 
 // Page view controller to manage weather view controllers
-@property (strong, nonatomic) UIPageViewController          *pageViewController;
+@property (nonatomic) UIPageViewController          *pageViewController;
 
 @end
 
@@ -52,6 +55,11 @@
         self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                                                                options:nil];
+        self.locationManager = [CLLocationManager new];
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+        self.locationManager.activityType = CLActivityTypeOther;
+        self.locationManager.distanceFilter = 3000.0;
+        self.locationManager.delegate = self;
     }
     return self;
 }
@@ -66,8 +74,25 @@
     [self.view addSubview:self.pageViewController.view];
     [self addChildViewController:self.pageViewController];
     [self.pageViewController didMoveToParentViewController:self];
-    
-    // Load non local weather view controllers
+}
+
+#pragma mark CLLocationManagerDelegate Methods
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status != kCLAuthorizationStatusNotDetermined) {
+        // add non local weather view controllers
+        
+        if (status == kCLAuthorizationStatusAuthorized) {
+            // add local weather view controller
+        } else if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
+            // remove local weather view controller
+        }
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
     
 }
 
