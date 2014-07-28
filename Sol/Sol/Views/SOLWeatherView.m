@@ -85,7 +85,7 @@
         [self addSubview:self.container];
         
         /// Initialize Ribbon
-        self.ribbon = [[UIView alloc]initWithFrame:CGRectMake(0, 1.30 * self.center.y, self.bounds.size.width, 80)];
+        self.ribbon = [[UIView alloc]initWithFrame:CGRectMake(0, 1.30 * self.center.y, self.bounds.size.width, 100)];
         [self.ribbon setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.25]];
         [self.container addSubview:self.ribbon];
         
