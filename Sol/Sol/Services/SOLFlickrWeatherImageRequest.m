@@ -47,7 +47,7 @@ static NSString * const endpoint = @"https://api.flickr.com/services/rest/?metho
 {
     
     NSString *urlString = [endpoint copy];
-    urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"&api_key=%@&lat=%f&lon=%f",
+    urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"&api_key=%@&lat=%f&lon=%f&",
                                                     APIKey, coordinate.latitude, coordinate.longitude]];
     if ([keywords count]) {
         urlString = [urlString stringByAppendingString:[keywords componentsJoinedByString:@"+"]];
@@ -56,13 +56,17 @@ static NSString * const endpoint = @"https://api.flickr.com/services/rest/?metho
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSLog(@"%@", data);
         if (data) {
-            NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSError *error;
+            NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+            NSLog(@"%@", error);
             if ([JSON[@"stat"]isEqualToString:@"ok"]) {
                 NSArray *photos = JSON[@"photos"][@"photo"];
                 if ([photos count] > 0) {
                     NSDictionary *photo = photos[arc4random() % [photos count]];
-                    NSURL *imageURL
+                    NSURL *imageURL = [SOLFlickrWeatherImageRequest imageURLFromPhotoDictionary:photo];
+                    completion(imageURL, nil);
                 }
             }
         }
@@ -72,7 +76,12 @@ static NSString * const endpoint = @"https://api.flickr.com/services/rest/?metho
 
 + (NSURL *)imageURLFromPhotoDictionary:(NSDictionary *)photoDictionary
 {
-    
+    NSString *urlString = [NSString stringWithFormat:@"https://farm{%@}.staticflickr.com/%@/%@_%@_b.jpg",
+                           photoDictionary[@"farm"],
+                           photoDictionary[@"server"],
+                           photoDictionary[@"id"],
+                           photoDictionary[@"secret"]];
+    return [NSURL URLWithString:urlString];
 }
 
 @end

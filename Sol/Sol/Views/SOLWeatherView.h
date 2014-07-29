@@ -84,4 +84,6 @@
 //  Indicates whether data is being downloaded for this weather view
 @property (nonatomic, readonly) UIActivityIndicatorView *activityIndicator;
 
+@property (nonatomic, readonly) UIImageView *backgroundImageView;
+
 @end

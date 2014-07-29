@@ -31,6 +31,7 @@
 @import UIKit;
 @import CoreLocation;
 #import <CZWeatherKit/CZWeatherKit.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "CZCitymark.h"
 
 #pragma mark - Forward Declarations

@@ -33,6 +33,7 @@
 #import "SOLKeyManager.h"
 #import "SOLWeatherViewModel.h"
 #import "SOLSettingsManager.h"
+#import "SOLFlickrWeatherImageRequest.h"
 
 
 #pragma mark - SOLWeatherViewController Class Extension
@@ -98,6 +99,15 @@
                         NSArray *forecastConditions = (NSArray *)data;
                         self.currentCondition   = currentCondition;
                         self.forecastConditions = forecastConditions;
+                        
+                        [SOLFlickrWeatherImageRequest sendRequestForAPIKey:[SOLKeyManager keyForDictionaryKey:@"flickr"] coordinate:self.citymark.coordinate keywords:[self.currentCondition.summary componentsSeparatedByString:@" "] completion: ^ (NSURL *url, NSError *error) {
+                             NSLog(@"%@", url);
+                            if (url) {
+                                [self.weatherView.backgroundImageView setImageWithURL:url];
+                            }
+                            
+                        }];
+                        
                         [self updateWeatherView];
                     } else {
                         [self updateDidFail];

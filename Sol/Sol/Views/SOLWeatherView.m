@@ -87,6 +87,9 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 //  Indicates whether data is being downloaded for this weather view
 @property (strong, nonatomic) UIActivityIndicatorView   *activityIndicator;
 
+//
+@property (nonatomic) UIImageView *backgroundImageView;
+
 @end
 
 
@@ -97,6 +100,11 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self = [super initWithFrame:frame]) {
+        
+        self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.bounds];
+        self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.backgroundImageView.backgroundColor = [UIColor grayColor];
+        [self addSubview:self.backgroundImageView];
         
         //  Initialize Container
         self.container = [[UIView alloc]initWithFrame:self.bounds];
