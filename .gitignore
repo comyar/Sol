@@ -16,6 +16,5 @@ profile
 *.moved-aside
 DerivedData
 .idea/
-API_KEY
 Pods
-
+Keys.plist
