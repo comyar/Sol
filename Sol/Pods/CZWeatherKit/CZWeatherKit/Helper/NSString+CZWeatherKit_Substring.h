@@ -45,6 +45,6 @@
  @param substring   Substring to search for.
  @return            YES if contains the substring.
  */
-- (BOOL)contains:(NSString *)substring;
+- (BOOL)cz_contains:(NSString *)substring;
 
 @end

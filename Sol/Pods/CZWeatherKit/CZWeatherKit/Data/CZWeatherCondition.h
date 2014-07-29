@@ -23,6 +23,7 @@
 //  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 //  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 //  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
 
 
 #pragma mark - Imports
@@ -33,7 +34,7 @@
 @import UIKit;
 #endif
 
-#import "Climacon.h"
+#import "Climacons.h"
 
 
 #pragma mark - Type Definitions
@@ -98,7 +99,7 @@ typedef NS_ENUM(NSInteger, CZWeatherKitValue) {
  (e.g. 'Clear', 'Rain', etc.) The possible words/phrases are defined by each weather
  service's API.
  */
-@property (nonatomic, readonly) NSString        *description;
+@property (nonatomic, readonly) NSString        *summary;
 
 /**
  Climacon character that matches the condition description.

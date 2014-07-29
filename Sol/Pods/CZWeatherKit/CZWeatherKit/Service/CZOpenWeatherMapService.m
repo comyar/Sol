@@ -29,16 +29,10 @@
 
 #import "NSString+CZWeatherKit_Substring.h"
 #import "CZWeatherService_Internal.h"
+#import "CZMacros.h"
 #import "CZOpenWeatherMapService.h"
 #import "CZWeatherCondition.h"
 #import "CZWeatherRequest.h"
-
-
-#pragma mark - Macros
-
-#if !(TARGET_OS_IPHONE)
-#define CGPointValue pointValue
-#endif
 
 
 #pragma mark - Constants
@@ -48,12 +42,6 @@ static NSString * const base        = @"http://api.openweathermap.org/data/2.5/"
 
 // Name of the service
 static NSString * const serviceName = @"Open Weather Map";
-
-
-#pragma mark - Macros
-
-#define F_TO_C(temp) (5.0/9.0) * (temp - 32.0)
-#define MPH_TO_KPH(speed) (speed * 1.609344)
 
 
 #pragma mark - CZOpenWeatherMapService Implementation
@@ -157,8 +145,8 @@ static NSString * const serviceName = @"Open Weather Map";
     condition.lowTemperature = (CZTemperature){lowTempF, F_TO_C(lowTempF)};
     
     condition.humidity = [JSON[@"main"][@"humidity"]floatValue];
-    condition.description = [JSON[@"weather"]firstObject][@"description"];
-    condition.climaconCharacter = [self climaconCharacterForDescription:condition.description];
+    condition.summary = [JSON[@"weather"]firstObject][@"description"];
+    condition.climaconCharacter = [self climaconCharacterForDescription:condition.summary];
     
     CGFloat windSpeedMPH = [JSON[@"wind"][@"speed"]floatValue];
     condition.windSpeed = (CZWindSpeed){windSpeedMPH, MPH_TO_KPH(windSpeedMPH)};
@@ -207,11 +195,11 @@ static NSString * const serviceName = @"Open Weather Map";
             condition.windDegrees = [forecast[@"deg"]floatValue];
         }
         
-        condition.description = [forecast[@"weather"]firstObject][@"description"];
+        condition.summary = [forecast[@"weather"]firstObject][@"description"];
         
         condition.date = [NSDate dateWithTimeIntervalSince1970:[forecast[@"dt"]doubleValue]];
         
-        condition.climaconCharacter = [self climaconCharacterForDescription:condition.description];
+        condition.climaconCharacter = [self climaconCharacterForDescription:condition.summary];
         
         [forecastConditions addObject:condition];
     }
@@ -222,29 +210,32 @@ static NSString * const serviceName = @"Open Weather Map";
 - (Climacon)climaconCharacterForDescription:(NSString *)description
 {
     Climacon icon = ClimaconSun;
-    NSString *lowercaseDescription = [description lowercaseString];
+    NSString *lowercaseDescription = description.lowercaseString;
     
-    if([lowercaseDescription contains:@"clear"]) {
+    if([lowercaseDescription cz_contains:@"clear"]) {
         icon = ClimaconSun;
-    } else if([lowercaseDescription contains:@"cloud"]) {
+    } else if([lowercaseDescription cz_contains:@"cloud"]) {
         icon = ClimaconCloud;
-    } else if([lowercaseDescription contains:@"drizzle"]  ||
-              [lowercaseDescription contains:@"rain"]     ||
-              [lowercaseDescription contains:@"thunderstorm"]) {
+    } else if([lowercaseDescription cz_contains:@"drizzle"]) {
+        icon = ClimaconDrizzle;
+    } else if([lowercaseDescription cz_contains:@"rain"]     ||
+              [lowercaseDescription cz_contains:@"thunderstorm"]) {
         icon = ClimaconRain;
-    } else if([lowercaseDescription contains:@"snow"]     ||
-              [lowercaseDescription contains:@"hail"]     ||
-              [lowercaseDescription contains:@"ice"]) {
+    } else if ([lowercaseDescription cz_contains:@"hail"]) {
+        icon = ClimaconHail;
+    } else if([lowercaseDescription cz_contains:@"snow"]     ||
+              [lowercaseDescription cz_contains:@"ice"]) {
         icon = ClimaconSnow;
-    } else if([lowercaseDescription contains:@"fog"]      ||
-              [lowercaseDescription contains:@"overcast"] ||
-              [lowercaseDescription contains:@"smoke"]    ||
-              [lowercaseDescription contains:@"dust"]     ||
-              [lowercaseDescription contains:@"ash"]      ||
-              [lowercaseDescription contains:@"mist"]     ||
-              [lowercaseDescription contains:@"haze"]     ||
-              [lowercaseDescription contains:@"spray"]    ||
-              [lowercaseDescription contains:@"squall"]) {
+    } else if([lowercaseDescription cz_contains:@"fog"]) {
+        icon = ClimaconFog;
+    } else if ([lowercaseDescription cz_contains:@"overcast"] ||
+              [lowercaseDescription cz_contains:@"smoke"]    ||
+              [lowercaseDescription cz_contains:@"dust"]     ||
+              [lowercaseDescription cz_contains:@"ash"]      ||
+              [lowercaseDescription cz_contains:@"mist"]     ||
+              [lowercaseDescription cz_contains:@"haze"]     ||
+              [lowercaseDescription cz_contains:@"spray"]    ||
+              [lowercaseDescription cz_contains:@"squall"]) {
         icon = ClimaconHaze;
     }
     return icon;

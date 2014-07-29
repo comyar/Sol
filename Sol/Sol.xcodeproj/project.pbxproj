@@ -19,13 +19,13 @@
 		DD4F968517A8994300E0E7D0 /* SOLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4F968417A8994300E0E7D0 /* SOLAppDelegate.m */; };
 		DD548DE317A8A95800E08E29 /* SOLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD548DE217A8A95800E08E29 /* SOLMainViewController.m */; };
 		DD677B8D17EEE5AC0078F41A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD677B8C17EEE5AC0078F41A /* MapKit.framework */; };
+		DD7155EF19878F2C009E9B96 /* SOLNotificationGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */; };
 		DD9388F017B6DDA8004C5F42 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C344117B517950024AD9A /* SystemConfiguration.framework */; };
 		DD9388F117B6DDB2004C5F42 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C344317B5179C0024AD9A /* MobileCoreServices.framework */; };
 		DD93A81B17FA9C12006DD1BC /* Climacons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD93A81A17FA9C12006DD1BC /* Climacons.ttf */; };
 		DDA08EA017B81135006AC675 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA08E9F17B81135006AC675 /* CoreLocation.framework */; };
 		DDB7B8E517ECF59100857D15 /* SOLAddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8E417ECF59100857D15 /* SOLAddLocationViewController.m */; };
 		DDB7B8EB17ED516500857D15 /* SOLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8EA17ED516500857D15 /* SOLSettingsViewController.m */; };
-		DDBA22031980E4A4004925AB /* SOLNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBA22021980E4A4004925AB /* SOLNotificationManager.m */; };
 		DDBFDDCA17B23F3F002A886D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBFDDC917B23F3F002A886D /* QuartzCore.framework */; };
 		F280CA0AD296435F859E19D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27545E381C0B49B9A854131D /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -56,6 +56,8 @@
 		DD548DE117A8A95800E08E29 /* SOLMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLMainViewController.h; path = ViewControllers/SOLMainViewController.h; sourceTree = "<group>"; };
 		DD548DE217A8A95800E08E29 /* SOLMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLMainViewController.m; path = ViewControllers/SOLMainViewController.m; sourceTree = "<group>"; };
 		DD677B8C17EEE5AC0078F41A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DD7155ED19878F14009E9B96 /* SOLNotificationGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SOLNotificationGlobals.h; path = Models/SOLNotificationGlobals.h; sourceTree = "<group>"; };
+		DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLNotificationGlobals.m; path = Models/SOLNotificationGlobals.m; sourceTree = "<group>"; };
 		DD8AA01817D533BA00D4F7BA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DD93A81A17FA9C12006DD1BC /* Climacons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Climacons.ttf; path = Resources/Fonts/Climacons.ttf; sourceTree = "<group>"; };
 		DDA08E9F17B81135006AC675 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -63,8 +65,6 @@
 		DDB7B8E417ECF59100857D15 /* SOLAddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLAddLocationViewController.m; path = ViewControllers/SOLAddLocationViewController.m; sourceTree = "<group>"; };
 		DDB7B8E917ED516500857D15 /* SOLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLSettingsViewController.h; path = ViewControllers/SOLSettingsViewController.h; sourceTree = "<group>"; };
 		DDB7B8EA17ED516500857D15 /* SOLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLSettingsViewController.m; path = ViewControllers/SOLSettingsViewController.m; sourceTree = "<group>"; };
-		DDBA22011980E4A4004925AB /* SOLNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLNotificationManager.h; path = Models/SOLNotificationManager.h; sourceTree = "<group>"; };
-		DDBA22021980E4A4004925AB /* SOLNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLNotificationManager.m; path = Models/SOLNotificationManager.m; sourceTree = "<group>"; };
 		DDBFDDC917B23F3F002A886D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -165,8 +165,8 @@
 			children = (
 				DD24A49F197419BF0079A4C9 /* SOLWeatherViewModel.h */,
 				DD24A4A0197419BF0079A4C9 /* SOLWeatherViewModel.m */,
-				DDBA22011980E4A4004925AB /* SOLNotificationManager.h */,
-				DDBA22021980E4A4004925AB /* SOLNotificationManager.m */,
+				DD7155ED19878F14009E9B96 /* SOLNotificationGlobals.h */,
+				DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -311,10 +311,10 @@
 				DD46272A17ADC3A1000A6A33 /* SOLWeatherView.m in Sources */,
 				DDB7B8E517ECF59100857D15 /* SOLAddLocationViewController.m in Sources */,
 				DD24A49B19740E380079A4C9 /* SOLWeatherViewController.m in Sources */,
+				DD7155EF19878F2C009E9B96 /* SOLNotificationGlobals.m in Sources */,
 				DD4F968117A8994300E0E7D0 /* main.m in Sources */,
 				DD4F968517A8994300E0E7D0 /* SOLAppDelegate.m in Sources */,
 				DDB7B8EB17ED516500857D15 /* SOLSettingsViewController.m in Sources */,
-				DDBA22031980E4A4004925AB /* SOLNotificationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

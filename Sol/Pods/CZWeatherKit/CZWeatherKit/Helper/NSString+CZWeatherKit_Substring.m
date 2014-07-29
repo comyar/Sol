@@ -36,12 +36,9 @@
 
 #pragma mark Instance Methods
 
-- (BOOL)contains:(NSString *)substring
+- (BOOL)cz_contains:(NSString *)substring
 {
-    if([self rangeOfString:substring].location != NSNotFound) {
-        return YES;
-    }
-    return NO;
+    return ([self rangeOfString:substring].location != NSNotFound);
 }
 
 @end

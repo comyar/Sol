@@ -1,13 +1,10 @@
 PODS:
-  - CZWeatherKit (0.6.1)
-  - SVGeocoder (0.1)
+  - CZWeatherKit (0.8.0)
 
 DEPENDENCIES:
   - CZWeatherKit
-  - SVGeocoder
 
 SPEC CHECKSUMS:
-  CZWeatherKit: 92cf3d0d9ce67915ea851cc1fe4c83e8dfd3c072
-  SVGeocoder: 67f187000ddf9abdd979137d136cd8b30b53e2f6
+  CZWeatherKit: 03d9d0b33669f2b95cbc58e376c5bfdc93713f21
 
 COCOAPODS: 0.33.1

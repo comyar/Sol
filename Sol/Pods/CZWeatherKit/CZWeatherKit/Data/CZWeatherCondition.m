@@ -38,7 +38,7 @@
 @property (nonatomic) NSDate            *date;
 
 // Word or phrase describing the conditions.
-@property (nonatomic) NSString          *description;
+@property (nonatomic) NSString          *summary;
 
 // Climacon character that matches the condition description.
 @property (nonatomic) Climacon          climaconCharacter;
@@ -86,7 +86,7 @@
 {
     if (self = [super init]) {
         self.date               = [aDecoder decodeObjectForKey:@"date"];
-        self.description        = [aDecoder decodeObjectForKey:@"description"];
+        self.summary            = [aDecoder decodeObjectForKey:@"summary"];
         self.climaconCharacter  = [aDecoder decodeIntForKey:@"climaconCharacter"];
         self.lowTemperature     = (CZTemperature){[aDecoder decodeFloatForKey:@"lowTemperature_f"],
                                                   [aDecoder decodeFloatForKey:@"lowTemperature_c"]};
@@ -105,7 +105,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.date              forKey:@"date"];
-    [aCoder encodeObject:self.description       forKey:@"description"];
+    [aCoder encodeObject:self.summary           forKey:@"summary"];
     [aCoder encodeInt:self.climaconCharacter    forKey:@"climaconCharacter"];
     [aCoder encodeFloat:self.lowTemperature.f   forKey:@"lowTemperature_f"];
     [aCoder encodeFloat:self.lowTemperature.c   forKey:@"lowTemperature_c"];
@@ -127,7 +127,7 @@
     
     if (copy) {
         [copy setDate:[self.date copyWithZone:zone]];
-        [copy setDescription:[self.description copyWithZone:zone]];
+        [copy setSummary:[self.summary copyWithZone:zone]];
         [copy setClimaconCharacter:self.climaconCharacter];
         [copy setLowTemperature:self.lowTemperature];
         [copy setHighTemperature:self.highTemperature];

@@ -1,5 +1,5 @@
 //
-//  CZWeatherService_Internal.h
+//  SOLNotificationGlobals.h
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -23,30 +23,15 @@
 //  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 //  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 //  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
 
 
 #pragma mark - Imports
 
-#import "CZWeatherCondition.h"
+@import Foundation;
 
 
-#pragma mark - CZWeatherCondition Friend Category
+#pragma mark - Constants
 
-/**
- Friend category for CZWeatherCondition. Allows write access to a CZWeatherCondition object's properties.
- 
- Should not be used outside of a weather service.
- */
-@interface CZWeatherCondition (Friend)
+extern NSString * const SOLAppDidBecomeActiveNotification;
 
-- (void)setDate:(NSDate *)date;
-- (void)setSummary:(NSString *)description;
-- (void)setClimaconCharacter:(Climacon)climaconCharacter;
-- (void)setTemperature:(CZTemperature)temperature;
-- (void)setHighTemperature:(CZTemperature)highTemperature;
-- (void)setLowTemperature:(CZTemperature)lowTemperature;
-- (void)setWindDegrees:(CGFloat)windDegrees;
-- (void)setWindSpeed:(CZWindSpeed)windSpeed;
-- (void)setHumidity:(CGFloat)humidity;
-
-@end
