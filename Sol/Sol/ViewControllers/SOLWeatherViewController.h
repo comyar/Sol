@@ -29,6 +29,7 @@
 #pragma mark - Imports
 
 @import UIKit;
+@import CoreLocation;
 #import <CZWeatherKit/CZWeatherKit.h>
 
 
@@ -42,6 +43,10 @@
 /**
  */
 @interface SOLWeatherViewController : UIViewController
+
+/**
+ */
+- (void)updateWithPlacemark:(CLPlacemark *)placemark;
 
 // -----
 // @name Properties

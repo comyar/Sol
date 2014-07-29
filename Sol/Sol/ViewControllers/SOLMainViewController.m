@@ -73,6 +73,7 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
         self.locationManager.distanceFilter = locationManagerDistanceFilter;
         self.locationManager.activityType = CLActivityTypeOther;
         self.locationManager.delegate = self;
+        
     }
     return self;
 }
@@ -111,6 +112,9 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
         button;
     });
     [self.view addSubview:self.settingsButton];
+    
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
 }
 
 #pragma mark Buttons
@@ -141,7 +145,7 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    
+    NSLog(@"location update");
 }
 
 #pragma mark UIPageViewControllerDataSource Methods

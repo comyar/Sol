@@ -59,6 +59,10 @@
     
     self.weatherView = [[SOLWeatherView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.weatherView];
+}
+
+- (void)updateWithPlacemark:(CLPlacemark *)placemark
+{
     
 }
 
