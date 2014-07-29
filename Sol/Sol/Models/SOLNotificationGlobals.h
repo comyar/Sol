@@ -34,4 +34,3 @@
 #pragma mark - Constants
 
 extern NSString * const SOLAppDidBecomeActiveNotification;
-

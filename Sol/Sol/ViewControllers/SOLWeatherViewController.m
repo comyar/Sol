@@ -32,6 +32,7 @@
 #import "SOLWeatherView.h"
 #import "SOLKeyManager.h"
 #import "SOLWeatherViewModel.h"
+#import "SOLSettingsManager.h"
 
 
 #pragma mark - SOLWeatherViewController Class Extension
@@ -50,7 +51,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
+        [[SOLSettingsManager sharedManager]addObserver:self forKeyPath:@"celsius" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
@@ -61,6 +62,15 @@
     
     self.weatherView = [[SOLWeatherView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.weatherView];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (object == [SOLSettingsManager sharedManager]) {
+        if ([keyPath isEqualToString:@"celsius"]) {
+            [self updateWeatherView];
+        }
+    }
 }
 
 - (void)update
@@ -101,13 +111,21 @@
         SOLWeatherViewModel *weatherViewModel = [SOLWeatherViewModel weatherViewModelForCitymark:self.citymark
                                                                          currentWeatherCondition:self.currentCondition
                                                                        forecastWeatherConditions:self.forecastConditions
-                                                                                         celsius:NO];
+                                                                                         celsius:[SOLSettingsManager sharedManager].isCelsius];
+        self.weatherView.locationLabel.text = weatherViewModel.locationLabelString;
+        self.weatherView.conditionIconLabel.text = weatherViewModel.con
+        
     }
 }
 
 - (void)updateDidFail
 {
     
+}
+
+- (void)dealloc
+{
+    [[SOLSettingsManager sharedManager]removeObserver:self forKeyPath:@"celsius"];
 }
 
 @end

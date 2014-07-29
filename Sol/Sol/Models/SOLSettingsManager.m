@@ -29,10 +29,43 @@
 #pragma mark - Imports
 
 #import "SOLSettingsManager.h"
+#import "SOLNotificationGlobals.h"
+
+#pragma mark - Constants
+
+static NSString * const SOLSettingsCelsiusName = @"SOLSettingsCelsiusName";
 
 
 #pragma mark - SOLSettingsManager Implementation
 
 @implementation SOLSettingsManager
+
++ (SOLSettingsManager *)sharedManager
+{
+    static SOLSettingsManager *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[SOLSettingsManager alloc]_init];
+    });
+    return sharedManager;
+}
+
+- (instancetype)_init
+{
+    if (self = [super init]) {
+        self.celsius = [[NSUserDefaults standardUserDefaults]boolForKey:SOLSettingsCelsiusName];
+    }
+    return self;
+}
+
+#pragma mark Setters
+
+- (void)setCelsius:(BOOL)celsius
+{
+    if (celsius != _celsius) {
+        _celsius = celsius;
+        [[NSUserDefaults standardUserDefaults]setBool:celsius forKey:SOLSettingsCelsiusName];
+    }
+}
 
 @end

@@ -37,4 +37,11 @@
  */
 @interface SOLSettingsManager : NSObject
 
+
++ (SOLSettingsManager *)sharedManager;
+
+
+@property (nonatomic, getter=isCelsius) BOOL celsius;
+
+
 @end

@@ -33,4 +33,4 @@
 
 #pragma mark - Constants
 
-NSString * const SOLAppDidBecomeActiveNotification = @"SOLAppDidBecomeActiveNotification";
+NSString * const SOLAppDidBecomeActiveNotification          = @"SOLAppDidBecomeActiveNotification";

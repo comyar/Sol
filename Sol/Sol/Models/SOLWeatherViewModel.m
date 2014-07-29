@@ -44,6 +44,7 @@ static const NSTimeInterval dayLength               = 86400.0;
 
 @interface SOLWeatherViewModel ()
 
+@property (nonatomic) NSString *conditionIconString;
 @property (nonatomic) NSString *conditionLabelString;
 @property (nonatomic) NSString *locationLabelString;
 @property (nonatomic) NSString *currentTemperatureLabelString;
@@ -84,7 +85,8 @@ static const NSTimeInterval dayLength               = 86400.0;
                           celsius:(BOOL)celsius
 {
     if (self = [super init]) {
-        self.conditionLabelString = currentWeatherCondition.description;
+        self.conditionLabelString = currentWeatherCondition.summary;
+        self.conditionIconString = [NSString stringWithFormat:@"%c", currentWeatherCondition.climaconCharacter];
         self.locationLabelString = [NSString stringWithFormat:@"%@, %@", citymark.locality,
                                     [citymark.country isEqualToString:@"United States"]? citymark.administrativeArea : citymark.country];
         

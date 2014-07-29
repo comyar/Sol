@@ -54,6 +54,9 @@
 // -----
 
 //
+@property (nonatomic, readonly) NSString *conditionIconString;
+
+//
 @property (nonatomic, readonly) NSString *conditionLabelString;
 
 //
