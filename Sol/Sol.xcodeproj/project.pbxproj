@@ -20,6 +20,7 @@
 		DD548DE317A8A95800E08E29 /* SOLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD548DE217A8A95800E08E29 /* SOLMainViewController.m */; };
 		DD677B8D17EEE5AC0078F41A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD677B8C17EEE5AC0078F41A /* MapKit.framework */; };
 		DD7155EF19878F2C009E9B96 /* SOLNotificationGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */; };
+		DD7155F31987A2AD009E9B96 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD7155F21987A2AD009E9B96 /* Keys.plist */; };
 		DD9388F017B6DDA8004C5F42 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C344117B517950024AD9A /* SystemConfiguration.framework */; };
 		DD9388F117B6DDB2004C5F42 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C344317B5179C0024AD9A /* MobileCoreServices.framework */; };
 		DD93A81B17FA9C12006DD1BC /* Climacons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD93A81A17FA9C12006DD1BC /* Climacons.ttf */; };
@@ -58,6 +59,7 @@
 		DD677B8C17EEE5AC0078F41A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DD7155ED19878F14009E9B96 /* SOLNotificationGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SOLNotificationGlobals.h; path = Models/SOLNotificationGlobals.h; sourceTree = "<group>"; };
 		DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLNotificationGlobals.m; path = Models/SOLNotificationGlobals.m; sourceTree = "<group>"; };
+		DD7155F21987A2AD009E9B96 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = Resources/Keys.plist; sourceTree = "<group>"; };
 		DD8AA01817D533BA00D4F7BA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DD93A81A17FA9C12006DD1BC /* Climacons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Climacons.ttf; path = Resources/Fonts/Climacons.ttf; sourceTree = "<group>"; };
 		DDA08E9F17B81135006AC675 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -185,6 +187,7 @@
 			children = (
 				DD43184318C5D2540022E87E /* Resources.xcassets */,
 				DD93A81A17FA9C12006DD1BC /* Climacons.ttf */,
+				DD7155F21987A2AD009E9B96 /* Keys.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD7155F31987A2AD009E9B96 /* Keys.plist in Resources */,
 				DD93A81B17FA9C12006DD1BC /* Climacons.ttf in Resources */,
 				DD43184418C5D2540022E87E /* Resources.xcassets in Resources */,
 				DD4F967F17A8994300E0E7D0 /* InfoPlist.strings in Resources */,
