@@ -88,10 +88,29 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
     [self addChildViewController:self.pageViewController];
     [self.pageViewController didMoveToParentViewController:self];
     
-    self.addLocationButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    self.addLocationButton.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
-    self.addLocationButton.center = CGPointMake(CGRectGetWidth(self.view.bounds) - 22.0, CGRectGetHeight(self.view.bounds) - 22.0);
+    self.addLocationButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        button.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
+        button.center = CGPointMake(CGRectGetWidth(self.view.bounds)  - 0.5 * CGRectGetWidth(button.bounds),
+                                    CGRectGetHeight(self.view.bounds) - 0.5 * CGRectGetHeight(button.bounds));
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.tintColor = [UIColor whiteColor];
+        button.showsTouchWhenHighlighted = YES;
+        button;
+    });
     [self.view addSubview:self.addLocationButton];
+    
+    self.settingsButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        button.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
+        button.center = CGPointMake(0.5 * CGRectGetWidth(button.bounds),
+                                    CGRectGetHeight(self.view.bounds) - 0.5 * CGRectGetHeight(button.bounds));
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.tintColor = [UIColor whiteColor];
+        button.showsTouchWhenHighlighted = YES;
+        button;
+    });
+    [self.view addSubview:self.settingsButton];
 }
 
 #pragma mark Buttons

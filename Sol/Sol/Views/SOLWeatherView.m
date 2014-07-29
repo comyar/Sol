@@ -163,7 +163,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
     static const CGFloat fontSize = 180.0;
     self.conditionIconLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, fontSize)];
     [self.conditionIconLabel setCenter:CGPointMake(self.container.center.x, 0.5 * self.center.y)];
-    [self.conditionIconLabel setFont:[UIFont fontWithName:CLIMACON_FONT size:fontSize]];
+    [self.conditionIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
     [self.conditionIconLabel setBackgroundColor:[UIColor clearColor]];
     [self.conditionIconLabel setTextColor:[UIColor whiteColor]];
     [self.conditionIconLabel setTextAlignment:NSTextAlignmentCenter];
@@ -252,7 +252,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
     for(int i = 0; i < [forecastIconLabels count]; ++i) {
         UILabel *forecastIconLabel = [forecastIconLabels objectAtIndex:i];
         [forecastIconLabel setFrame:CGRectMake(0.425 * self.bounds.size.width + (64 * i), 1.42 * self.center.y, fontSize, fontSize)];
-        [forecastIconLabel setFont:[UIFont fontWithName:CLIMACON_FONT size:fontSize]];
+        [forecastIconLabel setFont:[UIFont fontWithName:CLIMACONS_FONT size:fontSize]];
         [forecastIconLabel setBackgroundColor:[UIColor clearColor]];
         [forecastIconLabel setTextColor:[UIColor whiteColor]];
         [forecastIconLabel setTextAlignment:NSTextAlignmentCenter];
