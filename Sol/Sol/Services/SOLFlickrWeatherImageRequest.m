@@ -33,6 +33,7 @@
 
 #pragma mark - Constants
 
+static NSString * const endpoint = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&accuracy=11&safe_search=1&content_type=1&group_id=1463451@N25&format=json";
 
 
 #pragma mark - SOLFlickrRequest Implementation
@@ -40,9 +41,36 @@
 @implementation SOLFlickrWeatherImageRequest
 
 + (void)sendRequestForAPIKey:(NSString *)APIKey
-                    location:(CLLocation *)location
+                    coordinate:(CLLocationCoordinate2D)coordinate
                     keywords:(NSArray *)keywords
                   completion:(SOLFlickrRequestCompletion)completion
+{
+    
+    NSString *urlString = [endpoint copy];
+    urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"&api_key=%@&lat=%f&lon=%f",
+                                                    APIKey, coordinate.latitude, coordinate.longitude]];
+    if ([keywords count]) {
+        urlString = [urlString stringByAppendingString:[keywords componentsJoinedByString:@"+"]];
+    }
+    
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (data) {
+            NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            if ([JSON[@"stat"]isEqualToString:@"ok"]) {
+                NSArray *photos = JSON[@"photos"][@"photo"];
+                if ([photos count] > 0) {
+                    NSDictionary *photo = photos[arc4random() % [photos count]];
+                    NSURL *imageURL
+                }
+            }
+        }
+    }];
+    
+}
+
++ (NSURL *)imageURLFromPhotoDictionary:(NSDictionary *)photoDictionary
 {
     
 }

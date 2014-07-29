@@ -61,7 +61,7 @@
 @property (nonatomic, readonly) UILabel *currentTemperatureLabel;
 
 //  Displays both the high and low temperatures for today
-@property (nonatomic, readonly) UILabel *hiloTemperatureLabel;
+@property (nonatomic, readonly) UILabel *highLowTemperatureLabel;
 
 //  Displays the day of the week for the first forecast snapshot
 @property (nonatomic, readonly) UILabel *forecastDayOneLabel;

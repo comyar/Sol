@@ -144,12 +144,17 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
 {
     if (status != kCLAuthorizationStatusNotDetermined) {
         // add non local weather view controllers
-        
     
-        if (status == kCLAuthorizationStatusAuthorized) {
+        if (status == kCLAuthorizationStatusAuthorized          ||
+            status == kCLAuthorizationStatusAuthorizedAlways    ||
+            status == kCLAuthorizationStatusAuthorizedWhenInUse) {
             SOLWeatherViewController *localWeatherViewController = [SOLWeatherViewController new];
             localWeatherViewController.local = YES;
             [self.weatherViewControllers insertObject:localWeatherViewController atIndex:0];
+            [self.pageViewController setViewControllers:@[localWeatherViewController]
+                                              direction:UIPageViewControllerNavigationDirectionForward
+                                               animated:YES
+                                             completion:nil];
         } else if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
             SOLWeatherViewController *weatherViewController = [self.weatherViewControllers firstObject];
             if (weatherViewController.local) {
@@ -174,6 +179,7 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
             
             SOLWeatherViewController *localWeatherViewController = [self.weatherViewControllers firstObject];
             localWeatherViewController.citymark = citymark;
+            [localWeatherViewController update];
         }
     }];
 }

@@ -75,15 +75,19 @@
 
 - (void)update
 {
+    // check time
+    
+    [self.weatherView.activityIndicator startAnimating];
+    
     if (self.citymark) {
         
         CZWeatherRequest *currentConditionRequest = [CZWeatherRequest requestWithType:CZCurrentConditionsRequestType];
         currentConditionRequest.location   = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.citymark.coordinate];
-        currentConditionRequest.service    = [CZForecastioService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"forecast.io"]];
+        currentConditionRequest.service    = [CZWundergroundService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"wunderground"]];
         
         CZWeatherRequest *forecastConditionsRequest = [CZWeatherRequest requestWithType:CZForecastRequestType];
         forecastConditionsRequest.location  = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.citymark.coordinate];
-        forecastConditionsRequest.service   = [CZForecastioService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"forecast.io"]];
+        forecastConditionsRequest.service   = [CZWundergroundService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"wunderground"]];
         
         [currentConditionRequest performRequestWithHandler: ^ (id data, NSError *error) {
             if (data) {
@@ -94,12 +98,15 @@
                         NSArray *forecastConditions = (NSArray *)data;
                         self.currentCondition   = currentCondition;
                         self.forecastConditions = forecastConditions;
+                        [self updateWeatherView];
                     } else {
                         [self updateDidFail];
                     }
+                    [self.weatherView.activityIndicator stopAnimating];
                 }];
             } else {
                 [self updateDidFail];
+                [self.weatherView.activityIndicator stopAnimating];
             }
         }];
     }
@@ -112,9 +119,19 @@
                                                                          currentWeatherCondition:self.currentCondition
                                                                        forecastWeatherConditions:self.forecastConditions
                                                                                          celsius:[SOLSettingsManager sharedManager].isCelsius];
-        self.weatherView.locationLabel.text = weatherViewModel.locationLabelString;
-        self.weatherView.conditionIconLabel.text = weatherViewModel.con
         
+        NSLog(@"%@", weatherViewModel);
+        self.weatherView.locationLabel.text             = weatherViewModel.locationLabelString;
+        self.weatherView.conditionIconLabel.text        = weatherViewModel.conditionIconString;
+        self.weatherView.conditionDescriptionLabel.text = weatherViewModel.conditionLabelString;
+        self.weatherView.highLowTemperatureLabel.text   = weatherViewModel.highLowTemperatureLabelString;
+        self.weatherView.currentTemperatureLabel.text   = weatherViewModel.currentTemperatureLabelString;
+        self.weatherView.forecastDayOneLabel.text       = weatherViewModel.forecastDayOneLabelString;
+        self.weatherView.forecastDayTwoLabel.text       = weatherViewModel.forecastDayTwoLabelString;
+        self.weatherView.forecastDayThreeLabel.text     = weatherViewModel.forecastDayThreeLabelString;
+        self.weatherView.forecastIconOneLabel.text      = weatherViewModel.forecastIconOneLabelString;
+        self.weatherView.forecastIconTwoLabel.text      = weatherViewModel.forecastIconTwoLabelString;
+        self.weatherView.forecastIconThreeLabel.text    = weatherViewModel.forecastIconThreeLabelString;
     }
 }
 

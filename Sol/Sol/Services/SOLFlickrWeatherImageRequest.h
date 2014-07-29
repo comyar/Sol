@@ -36,7 +36,7 @@
 
 /**
  */
-typedef void (^SOLFlickrRequestCompletion) (UIImage *image, NSError *error);
+typedef void (^SOLFlickrRequestCompletion) (NSURL *url, NSError *error);
 
 
 #pragma mark - SOLFlickrRequest Interface
@@ -54,7 +54,7 @@ typedef void (^SOLFlickrRequestCompletion) (UIImage *image, NSError *error);
 /**
  */
 + (void)sendRequestForAPIKey:(NSString *)APIKey
-                    location:(CLLocation *)location
+                    coordinate:(CLLocationCoordinate2D)coordinate
                     keywords:(NSArray *)keywords
                   completion:(SOLFlickrRequestCompletion)completion;
 

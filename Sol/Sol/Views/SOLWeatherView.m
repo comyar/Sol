@@ -64,7 +64,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 @property (strong, nonatomic) UILabel                   *currentTemperatureLabel;
 
 //  Displays both the high and low temperatures for today
-@property (strong, nonatomic) UILabel                   *hiloTemperatureLabel;
+@property (strong, nonatomic) UILabel                   *highLowTemperatureLabel;
 
 //  Displays the day of the week for the first forecast snapshot
 @property (strong, nonatomic) UILabel                   *forecastDayOneLabel;
@@ -211,15 +211,15 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 - (void)initializeHiLoTemperatureLabel
 {
     static const CGFloat fontSize = 18.0;
-    self.hiloTemperatureLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    [self.hiloTemperatureLabel setFrame:CGRectMake(0, 0, 0.375 * self.bounds.size.width, fontSize)];
-    [self.hiloTemperatureLabel setCenter:CGPointMake(self.currentTemperatureLabel.center.x - 4,
+    self.highLowTemperatureLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    [self.highLowTemperatureLabel setFrame:CGRectMake(0, 0, 0.375 * self.bounds.size.width, fontSize)];
+    [self.highLowTemperatureLabel setCenter:CGPointMake(self.currentTemperatureLabel.center.x - 4,
                                                  self.currentTemperatureLabel.center.y + 0.5 * self.currentTemperatureLabel.bounds.size.height + 12)];
-    [self.hiloTemperatureLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
-    [self.hiloTemperatureLabel setBackgroundColor:[UIColor clearColor]];
-    [self.hiloTemperatureLabel setTextColor:[UIColor whiteColor]];
-    [self.hiloTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.container addSubview:self.hiloTemperatureLabel];
+    [self.highLowTemperatureLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];
+    [self.highLowTemperatureLabel setBackgroundColor:[UIColor clearColor]];
+    [self.highLowTemperatureLabel setTextColor:[UIColor whiteColor]];
+    [self.highLowTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.container addSubview:self.highLowTemperatureLabel];
 }
 
 - (void)initializeForecastDayLabels

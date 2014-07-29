@@ -68,15 +68,10 @@ static const NSTimeInterval dayLength               = 86400.0;
                             forecastWeatherConditions:(NSArray *)forecastWeatherConditions
                                               celsius:(BOOL)celsius
 {
-    if ([SOLWeatherViewModel validCurrentWeatherCondition:currentWeatherCondition]     &&
-        [SOLWeatherViewModel validForecastWeatherConditions:forecastWeatherConditions] &&
-        [SOLWeatherViewModel validCitymark:citymark]) {
-        return [[SOLWeatherViewModel alloc]initWithCitymark:citymark
-                                     currentWeatherCondition:currentWeatherCondition
-                                   forecastWeatherConditions:forecastWeatherConditions
-                                                     celsius:celsius];
-    }
-    return nil;
+    return [[SOLWeatherViewModel alloc]initWithCitymark:citymark
+                                 currentWeatherCondition:currentWeatherCondition
+                               forecastWeatherConditions:forecastWeatherConditions
+                                                 celsius:celsius];
 }
 
 - (instancetype)initWithCitymark:(CZCitymark *)citymark
@@ -91,11 +86,14 @@ static const NSTimeInterval dayLength               = 86400.0;
                                     [citymark.country isEqualToString:@"United States"]? citymark.administrativeArea : citymark.country];
         
         CZWeatherCondition *todayForecastCondition = [forecastWeatherConditions firstObject];
-        CGFloat todayCurrentTemperature         = (celsius)? todayForecastCondition.temperature.c : todayForecastCondition.temperature.f;
+        CGFloat todayCurrentTemperature         = (celsius)? currentWeatherCondition.temperature.c : currentWeatherCondition.temperature.f;
         CGFloat todayForecastHighTemperature    = (celsius)? todayForecastCondition.highTemperature.c : todayForecastCondition.highTemperature.f;
         CGFloat todayForecastLowTemperature     = (celsius)? todayForecastCondition.lowTemperature.c : todayForecastCondition.lowTemperature.f;
         self.currentTemperatureLabelString = [NSString stringWithFormat:@"%.0f°", todayCurrentTemperature];
-        self.highLowTemperatureLabelString = [NSString stringWithFormat:@"%.0f/%.0f", todayForecastHighTemperature, todayForecastLowTemperature];
+        
+        self.highLowTemperatureLabelString = [NSString stringWithFormat:@"%.0f / %.0f",
+                                              todayForecastHighTemperature,
+                                              todayForecastLowTemperature];
         
         NSDateFormatter *dateFormatter = [NSDateFormatter new];
         dateFormatter.dateFormat = @"EEE";
@@ -122,7 +120,7 @@ static const NSTimeInterval dayLength               = 86400.0;
 
 + (BOOL)validCurrentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
 {
-    return  currentWeatherCondition.description                             &&
+    return  currentWeatherCondition.summary                             &&
             currentWeatherCondition.temperature.f != CZWeatherKitNoValue    &&
             currentWeatherCondition.temperature.c != CZWeatherKitNoValue;
 }
@@ -136,7 +134,7 @@ static const NSTimeInterval dayLength               = 86400.0;
                 forecastCondition.highTemperature.f != CZWeatherKitNoValue  &&
                 forecastCondition.lowTemperature.c  != CZWeatherKitNoValue  &&
                 forecastCondition.lowTemperature.f  != CZWeatherKitNoValue  &&
-                forecastCondition.description;
+                forecastCondition.summary;
         if (!valid) {
             return valid;
         }
