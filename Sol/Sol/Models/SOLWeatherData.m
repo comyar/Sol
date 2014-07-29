@@ -1,5 +1,5 @@
 //
-//  SOLFlickrRequest.h
+//  SOLWeatherData.m
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -28,34 +28,28 @@
 
 #pragma mark - Imports
 
-@import Foundation;
-@import CoreLocation;
+#import "SOLWeatherData.h"
 
 
-#pragma mark - Type Definitions
+#pragma mark - SOLWeatherData Implementation
 
-/**
- */
-typedef void (^SOLFlickrRequestCompletion) (UIImage *image, NSError *error);
+@implementation SOLWeatherData
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super init]) {
+        self.citymark = [aDecoder decodeObjectForKey:@"citymark"];
+        self.currentCondition = [aDecoder decodeObjectForKey:@"currentCondition"];
+        self.forecastConditions = [aDecoder decodeObjectForKey:@"forecastConditions"];
+    }
+    return self;
+}
 
-#pragma mark - SOLFlickrRequest Interface
-
-/**
- */
-@interface SOLFlickrWeatherImageRequest : NSObject
-
-// -----
-// @name Using Flickr Weather Image Request
-// -----
-
-#pragma mark Using Flickr Weather Image Request
-
-/**
- */
-+ (void)sendRequestForAPIKey:(NSString *)APIKey
-                    location:(CLLocation *)location
-                    keywords:(NSArray *)keywords
-                  completion:(SOLFlickrRequestCompletion)completion;
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.citymark forKey:@"citymark"];
+    [aCoder encodeObject:self.currentCondition forKey:@"currentCondition"];
+    [aCoder encodeObject:self.forecastConditions forKey:@"forecastConditions"];
+}
 
 @end

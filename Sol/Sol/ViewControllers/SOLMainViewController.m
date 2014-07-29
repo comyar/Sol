@@ -29,6 +29,8 @@
 #pragma mark - Imports
 
 #import "SOLMainViewController.h"
+#import "SOLWeatherViewController.h"
+#import "CZCitymark.h"
 
 
 #pragma mark - Constants
@@ -43,8 +45,14 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
 
 @interface SOLMainViewController () <UIPageViewControllerDataSource, CLLocationManagerDelegate>
 
+// Geocoder used to geocode the user's current location
+@property (nonatomic) CLGeocoder            *geocoder;
+
 // Location manager to get the user's current location
 @property (nonatomic) CLLocationManager     *locationManager;
+
+// Weather view controllers
+@property (nonatomic) NSMutableArray        *weatherViewControllers;
 
 // Page view controller to manage weather view controllers
 @property (nonatomic) UIPageViewController  *pageViewController;
@@ -74,6 +82,8 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
         self.locationManager.activityType = CLActivityTypeOther;
         self.locationManager.delegate = self;
         
+        self.geocoder = [CLGeocoder new];
+        self.weatherViewControllers = [NSMutableArray new];
     }
     return self;
 }
@@ -135,17 +145,37 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
     if (status != kCLAuthorizationStatusNotDetermined) {
         // add non local weather view controllers
         
+    
         if (status == kCLAuthorizationStatusAuthorized) {
-            // add local weather view controller
+            SOLWeatherViewController *localWeatherViewController = [SOLWeatherViewController new];
+            localWeatherViewController.local = YES;
+            [self.weatherViewControllers insertObject:localWeatherViewController atIndex:0];
         } else if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
-            // remove local weather view controller
+            SOLWeatherViewController *weatherViewController = [self.weatherViewControllers firstObject];
+            if (weatherViewController.local) {
+                [self.weatherViewControllers removeObjectAtIndex:0];
+            }
         }
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    NSLog(@"location update");
+    CLLocation *currentLocation = [locations lastObject];
+    
+    [self.geocoder reverseGeocodeLocation:currentLocation completionHandler: ^ (NSArray *placemarks, NSError *error) {
+        CLPlacemark *placemark = [placemarks firstObject];
+        
+        if (placemark) {
+            CZCitymark *citymark = [CZCitymark citymarkWithLocality:placemark.locality
+                                                 administrativeArea:placemark.administrativeArea
+                                                            country:placemark.country
+                                                         coordinate:placemark.location.coordinate];
+            
+            SOLWeatherViewController *localWeatherViewController = [self.weatherViewControllers firstObject];
+            localWeatherViewController.citymark = citymark;
+        }
+    }];
 }
 
 #pragma mark UIPageViewControllerDataSource Methods

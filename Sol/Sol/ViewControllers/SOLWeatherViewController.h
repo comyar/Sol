@@ -31,7 +31,7 @@
 @import UIKit;
 @import CoreLocation;
 #import <CZWeatherKit/CZWeatherKit.h>
-
+#import "CZCitymark.h"
 
 #pragma mark - Forward Declarations
 
@@ -44,13 +44,33 @@
  */
 @interface SOLWeatherViewController : UIViewController
 
+// -----
+// @name Using a Weather View Controller
+// -----
+
 /**
  */
-- (void)updateWithPlacemark:(CLPlacemark *)placemark;
+- (void)update;
 
 // -----
 // @name Properties
 // -----
+
+/**
+ */
+@property (nonatomic) BOOL                  local;
+
+/**
+ */
+@property (nonatomic) CZCitymark            *citymark;
+
+/**
+ */
+@property (nonatomic) CZWeatherCondition    *currentCondition;
+
+/**
+ */
+@property (nonatomic) NSArray               *forecastConditions;
 
 /**
  */

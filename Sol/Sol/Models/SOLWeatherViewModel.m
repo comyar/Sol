@@ -62,15 +62,15 @@ static const NSTimeInterval dayLength               = 86400.0;
 
 @implementation SOLWeatherViewModel
 
-+ (SOLWeatherViewModel *)weatherViewModelForPlacemark:(CLPlacemark *)placemark
++ (SOLWeatherViewModel *)weatherViewModelForCitymark:(CZCitymark *)citymark
                               currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
                             forecastWeatherConditions:(NSArray *)forecastWeatherConditions
                                               celsius:(BOOL)celsius
 {
     if ([SOLWeatherViewModel validCurrentWeatherCondition:currentWeatherCondition]     &&
         [SOLWeatherViewModel validForecastWeatherConditions:forecastWeatherConditions] &&
-        [SOLWeatherViewModel validPlacemark:placemark]) {
-        return [[SOLWeatherViewModel alloc]initWithPlacemark:placemark
+        [SOLWeatherViewModel validCitymark:citymark]) {
+        return [[SOLWeatherViewModel alloc]initWithCitymark:citymark
                                      currentWeatherCondition:currentWeatherCondition
                                    forecastWeatherConditions:forecastWeatherConditions
                                                      celsius:celsius];
@@ -78,15 +78,15 @@ static const NSTimeInterval dayLength               = 86400.0;
     return nil;
 }
 
-- (instancetype)initWithPlacemark:(CLPlacemark *)placemark
+- (instancetype)initWithCitymark:(CZCitymark *)citymark
           currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
         forecastWeatherConditions:(NSArray *)forecastWeatherConditions
                           celsius:(BOOL)celsius
 {
     if (self = [super init]) {
         self.conditionLabelString = currentWeatherCondition.description;
-        self.locationLabelString = [NSString stringWithFormat:@"%@, %@", placemark.locality,
-                                    [placemark.ISOcountryCode isEqualToString:@"US"]? placemark.administrativeArea : placemark.country];
+        self.locationLabelString = [NSString stringWithFormat:@"%@, %@", citymark.locality,
+                                    [citymark.country isEqualToString:@"United States"]? citymark.administrativeArea : citymark.country];
         
         CZWeatherCondition *todayForecastCondition = [forecastWeatherConditions firstObject];
         CGFloat todayCurrentTemperature         = (celsius)? todayForecastCondition.temperature.c : todayForecastCondition.temperature.f;
@@ -106,16 +106,16 @@ static const NSTimeInterval dayLength               = 86400.0;
         CZWeatherCondition *dayTwoForecastCondition     = forecastWeatherConditions[2];
         CZWeatherCondition *dayThreeForecastCondition   = forecastWeatherConditions[3];
         
-        self.forecastIconOneLabelString = [NSString stringWithFormat:@"%c",     dayOneForecastCondition.climaconCharacter];
-        self.forecastIconTwoLabelString = [NSString stringWithFormat:@"%c",     dayTwoForecastCondition.climaconCharacter];
-        self.forecastIconThreeLabelString = [NSString stringWithFormat:@"%c",   dayThreeForecastCondition.climaconCharacter];
+        self.forecastIconOneLabelString   = [NSString stringWithFormat:@"%c", dayOneForecastCondition.climaconCharacter];
+        self.forecastIconTwoLabelString   = [NSString stringWithFormat:@"%c", dayTwoForecastCondition.climaconCharacter];
+        self.forecastIconThreeLabelString = [NSString stringWithFormat:@"%c", dayThreeForecastCondition.climaconCharacter];
     }
     return self;
 }
 
-+ (BOOL)validPlacemark:(CLPlacemark *)placemark
++ (BOOL)validCitymark:(CZCitymark *)citymark
 {
-    return placemark.locality && (placemark.administrativeArea || placemark.country);
+    return citymark.locality && (citymark.administrativeArea || citymark.country);
 }
 
 + (BOOL)validCurrentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition

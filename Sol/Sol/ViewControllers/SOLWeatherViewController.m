@@ -30,6 +30,8 @@
 
 #import "SOLWeatherViewController.h"
 #import "SOLWeatherView.h"
+#import "SOLKeyManager.h"
+#import "SOLWeatherViewModel.h"
 
 
 #pragma mark - SOLWeatherViewController Class Extension
@@ -61,7 +63,49 @@
     [self.view addSubview:self.weatherView];
 }
 
-- (void)updateWithPlacemark:(CLPlacemark *)placemark
+- (void)update
+{
+    if (self.citymark) {
+        
+        CZWeatherRequest *currentConditionRequest = [CZWeatherRequest requestWithType:CZCurrentConditionsRequestType];
+        currentConditionRequest.location   = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.citymark.coordinate];
+        currentConditionRequest.service    = [CZForecastioService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"forecast.io"]];
+        
+        CZWeatherRequest *forecastConditionsRequest = [CZWeatherRequest requestWithType:CZForecastRequestType];
+        forecastConditionsRequest.location  = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.citymark.coordinate];
+        forecastConditionsRequest.service   = [CZForecastioService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"forecast.io"]];
+        
+        [currentConditionRequest performRequestWithHandler: ^ (id data, NSError *error) {
+            if (data) {
+                __block CZWeatherCondition *currentCondition = (CZWeatherCondition *)data;
+                
+                [forecastConditionsRequest performRequestWithHandler:^(id data, NSError *error) {
+                    if (data) {
+                        NSArray *forecastConditions = (NSArray *)data;
+                        self.currentCondition   = currentCondition;
+                        self.forecastConditions = forecastConditions;
+                    } else {
+                        [self updateDidFail];
+                    }
+                }];
+            } else {
+                [self updateDidFail];
+            }
+        }];
+    }
+}
+
+- (void)updateWeatherView
+{
+    if (self.citymark && self.currentCondition && self.forecastConditions) {
+        SOLWeatherViewModel *weatherViewModel = [SOLWeatherViewModel weatherViewModelForCitymark:self.citymark
+                                                                         currentWeatherCondition:self.currentCondition
+                                                                       forecastWeatherConditions:self.forecastConditions
+                                                                                         celsius:NO];
+    }
+}
+
+- (void)updateDidFail
 {
     
 }

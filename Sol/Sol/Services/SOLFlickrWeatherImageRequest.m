@@ -31,8 +31,20 @@
 #import "SOLFlickrWeatherImageRequest.h"
 
 
+#pragma mark - Constants
+
+
+
 #pragma mark - SOLFlickrRequest Implementation
 
 @implementation SOLFlickrWeatherImageRequest
+
++ (void)sendRequestForAPIKey:(NSString *)APIKey
+                    location:(CLLocation *)location
+                    keywords:(NSArray *)keywords
+                  completion:(SOLFlickrRequestCompletion)completion
+{
+    
+}
 
 @end

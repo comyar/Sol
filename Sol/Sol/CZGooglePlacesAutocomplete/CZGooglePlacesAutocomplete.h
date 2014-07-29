@@ -1,5 +1,5 @@
 //
-//  SOLFlickrRequest.h
+//  CZGooglePlacesAutocomplete.h
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -32,30 +32,62 @@
 @import CoreLocation;
 
 
+
 #pragma mark - Type Definitions
 
+/** */
+typedef void (^CZGooglePlacesAutocompleteCompletion) (NSArray *citymarks, NSError *error);
+
+/** */
+typedef NS_ENUM(u_int8_t, CZGooglePlacesAutocompleteError) {
+    /** */
+    CZGooglePlacesAutocompleteInvalidConfigurationError = 0,
+    /** */
+    CZGooglePlacesAutocompleteResultParsingError        = 1,
+    /** */
+    CZGooglePlacesAutocompleteServerStatusError         = 2
+};
+
+
+#pragma mark - Constants
+
+/** */
+extern NSString * const CZGooglePlacesOffsetOptionName;
+
+/** */
+extern NSString * const CZGooglePlacesLocationOptionName;
+
+/** */
+extern NSString * const CZGooglePlacesRadiusOptionName;
+
+/** */
+extern NSString * const CZGooglePlacesLanguageOptionName;
+
+/** */
+extern NSString * const CZGooglePlacesTypeOptionName;
+
+/** */
+extern NSString * const CZGooglePlacesAutocompleteErrorDomain;
+
+
+#pragma mark - CZGooglePlacesAutocomplete Interface
+
 /**
  */
-typedef void (^SOLFlickrRequestCompletion) (UIImage *image, NSError *error);
-
-
-#pragma mark - SOLFlickrRequest Interface
-
-/**
- */
-@interface SOLFlickrWeatherImageRequest : NSObject
+@interface CZGooglePlacesAutocomplete : NSObject
 
 // -----
-// @name Using Flickr Weather Image Request
+// @name Using Google Places Autocomplete
 // -----
-
-#pragma mark Using Flickr Weather Image Request
 
 /**
  */
-+ (void)sendRequestForAPIKey:(NSString *)APIKey
-                    location:(CLLocation *)location
-                    keywords:(NSArray *)keywords
-                  completion:(SOLFlickrRequestCompletion)completion;
++ (void)provideAPIKey:(NSString *)key;
+
+/**
+ */
++ (void)autocompleteWithText:(NSString *)text
+                     options:(NSDictionary *)options
+                  completion:(CZGooglePlacesAutocompleteCompletion)completion;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  SOLFlickrRequest.h
+//  SOLSettingsManager.h
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -29,33 +29,12 @@
 #pragma mark - Imports
 
 @import Foundation;
-@import CoreLocation;
 
 
-#pragma mark - Type Definitions
-
-/**
- */
-typedef void (^SOLFlickrRequestCompletion) (UIImage *image, NSError *error);
-
-
-#pragma mark - SOLFlickrRequest Interface
+#pragma mark - SOLSettingsManager Interface
 
 /**
  */
-@interface SOLFlickrWeatherImageRequest : NSObject
-
-// -----
-// @name Using Flickr Weather Image Request
-// -----
-
-#pragma mark Using Flickr Weather Image Request
-
-/**
- */
-+ (void)sendRequestForAPIKey:(NSString *)APIKey
-                    location:(CLLocation *)location
-                    keywords:(NSArray *)keywords
-                  completion:(SOLFlickrRequestCompletion)completion;
+@interface SOLSettingsManager : NSObject
 
 @end

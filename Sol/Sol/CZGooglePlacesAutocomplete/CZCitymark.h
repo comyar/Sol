@@ -1,5 +1,5 @@
 //
-//  SOLFlickrRequest.h
+//  CZCitymark.h
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -31,31 +31,41 @@
 @import Foundation;
 @import CoreLocation;
 
-
-#pragma mark - Type Definitions
-
-/**
- */
-typedef void (^SOLFlickrRequestCompletion) (UIImage *image, NSError *error);
-
-
-#pragma mark - SOLFlickrRequest Interface
+#pragma mark - CZCitymark Interface
 
 /**
  */
-@interface SOLFlickrWeatherImageRequest : NSObject
+@interface CZCitymark : NSObject <NSCoding>
 
 // -----
-// @name Using Flickr Weather Image Request
+// @name Creating a CZCitymark
 // -----
-
-#pragma mark Using Flickr Weather Image Request
 
 /**
  */
-+ (void)sendRequestForAPIKey:(NSString *)APIKey
-                    location:(CLLocation *)location
-                    keywords:(NSArray *)keywords
-                  completion:(SOLFlickrRequestCompletion)completion;
++ (CZCitymark *)citymarkWithLocality:(NSString *)locality
+                  administrativeArea:(NSString *)administrativeArea
+                             country:(NSString *)country
+                          coordinate:(CLLocationCoordinate2D)coordinate;
+
+// -----
+// @name Properties
+// -----
+
+/**
+ */
+@property (nonatomic, readonly) NSString *locality;
+
+/**
+ */
+@property (nonatomic, readonly) NSString *administrativeArea;
+
+/**
+ */
+@property (nonatomic, readonly) NSString *country;
+
+/**
+ */
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
 @end
