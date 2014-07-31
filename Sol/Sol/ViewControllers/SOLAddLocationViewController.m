@@ -121,14 +121,14 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.delegate dismissAddLocationViewController];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark DoneButton Methods
 
 - (void)doneButtonPressed
 {
-    [self.delegate dismissAddLocationViewController];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark UISearchDisplayControllerDelegate Methods
@@ -192,7 +192,7 @@
         [tableView cellForRowAtIndexPath:indexPath].selected = NO;
         CLPlacemark *placemark = [self.searchResults objectAtIndex:indexPath.row];
         [self.delegate didAddLocationWithPlacemark:placemark];
-        [self.delegate dismissAddLocationViewController];
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

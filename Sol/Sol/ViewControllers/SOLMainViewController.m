@@ -30,6 +30,8 @@
 
 #import "SOLMainViewController.h"
 #import "SOLWeatherViewController.h"
+#import "SOLAddLocationViewController.h"
+#import "SOLSettingsViewController.h"
 #import "SOLKeyManager.h"
 
 
@@ -49,22 +51,28 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
 @interface SOLMainViewController () <UIPageViewControllerDataSource, CLLocationManagerDelegate>
 
 // Geocoder used to geocode the user's current location
-@property (nonatomic) CLGeocoder            *geocoder;
+@property (nonatomic) CLGeocoder                    *geocoder;
 
 // Location manager to get the user's current location
-@property (nonatomic) CLLocationManager     *locationManager;
+@property (nonatomic) CLLocationManager             *locationManager;
+
+// View controller to add new locations
+@property (nonatomic) SOLAddLocationViewController  *addLocationViewController;
+
+// Settings view controller
+@property (nonatomic) SOLSettingsViewController     *settingsViewController;
 
 // Weather view controllers
-@property (nonatomic) NSMutableArray        *weatherViewControllers;
+@property (nonatomic) NSMutableArray                *weatherViewControllers;
 
 // Page view controller to manage weather view controllers
-@property (nonatomic) UIPageViewController  *pageViewController;
+@property (nonatomic) UIPageViewController          *pageViewController;
 
 // Button to present the add location view controller
-@property (nonatomic) UIButton              *addLocationButton;
+@property (nonatomic) UIButton                      *addLocationButton;
 
 // Button to present the settings view controller
-@property (nonatomic) UIButton              *settingsButton;
+@property (nonatomic) UIButton                      *settingsButton;
 
 @end
 
@@ -83,6 +91,10 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
         self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                                                                options:nil];
+        
+        self.settingsViewController     = [SOLSettingsViewController new];
+        self.addLocationViewController  = [SOLAddLocationViewController new];
+        
         self.locationManager = [CLLocationManager new];
         self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
         self.locationManager.distanceFilter = locationManagerDistanceFilter;
@@ -139,7 +151,7 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if (button == self.addLocationButton) {
-        
+        [self presentViewController:self.addLocationViewController animated:YES completion:nil];
     } else if (button == self.settingsButton) {
         
     }

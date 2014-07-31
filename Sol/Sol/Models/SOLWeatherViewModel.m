@@ -120,7 +120,7 @@ static const NSTimeInterval dayLength               = 86400.0;
 
 + (BOOL)validCurrentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
 {
-    return  currentWeatherCondition.summary                             &&
+    return  currentWeatherCondition.summary                                 &&
             currentWeatherCondition.temperature.f != CZWeatherKitNoValue    &&
             currentWeatherCondition.temperature.c != CZWeatherKitNoValue;
 }

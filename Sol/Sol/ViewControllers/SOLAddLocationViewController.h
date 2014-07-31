@@ -44,12 +44,6 @@
  */
 - (void)didAddLocationWithPlacemark:(CLPlacemark *)placemark;
 
-/**
- Called by a SOLAddLocationViewController when the view controller needs to
- be dismissed.
- */
-- (void)dismissAddLocationViewController;
-
 @end
 
 
