@@ -36,9 +36,6 @@
 @interface SOLAddLocationViewController () <UISearchDisplayDelegate, UITableViewDelegate,
                                             UITableViewDataSource, UISearchBarDelegate, UIScrollViewDelegate>
 
-// Used to geocode search location
-@property (strong, nonatomic) CLGeocoder                    *geocoder;
-
 // Results of a search
 @property (strong, nonatomic) NSMutableArray                *searchResults;
 
@@ -72,7 +69,6 @@
         self.view.backgroundColor = [UIColor clearColor];
         self.view.opaque = NO;
         
-        self.geocoder = [[CLGeocoder alloc]init];
         self.searchResults = [[NSMutableArray alloc]initWithCapacity:5];
         
         self.navigationBar =[[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
@@ -135,15 +131,7 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    [self.geocoder geocodeAddressString:searchString completionHandler: ^ (NSArray *placemarks, NSError *error) {
-        self.searchResults = [[NSMutableArray alloc]initWithCapacity:1];
-        for(CLPlacemark *placemark in placemarks) {
-            if(placemark.locality) {
-                [self.searchResults addObject:placemark];
-            }
-        }
-        [controller.searchResultsTableView reloadData];
-    }];
+
     return NO;
 }
 

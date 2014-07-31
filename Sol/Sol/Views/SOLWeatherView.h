@@ -81,6 +81,15 @@
 //  Displays the icon representing the predicted conditions for the third forecast snapshot
 @property (nonatomic, readonly) UILabel                 *forecastIconThreeLabel;
 
+//
+@property (nonatomic, readonly) UILabel                 *forecastTemperatureOneLabel;
+
+//
+@property (nonatomic, readonly) UILabel                 *forecastTemperatureTwoLabel;
+
+//
+@property (nonatomic, readonly) UILabel                 *forecastTemperatureThreeLabel;
+
 //  Indicates whether data is being downloaded for this weather view
 @property (nonatomic, readonly) UIActivityIndicatorView *activityIndicator;
 
