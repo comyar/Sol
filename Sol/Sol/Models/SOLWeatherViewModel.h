@@ -30,7 +30,6 @@
 
 #import <Foundation/Foundation.h>
 #import <CZWeatherKit/CZWeatherKit.h>
-#import "CZCitymark.h"
 
 #pragma mark - SOLWeatherViewModel Interface
 
@@ -44,7 +43,7 @@
 
 /**
  */
-+ (SOLWeatherViewModel *)weatherViewModelForCitymark:(CZCitymark *)citymark
++ (SOLWeatherViewModel *)weatherViewModelForPlacemark:(CLPlacemark *)placemark
                               currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
                             forecastWeatherConditions:(NSArray *)forecastWeatherConditions
                                               celsius:(BOOL)celsius;

@@ -29,9 +29,8 @@
 #pragma mark - Imports
 
 @import Foundation;
+@import CoreLocation;
 #import <CZWeatherKit/CZWeatherKit.h>
-#import "CZCitymark.h"
-
 
 #pragma mark - SOLWeatherData Interface
 
@@ -39,7 +38,7 @@
  */
 @interface SOLWeatherData : NSObject <NSCoding>
 
-@property (nonatomic) CZCitymark            *citymark;
+@property (nonatomic) CLPlacemark           *placemark;
 @property (nonatomic) CZWeatherCondition    *currentCondition;
 @property (nonatomic) NSArray               *forecastConditions;
 

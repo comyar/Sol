@@ -30,9 +30,11 @@
 
 @import UIKit;
 @import CoreLocation;
+#import <FlickrKit/FlickrKit.h>
 #import <CZWeatherKit/CZWeatherKit.h>
+#import <UIImageEffects/UIImage+ImageEffects.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
-#import "CZCitymark.h"
+
 
 #pragma mark - Forward Declarations
 
@@ -59,22 +61,22 @@
 
 /**
  */
-@property (nonatomic) BOOL                  local;
+@property (nonatomic) BOOL                      local;
 
 /**
  */
-@property (nonatomic) CZCitymark            *citymark;
+@property (nonatomic) CLPlacemark               *placemark;
 
 /**
  */
-@property (nonatomic) CZWeatherCondition    *currentCondition;
+@property (nonatomic) CZWeatherCondition        *currentCondition;
 
 /**
  */
-@property (nonatomic) NSArray               *forecastConditions;
+@property (nonatomic) NSArray                   *forecastConditions;
 
 /**
  */
-@property (nonatomic, readonly) SOLWeatherView *weatherView;
+@property (nonatomic, readonly) SOLWeatherView  *weatherView;
 
 @end

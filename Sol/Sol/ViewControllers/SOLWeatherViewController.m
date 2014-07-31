@@ -33,14 +33,20 @@
 #import "SOLKeyManager.h"
 #import "SOLWeatherViewModel.h"
 #import "SOLSettingsManager.h"
-#import "SOLFlickrWeatherImageRequest.h"
+
+
+#pragma mark - Constants
+
+static NSString * const flickrGroupID = @"1463451@N25";
 
 
 #pragma mark - SOLWeatherViewController Class Extension
 
 @interface SOLWeatherViewController ()
 
-@property (nonatomic) SOLWeatherView *weatherView;
+@property (nonatomic) SOLWeatherView    *weatherView;
+
+@property (nonatomic) UIImageView       *backgroundImageView;
 
 @end
 
@@ -61,6 +67,12 @@
 {
     [super viewDidLoad];
     
+    self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.backgroundImageView.clipsToBounds = YES;
+    self.backgroundImageView.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:self.backgroundImageView];
+    
     self.weatherView = [[SOLWeatherView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.weatherView];
 }
@@ -80,14 +92,14 @@
     
     [self.weatherView.activityIndicator startAnimating];
     
-    if (self.citymark) {
+    if (self.placemark) {
         
         CZWeatherRequest *currentConditionRequest = [CZWeatherRequest requestWithType:CZCurrentConditionsRequestType];
-        currentConditionRequest.location   = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.citymark.coordinate];
+        currentConditionRequest.location   = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
         currentConditionRequest.service    = [CZWundergroundService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"wunderground"]];
         
         CZWeatherRequest *forecastConditionsRequest = [CZWeatherRequest requestWithType:CZForecastRequestType];
-        forecastConditionsRequest.location  = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.citymark.coordinate];
+        forecastConditionsRequest.location  = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
         forecastConditionsRequest.service   = [CZWundergroundService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"wunderground"]];
         
         [currentConditionRequest performRequestWithHandler: ^ (id data, NSError *error) {
@@ -100,16 +112,6 @@
                         self.currentCondition   = currentCondition;
                         self.forecastConditions = forecastConditions;
                         
-                        [SOLFlickrWeatherImageRequest sendRequestForAPIKey:[SOLKeyManager keyForDictionaryKey:@"flickr"] coordinate:self.citymark.coordinate keywords:[self.currentCondition.summary componentsSeparatedByString:@" "] completion: ^ (NSURL *url, NSError *error) {
-                             NSLog(@"%@", url);
-                            if (url) {
-                                [self.weatherView.backgroundImageView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                    self.weatherView.backgroundImageView.image = image;
-                                } failure:nil];
-                            }
-                            
-                        }];
-                        
                         [self updateWeatherView];
                     } else {
                         [self updateDidFail];
@@ -121,18 +123,46 @@
                 [self.weatherView.activityIndicator stopAnimating];
             }
         }];
+        
+        [self updateBackgroundImageWithLocation:self.placemark];
     }
+}
+
+- (void)updateBackgroundImageWithLocation:(CLPlacemark *)placemark
+{
+    NSString *latitudeString = [NSString stringWithFormat:@"%f", placemark.location.coordinate.latitude];
+    NSString *longitudeString = [NSString stringWithFormat:@"%f", placemark.location.coordinate.longitude];
+    
+    [[FlickrKit sharedFlickrKit]call:@"flickr.photos.search" args:@{@"group_id": flickrGroupID, @"accuracy":@"11", @"lat": latitudeString, @"lon":longitudeString} maxCacheAge:FKDUMaxAgeOneDay completion:^(NSDictionary *response, NSError *error) {
+        if (response) {
+            NSMutableArray *photoURLs = [NSMutableArray array];
+            for (NSDictionary *photoData in [response valueForKeyPath:@"photos.photo"]) {
+                NSURL *url = [[FlickrKit sharedFlickrKit]photoURLForSize:FKPhotoSizeLarge1024 fromPhotoDictionary:photoData];
+                [photoURLs addObject:url];
+            }
+            
+            if ([photoURLs count] > 0) {
+                NSURL *photoURL = photoURLs[arc4random() % [photoURLs count]];
+                
+                __weak __block UIImageView *weakBackgroundImageView = self.backgroundImageView;
+                [self.backgroundImageView setImageWithURLRequest:[NSURLRequest requestWithURL:photoURL] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                    weakBackgroundImageView.image = [image applyBlurWithRadius:0.1
+                                                                     tintColor:[UIColor colorWithWhite:0.1 alpha:0.8]
+                                                         saturationDeltaFactor:1.8
+                                                                     maskImage:nil];
+                } failure:nil];
+            }
+        }
+    }];
 }
 
 - (void)updateWeatherView
 {
-    if (self.citymark && self.currentCondition && self.forecastConditions) {
-        SOLWeatherViewModel *weatherViewModel = [SOLWeatherViewModel weatherViewModelForCitymark:self.citymark
+    if (self.placemark && self.currentCondition && self.forecastConditions) {
+        SOLWeatherViewModel *weatherViewModel = [SOLWeatherViewModel weatherViewModelForPlacemark:self.placemark
                                                                          currentWeatherCondition:self.currentCondition
                                                                        forecastWeatherConditions:self.forecastConditions
                                                                                          celsius:[SOLSettingsManager sharedManager].isCelsius];
-        
-        NSLog(@"%@", weatherViewModel);
         self.weatherView.locationLabel.text             = weatherViewModel.locationLabelString;
         self.weatherView.conditionIconLabel.text        = weatherViewModel.conditionIconString;
         self.weatherView.conditionDescriptionLabel.text = weatherViewModel.conditionLabelString;

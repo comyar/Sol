@@ -21,13 +21,26 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CZWeatherKit (0.8.0)
+  - FlickrKit (1.0.3)
+  - SPGooglePlacesAutocomplete (1.0.3)
+  - UIImageEffects (0.0.1)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.0)
+  - AFNetworking
   - CZWeatherKit
+  - FlickrKit (from `https://github.com/comyarzaheri/FlickrKit`)
+  - SPGooglePlacesAutocomplete
+  - UIImageEffects
+
+EXTERNAL SOURCES:
+  FlickrKit:
+    :git: https://github.com/comyarzaheri/FlickrKit
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   CZWeatherKit: 03d9d0b33669f2b95cbc58e376c5bfdc93713f21
+  FlickrKit: 1c2e90d8a6a351866dc46b5f3420ce062edf3953
+  SPGooglePlacesAutocomplete: 4caf647c644fe749df0d63a7e2c3e63f57990fdd
+  UIImageEffects: 69cd1e1f8fc4042a8fefcf4a0727cbf213e4dbfb
 
 COCOAPODS: 0.33.1

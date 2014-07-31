@@ -46,44 +46,42 @@
 // -----
 
 //  Displays the time the weather data for this view was last updated
-@property (nonatomic, readonly) UILabel *updatedLabel;
+@property (nonatomic, readonly) UILabel                 *updatedLabel;
 
 //  Displays the icon for current conditions
-@property (nonatomic, readonly) UILabel *conditionIconLabel;
+@property (nonatomic, readonly) UILabel                 *conditionIconLabel;
 
 //  Displays the description of current conditions
-@property (nonatomic, readonly) UILabel *conditionDescriptionLabel;
+@property (nonatomic, readonly) UILabel                 *conditionDescriptionLabel;
 
 //  Displays the location whose weather data is being represented by this weather view
-@property (nonatomic, readonly) UILabel *locationLabel;
+@property (nonatomic, readonly) UILabel                 *locationLabel;
 
 //  Displayes the current temperature
-@property (nonatomic, readonly) UILabel *currentTemperatureLabel;
+@property (nonatomic, readonly) UILabel                 *currentTemperatureLabel;
 
 //  Displays both the high and low temperatures for today
-@property (nonatomic, readonly) UILabel *highLowTemperatureLabel;
+@property (nonatomic, readonly) UILabel                 *highLowTemperatureLabel;
 
 //  Displays the day of the week for the first forecast snapshot
-@property (nonatomic, readonly) UILabel *forecastDayOneLabel;
+@property (nonatomic, readonly) UILabel                 *forecastDayOneLabel;
 
 //  Displays the day of the week for the second forecast snapshot
-@property (nonatomic, readonly) UILabel *forecastDayTwoLabel;
+@property (nonatomic, readonly) UILabel                 *forecastDayTwoLabel;
 
 //  Displays the day of the week for the third forecast snapshot
-@property (nonatomic, readonly) UILabel *forecastDayThreeLabel;
+@property (nonatomic, readonly) UILabel                 *forecastDayThreeLabel;
 
 //  Displays the icon representing the predicted conditions for the first forecast snapshot
-@property (nonatomic, readonly) UILabel *forecastIconOneLabel;
+@property (nonatomic, readonly) UILabel                 *forecastIconOneLabel;
 
 //  Displays the icon representing the predicted conditions for the second forecast snapshot
-@property (nonatomic, readonly) UILabel *forecastIconTwoLabel;
+@property (nonatomic, readonly) UILabel                 *forecastIconTwoLabel;
 
 //  Displays the icon representing the predicted conditions for the third forecast snapshot
-@property (nonatomic, readonly) UILabel *forecastIconThreeLabel;
+@property (nonatomic, readonly) UILabel                 *forecastIconThreeLabel;
 
 //  Indicates whether data is being downloaded for this weather view
 @property (nonatomic, readonly) UIActivityIndicatorView *activityIndicator;
-
-@property (nonatomic, readonly) UIImageView *backgroundImageView;
 
 @end

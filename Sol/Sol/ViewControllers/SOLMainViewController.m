@@ -30,12 +30,15 @@
 
 #import "SOLMainViewController.h"
 #import "SOLWeatherViewController.h"
-#import "CZCitymark.h"
+#import "SOLKeyManager.h"
+
 
 
 #pragma mark - Constants
 
 static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
+
+
 
 //static const NSInteger maxNumWeatherViews           = 5;
 //static const NSTimeInterval minTimeBetweenUpdates   = 3600.0;
@@ -73,6 +76,10 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        [[FlickrKit sharedFlickrKit]initializeWithAPIKey:[SOLKeyManager keyForDictionaryKey:@"flickr_key"]
+                                            sharedSecret:[SOLKeyManager keyForDictionaryKey:@"flickr_secret"]];
+        
+        
         self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                                                                options:nil];
@@ -172,13 +179,8 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
         CLPlacemark *placemark = [placemarks firstObject];
         
         if (placemark) {
-            CZCitymark *citymark = [CZCitymark citymarkWithLocality:placemark.locality
-                                                 administrativeArea:placemark.administrativeArea
-                                                            country:placemark.country
-                                                         coordinate:placemark.location.coordinate];
-            
             SOLWeatherViewController *localWeatherViewController = [self.weatherViewControllers firstObject];
-            localWeatherViewController.citymark = citymark;
+            localWeatherViewController.placemark = placemark;
             [localWeatherViewController update];
         }
     }];

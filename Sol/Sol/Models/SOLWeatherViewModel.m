@@ -63,18 +63,18 @@ static const NSTimeInterval dayLength               = 86400.0;
 
 @implementation SOLWeatherViewModel
 
-+ (SOLWeatherViewModel *)weatherViewModelForCitymark:(CZCitymark *)citymark
++ (SOLWeatherViewModel *)weatherViewModelForPlacemark:(CLPlacemark *)placemark
                               currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
                             forecastWeatherConditions:(NSArray *)forecastWeatherConditions
                                               celsius:(BOOL)celsius
 {
-    return [[SOLWeatherViewModel alloc]initWithCitymark:citymark
+    return [[SOLWeatherViewModel alloc]initWithPlacemark:placemark
                                  currentWeatherCondition:currentWeatherCondition
                                forecastWeatherConditions:forecastWeatherConditions
                                                  celsius:celsius];
 }
 
-- (instancetype)initWithCitymark:(CZCitymark *)citymark
+- (instancetype)initWithPlacemark:(CLPlacemark *)placemark
           currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
         forecastWeatherConditions:(NSArray *)forecastWeatherConditions
                           celsius:(BOOL)celsius
@@ -82,8 +82,8 @@ static const NSTimeInterval dayLength               = 86400.0;
     if (self = [super init]) {
         self.conditionLabelString = currentWeatherCondition.summary;
         self.conditionIconString = [NSString stringWithFormat:@"%c", currentWeatherCondition.climaconCharacter];
-        self.locationLabelString = [NSString stringWithFormat:@"%@, %@", citymark.locality,
-                                    [citymark.country isEqualToString:@"United States"]? citymark.administrativeArea : citymark.country];
+        self.locationLabelString = [NSString stringWithFormat:@"%@, %@", placemark.locality,
+                                    [placemark.country isEqualToString:@"United States"]? placemark.administrativeArea : placemark.country];
         
         CZWeatherCondition *todayForecastCondition = [forecastWeatherConditions firstObject];
         CGFloat todayCurrentTemperature         = (celsius)? currentWeatherCondition.temperature.c : currentWeatherCondition.temperature.f;
@@ -113,9 +113,9 @@ static const NSTimeInterval dayLength               = 86400.0;
     return self;
 }
 
-+ (BOOL)validCitymark:(CZCitymark *)citymark
++ (BOOL)validPlacemark:(CLPlacemark *)placemark
 {
-    return citymark.locality && (citymark.administrativeArea || citymark.country);
+    return placemark.locality && (placemark.administrativeArea || placemark.country);
 }
 
 + (BOOL)validCurrentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition

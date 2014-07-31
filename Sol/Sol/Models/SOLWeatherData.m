@@ -38,7 +38,7 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super init]) {
-        self.citymark = [aDecoder decodeObjectForKey:@"citymark"];
+        self.placemark = [aDecoder decodeObjectForKey:@"placemark"];
         self.currentCondition = [aDecoder decodeObjectForKey:@"currentCondition"];
         self.forecastConditions = [aDecoder decodeObjectForKey:@"forecastConditions"];
     }
@@ -47,7 +47,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self.citymark forKey:@"citymark"];
+    [aCoder encodeObject:self.placemark forKey:@"placemark"];
     [aCoder encodeObject:self.currentCondition forKey:@"currentCondition"];
     [aCoder encodeObject:self.forecastConditions forKey:@"forecastConditions"];
 }
