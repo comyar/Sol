@@ -103,7 +103,9 @@
                         [SOLFlickrWeatherImageRequest sendRequestForAPIKey:[SOLKeyManager keyForDictionaryKey:@"flickr"] coordinate:self.citymark.coordinate keywords:[self.currentCondition.summary componentsSeparatedByString:@" "] completion: ^ (NSURL *url, NSError *error) {
                              NSLog(@"%@", url);
                             if (url) {
-                                [self.weatherView.backgroundImageView setImageWithURL:url];
+                                [self.weatherView.backgroundImageView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                    self.weatherView.backgroundImageView.image = image;
+                                } failure:nil];
                             }
                             
                         }];

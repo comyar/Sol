@@ -33,7 +33,7 @@
 
 #pragma mark - Constants
 
-static NSString * const endpoint = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&accuracy=11&safe_search=1&content_type=1&group_id=1463451@N25&format=json";
+static NSString * const endpoint = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&accuracy=11&safe_search=1&content_type=1&group_id=1463451@N25&format=json&nojsoncallback=1";
 
 
 #pragma mark - SOLFlickrRequest Implementation
@@ -56,11 +56,9 @@ static NSString * const endpoint = @"https://api.flickr.com/services/rest/?metho
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSLog(@"%@", data);
         if (data) {
             NSError *error;
             NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-            NSLog(@"%@", error);
             if ([JSON[@"stat"]isEqualToString:@"ok"]) {
                 NSArray *photos = JSON[@"photos"][@"photo"];
                 if ([photos count] > 0) {
@@ -76,11 +74,12 @@ static NSString * const endpoint = @"https://api.flickr.com/services/rest/?metho
 
 + (NSURL *)imageURLFromPhotoDictionary:(NSDictionary *)photoDictionary
 {
-    NSString *urlString = [NSString stringWithFormat:@"https://farm{%@}.staticflickr.com/%@/%@_%@_b.jpg",
+    NSString *urlString = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_b.jpg",
                            photoDictionary[@"farm"],
                            photoDictionary[@"server"],
                            photoDictionary[@"id"],
                            photoDictionary[@"secret"]];
+    NSLog(@"%@", urlString);
     return [NSURL URLWithString:urlString];
 }
 
