@@ -33,20 +33,27 @@
 #import "SOLKeyManager.h"
 #import "SOLWeatherViewModel.h"
 #import "SOLSettingsManager.h"
-
+#import "SOLNotificationGlobals.h"
+#import "UIImage+CZTint.h"
 
 #pragma mark - Constants
 
+// ID for the Flickr group to fetch background images from
 static NSString * const flickrGroupID = @"1463451@N25";
+
+// Minimum number of seconds between updates
+static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 
 
 #pragma mark - SOLWeatherViewController Class Extension
 
 @interface SOLWeatherViewController ()
 
-@property (nonatomic) SOLWeatherView    *weatherView;
+// YES if the weather view controller is currently fetching data for an update
+@property (nonatomic, getter=isUpdating) BOOL   updating;
 
-@property (nonatomic) UIImageView       *backgroundImageView;
+// Redefinition of weather view property
+@property (nonatomic) SOLWeatherView            *weatherView;
 
 @end
 
@@ -58,7 +65,14 @@ static NSString * const flickrGroupID = @"1463451@N25";
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        [[SOLSettingsManager sharedManager]addObserver:self forKeyPath:@"celsius" options:NSKeyValueObservingOptionNew context:nil];
+        [[SOLSettingsManager sharedManager]addObserver:self
+                                            forKeyPath:@"celsius"
+                                               options:NSKeyValueObservingOptionNew
+                                               context:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(observeNotification:)
+                                                    name:SOLAppDidBecomeActiveNotification
+                                                  object:nil];
     }
     return self;
 }
@@ -66,12 +80,6 @@ static NSString * const flickrGroupID = @"1463451@N25";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.backgroundImageView.clipsToBounds = YES;
-    self.backgroundImageView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:self.backgroundImageView];
     
     self.weatherView = [[SOLWeatherView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.weatherView];
@@ -86,46 +94,65 @@ static NSString * const flickrGroupID = @"1463451@N25";
     }
 }
 
+- (void)observeNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:SOLAppDidBecomeActiveNotification]) {
+        if (!self.isLocal) {
+            [self update];
+        }
+    }
+}
+
 - (void)update
 {
-    // check time
-    
-    [self.weatherView.activityIndicator startAnimating];
-    
-    if (self.placemark) {
-        
-        CZWeatherRequest *currentConditionRequest = [CZWeatherRequest requestWithType:CZCurrentConditionsRequestType];
-        currentConditionRequest.location   = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
-        currentConditionRequest.service    = [CZWundergroundService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"wunderground"]];
-        
-        CZWeatherRequest *forecastConditionsRequest = [CZWeatherRequest requestWithType:CZForecastRequestType];
-        forecastConditionsRequest.location  = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
-        forecastConditionsRequest.service   = [CZWundergroundService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"wunderground"]];
-        
-        [currentConditionRequest performRequestWithHandler: ^ (id data, NSError *error) {
-            if (data) {
-                __block CZWeatherCondition *currentCondition = (CZWeatherCondition *)data;
-                
-                [forecastConditionsRequest performRequestWithHandler:^(id data, NSError *error) {
-                    if (data) {
-                        NSArray *forecastConditions = (NSArray *)data;
-                        self.currentCondition   = currentCondition;
-                        self.forecastConditions = forecastConditions;
-                        
-                        [self updateWeatherView];
-                    } else {
-                        [self updateDidFail];
-                    }
-                    [self.weatherView.activityIndicator stopAnimating];
-                }];
-            } else {
-                [self updateDidFail];
-                [self.weatherView.activityIndicator stopAnimating];
-            }
-        }];
-        
-        [self updateBackgroundImageWithLocation:self.placemark];
+    // If the time since the last update hasn't exceed an hour
+    // don't update
+    if (self.currentCondition) {
+        if ([self.currentCondition.date timeIntervalSinceNow] > -minimumTimeBetweenUpdates) {
+            return;
+        }
     }
+    
+    // Ensure we have a location
+    if (!self.placemark || self.isUpdating) {
+        return;
+    }
+    
+    self.updating = YES;
+    [self.weatherView.activityIndicator startAnimating];
+    [self updateBackgroundImageWithLocation:self.placemark];
+    
+    CZWeatherRequest *currentConditionRequest = [CZWeatherRequest requestWithType:CZCurrentConditionsRequestType];
+    currentConditionRequest.location   = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
+    currentConditionRequest.service    = [CZWundergroundService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"wunderground"]];
+    
+    CZWeatherRequest *forecastConditionsRequest = [CZWeatherRequest requestWithType:CZForecastRequestType];
+    forecastConditionsRequest.location  = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
+    forecastConditionsRequest.service   = [CZWundergroundService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"wunderground"]];
+    
+    [currentConditionRequest performRequestWithHandler: ^ (id data, NSError *error) {
+        if (data) {
+            __block CZWeatherCondition *currentCondition = (CZWeatherCondition *)data;
+            
+            [forecastConditionsRequest performRequestWithHandler:^(id data, NSError *error) {
+                if (data) {
+                    NSArray *forecastConditions = (NSArray *)data;
+                    self.currentCondition   = currentCondition;
+                    self.forecastConditions = forecastConditions;
+                    self.updating = NO;
+                    [self updateWeatherView];
+                } else {
+                    [self updateDidFail];
+                }
+                [self.weatherView.activityIndicator stopAnimating];
+            }];
+        } else {
+            [self updateDidFail];
+            [self.weatherView.activityIndicator stopAnimating];
+        }
+    }];
+    
+    
 }
 
 - (void)updateBackgroundImageWithLocation:(CLPlacemark *)placemark
@@ -144,12 +171,10 @@ static NSString * const flickrGroupID = @"1463451@N25";
             if ([photoURLs count] > 0) {
                 NSURL *photoURL = photoURLs[arc4random() % [photoURLs count]];
                 
-                __weak __block UIImageView *weakBackgroundImageView = self.backgroundImageView;
-                [self.backgroundImageView setImageWithURLRequest:[NSURLRequest requestWithURL:photoURL] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                    weakBackgroundImageView.image = [image applyBlurWithRadius:0.1
-                                                                     tintColor:[UIColor colorWithWhite:0.1 alpha:0.8]
-                                                         saturationDeltaFactor:1.8
-                                                                     maskImage:nil];
+                __weak __block UIImageView *weakBackgroundImageView = self.weatherView.backgroundImageView;
+                [self.weatherView.backgroundImageView setImageWithURLRequest:[NSURLRequest requestWithURL:photoURL] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                    weakBackgroundImageView.image = [image imageWithTintColor:[UIColor colorWithWhite:0.11 alpha:0.73]
+                                                                    blendMode:kCGBlendModeMultiply];
                 } failure:nil];
             }
         }
@@ -179,7 +204,7 @@ static NSString * const flickrGroupID = @"1463451@N25";
 
 - (void)updateDidFail
 {
-    
+    self.updating = NO;
 }
 
 - (void)dealloc

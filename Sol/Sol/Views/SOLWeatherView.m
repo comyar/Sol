@@ -42,50 +42,53 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 
 @interface SOLWeatherView ()
 
-//  Contains all label views
-@property (strong, nonatomic) UIView                    *container;
+// Contains all label views
+@property (nonatomic) UIView                    *container;
 
-//  Light-Colored ribbon to display temperatures and forecasts on
-@property (strong, nonatomic) UIView                    *ribbon;
+// Light-Colored ribbon to display temperatures and forecasts on
+@property (nonatomic) UIVisualEffectView        *ribbon;
 
-//  Displays the time the weather data for this view was last updated
-@property (strong, nonatomic) UILabel                   *updatedLabel;
+// Displays the time the weather data for this view was last updated
+@property (nonatomic) UILabel                   *updatedLabel;
 
-//  Displays the icon for current conditions
-@property (strong, nonatomic) UILabel                   *conditionIconLabel;
+// Displays the icon for current conditions
+@property (nonatomic) UILabel                   *conditionIconLabel;
 
-//  Displays the description of current conditions
-@property (strong, nonatomic) UILabel                   *conditionDescriptionLabel;
+// Displays the description of current conditions
+@property (nonatomic) UILabel                   *conditionDescriptionLabel;
 
-//  Displays the location whose weather data is being represented by this weather view
-@property (strong, nonatomic) UILabel                   *locationLabel;
+// Displays the location whose weather data is being represented by this weather view
+@property (nonatomic) UILabel                   *locationLabel;
 
-//  Displayes the current temperature
-@property (strong, nonatomic) UILabel                   *currentTemperatureLabel;
+// Displayes the current temperature
+@property (nonatomic) UILabel                   *currentTemperatureLabel;
 
-//  Displays both the high and low temperatures for today
-@property (strong, nonatomic) UILabel                   *highLowTemperatureLabel;
+// Displays both the high and low temperatures for today
+@property (nonatomic) UILabel                   *highLowTemperatureLabel;
 
-//  Displays the day of the week for the first forecast snapshot
-@property (strong, nonatomic) UILabel                   *forecastDayOneLabel;
+// Displays the day of the week for the first forecast snapshot
+@property (nonatomic) UILabel                   *forecastDayOneLabel;
 
-//  Displays the day of the week for the second forecast snapshot
-@property (strong, nonatomic) UILabel                   *forecastDayTwoLabel;
+// Displays the day of the week for the second forecast snapshot
+@property (nonatomic) UILabel                   *forecastDayTwoLabel;
 
-//  Displays the day of the week for the third forecast snapshot
-@property (strong, nonatomic) UILabel                   *forecastDayThreeLabel;
+// Displays the day of the week for the third forecast snapshot
+@property (nonatomic) UILabel                   *forecastDayThreeLabel;
 
-//  Displays the icon representing the predicted conditions for the first forecast snapshot
-@property (strong, nonatomic) UILabel                   *forecastIconOneLabel;
+// Displays the icon representing the predicted conditions for the first forecast snapshot
+@property (nonatomic) UILabel                   *forecastIconOneLabel;
 
-//  Displays the icon representing the predicted conditions for the second forecast snapshot
-@property (strong, nonatomic) UILabel                   *forecastIconTwoLabel;
+// Displays the icon representing the predicted conditions for the second forecast snapshot
+@property (nonatomic) UILabel                   *forecastIconTwoLabel;
 
-//  Displays the icon representing the predicted conditions for the third forecast snapshot
-@property (strong, nonatomic) UILabel                   *forecastIconThreeLabel;
+// Displays the icon representing the predicted conditions for the third forecast snapshot
+@property (nonatomic) UILabel                   *forecastIconThreeLabel;
 
-//  Indicates whether data is being downloaded for this weather view
-@property (strong, nonatomic) UIActivityIndicatorView   *activityIndicator;
+// Indicates whether data is being downloaded for this weather view
+@property (nonatomic) UIActivityIndicatorView   *activityIndicator;
+
+// Background image view to display image of city fetched from Flickr (or defaults)
+@property (nonatomic) UIImageView               *backgroundImageView;
 
 @end
 
@@ -100,15 +103,30 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
         
         self.backgroundColor = [UIColor clearColor];
         
+        self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.bounds];
+        
+        self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.backgroundImageView.clipsToBounds = YES;
+        self.backgroundImageView.backgroundColor = [UIColor blackColor];
+        [self addSubview:self.backgroundImageView];
+        
         //  Initialize Container
         self.container = [[UIView alloc]initWithFrame:self.bounds];
         [self.container setBackgroundColor:[UIColor clearColor]];
         [self addSubview:self.container];
         
         //  Initialize Ribbon
-        self.ribbon = [[UIView alloc]initWithFrame:CGRectMake(0, 1.30 * self.center.y, self.bounds.size.width, 80)];
-        [self.ribbon setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.25]];
-        [self.container addSubview:self.ribbon];
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVibrancyEffect *vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:blurEffect];
+        
+        self.ribbon = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
+        self.ribbon.frame = CGRectMake(0, 1.30 * self.center.y, self.bounds.size.width, 80);
+
+        UIVisualEffectView *vibrancyEffectView = [[UIVisualEffectView alloc]initWithEffect:vibrancyEffect];
+        vibrancyEffectView.frame = self.ribbon.bounds;
+        [self.ribbon addSubview:vibrancyEffectView];
+        
+        [self.backgroundImageView addSubview:self.ribbon];
         
         //  Initialize Activity Indicator
         self.activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];

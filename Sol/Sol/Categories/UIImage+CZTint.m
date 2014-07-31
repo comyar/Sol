@@ -1,5 +1,5 @@
 //
-//  SOLAppDelegate.h
+//  UIImage+CZTint.m
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -28,11 +28,35 @@
 
 #pragma mark - Imports
 
-@import UIKit;
+#import "UIImage+CZTint.h"
 
 
-#pragma mark - SOLAppDelegate Interface
+#pragma mark - UIImageView Implementation
 
-@interface SOLAppDelegate : UIResponder <UIApplicationDelegate>
+@implementation UIImage(CZTint)
+
+- (UIImage *)imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode
+{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
+    [tintColor setFill];
+    
+    CGRect bounds = CGRectMake(0, 0, self.size.width, self.size.height);
+    UIRectFill(bounds);
+    
+    [self drawInRect:bounds
+           blendMode:blendMode
+               alpha:1.0];
+    
+    if (blendMode != kCGBlendModeDestinationIn) {
+        [self drawInRect:bounds
+               blendMode:kCGBlendModeDestinationIn
+                   alpha:1.0];
+    }
+    
+    UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return tintedImage;
+}
 
 @end

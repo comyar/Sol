@@ -61,7 +61,7 @@
 
 /**
  */
-@property (nonatomic) BOOL                      local;
+@property (nonatomic, getter=isLocal) BOOL      local;
 
 /**
  */

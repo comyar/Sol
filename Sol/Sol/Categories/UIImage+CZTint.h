@@ -1,5 +1,5 @@
 //
-//  SOLAppDelegate.h
+//  UIImage+CZTint.h
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -29,10 +29,17 @@
 #pragma mark - Imports
 
 @import UIKit;
+@import Foundation;
 
 
-#pragma mark - SOLAppDelegate Interface
+#pragma mark - UIImageView CZTint Category
 
-@interface SOLAppDelegate : UIResponder <UIApplicationDelegate>
+/**
+ */
+@interface UIImage (CZTint)
+
+/**
+ */
+- (UIImage *)imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode;
 
 @end

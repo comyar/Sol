@@ -30,7 +30,7 @@
 
 #import "SOLAppDelegate.h"
 #import "SOLMainViewController.h"
-
+#import "SOLNotificationGlobals.h"
 
 #pragma mark - SOLAppDelegate Class Extension
 
@@ -71,13 +71,11 @@
 {
     //  Make sure any changes to userdefaults are saved to disk
     [[NSUserDefaults standardUserDefaults]synchronize];
-    
-    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-
+    [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:SOLAppDidBecomeActiveNotification object:self]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

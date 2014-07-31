@@ -84,4 +84,7 @@
 //  Indicates whether data is being downloaded for this weather view
 @property (nonatomic, readonly) UIActivityIndicatorView *activityIndicator;
 
+// Background image view to display image of city fetched from Flickr (or defaults)
+@property (nonatomic, readonly) UIImageView             *backgroundImageView;
+
 @end

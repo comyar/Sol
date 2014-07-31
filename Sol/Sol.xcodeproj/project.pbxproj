@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD065C8F198A4767002BC3E0 /* UIImage+CZTint.m in Sources */ = {isa = PBXBuildFile; fileRef = DD065C8E198A4767002BC3E0 /* UIImage+CZTint.m */; };
 		DD24A49B19740E380079A4C9 /* SOLWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24A49A19740E380079A4C9 /* SOLWeatherViewController.m */; };
 		DD24A4A1197419BF0079A4C9 /* SOLWeatherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24A4A0197419BF0079A4C9 /* SOLWeatherViewModel.m */; };
 		DD43184418C5D2540022E87E /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD43184318C5D2540022E87E /* Resources.xcassets */; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		27545E381C0B49B9A854131D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		350FFE16664849A0BFE7624F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		DD065C8D198A4767002BC3E0 /* UIImage+CZTint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZTint.h"; path = "Categories/UIImage+CZTint.h"; sourceTree = "<group>"; };
+		DD065C8E198A4767002BC3E0 /* UIImage+CZTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZTint.m"; path = "Categories/UIImage+CZTint.m"; sourceTree = "<group>"; };
 		DD0C344117B517950024AD9A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DD0C344317B5179C0024AD9A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DD24A49919740E380079A4C9 /* SOLWeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherViewController.h; path = ViewControllers/SOLWeatherViewController.h; sourceTree = "<group>"; };
@@ -99,6 +102,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD065C8C198A473E002BC3E0 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DD065C8D198A4767002BC3E0 /* UIImage+CZTint.h */,
+				DD065C8E198A4767002BC3E0 /* UIImage+CZTint.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		DD4F966817A8994200E0E7D0 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +150,7 @@
 		DD4F967A17A8994300E0E7D0 /* Sol */ = {
 			isa = PBXGroup;
 			children = (
+				DD065C8C198A473E002BC3E0 /* Categories */,
 				DDC858DC19369DC900057252 /* Classes */,
 				DD93A81917FA9C08006DD1BC /* Resources */,
 				DD4F967B17A8994300E0E7D0 /* Supporting Files */,
@@ -331,6 +344,7 @@
 				DD46272A17ADC3A1000A6A33 /* SOLWeatherView.m in Sources */,
 				DD715653198801D5009E9B96 /* SOLWeatherData.m in Sources */,
 				DDB7B8E517ECF59100857D15 /* SOLAddLocationViewController.m in Sources */,
+				DD065C8F198A4767002BC3E0 /* UIImage+CZTint.m in Sources */,
 				DD24A49B19740E380079A4C9 /* SOLWeatherViewController.m in Sources */,
 				DD7155EF19878F2C009E9B96 /* SOLNotificationGlobals.m in Sources */,
 				DD4F968117A8994300E0E7D0 /* main.m in Sources */,
