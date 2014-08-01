@@ -36,7 +36,7 @@
 /**
  SOLKeyManager handles loading and returning of API keys from the Keys.plist file.
  */
-@interface SOLKeyManager : NSObject
+@interface SOLKeyReader : NSObject
 
 // -----
 // @name SOLKeyManager

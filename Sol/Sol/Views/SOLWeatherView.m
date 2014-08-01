@@ -48,6 +48,9 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 // Light-Colored ribbon to display temperatures and forecasts on
 @property (nonatomic) UIVisualEffectView        *ribbon;
 
+// Vibrancy effect view for ribbon
+@property (nonatomic) UIVisualEffectView        *ribbonVibrancyView;
+
 // Displays the time the weather data for this view was last updated
 @property (nonatomic) UILabel                   *updatedLabel;
 
@@ -121,11 +124,9 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
         
         self.ribbon = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
         self.ribbon.frame = CGRectMake(0, 1.30 * self.center.y, self.bounds.size.width, 80);
-
-        UIVisualEffectView *vibrancyEffectView = [[UIVisualEffectView alloc]initWithEffect:vibrancyEffect];
-        vibrancyEffectView.frame = self.ribbon.bounds;
-        [self.ribbon addSubview:vibrancyEffectView];
-        
+        self.ribbonVibrancyView = [[UIVisualEffectView alloc]initWithEffect:vibrancyEffect];
+        self.ribbonVibrancyView.frame = self.ribbon.bounds;
+        [self.ribbon.contentView addSubview:self.ribbonVibrancyView];
         [self.backgroundImageView addSubview:self.ribbon];
         
         //  Initialize Activity Indicator
@@ -225,7 +226,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
     [self.currentTemperatureLabel setBackgroundColor:[UIColor clearColor]];
     [self.currentTemperatureLabel setTextColor:[UIColor whiteColor]];
     [self.currentTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.container addSubview:self.currentTemperatureLabel];
+    [self.ribbonVibrancyView.contentView addSubview:self.currentTemperatureLabel];
 }
 
 - (void)initializeHiLoTemperatureLabel
@@ -239,7 +240,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
     [self.highLowTemperatureLabel setBackgroundColor:[UIColor clearColor]];
     [self.highLowTemperatureLabel setTextColor:[UIColor whiteColor]];
     [self.highLowTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.container addSubview:self.highLowTemperatureLabel];
+    [self.ribbonVibrancyView.contentView addSubview:self.highLowTemperatureLabel];
 }
 
 - (void)initializeForecastDayLabels
@@ -257,7 +258,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
         [forecastDayLabel setBackgroundColor:[UIColor clearColor]];
         [forecastDayLabel setTextColor:[UIColor whiteColor]];
         [forecastDayLabel setTextAlignment:NSTextAlignmentCenter];
-        [self.container addSubview:forecastDayLabel];
+        [self.ribbonVibrancyView.contentView addSubview:forecastDayLabel];
     }
 }
 
@@ -276,7 +277,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
         [forecastIconLabel setBackgroundColor:[UIColor clearColor]];
         [forecastIconLabel setTextColor:[UIColor whiteColor]];
         [forecastIconLabel setTextAlignment:NSTextAlignmentCenter];
-        [self.container addSubview:forecastIconLabel];
+        [self.ribbonVibrancyView.contentView addSubview:forecastIconLabel];
     }
 }
 

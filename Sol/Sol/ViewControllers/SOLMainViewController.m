@@ -32,7 +32,7 @@
 #import "SOLWeatherViewController.h"
 #import "SOLAddLocationViewController.h"
 #import "SOLSettingsViewController.h"
-#import "SOLKeyManager.h"
+#import "SOLKeyReader.h"
 
 
 
@@ -84,8 +84,8 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        [[FlickrKit sharedFlickrKit]initializeWithAPIKey:[SOLKeyManager keyForDictionaryKey:@"flickr_key"]
-                                            sharedSecret:[SOLKeyManager keyForDictionaryKey:@"flickr_secret"]];
+        [[FlickrKit sharedFlickrKit]initializeWithAPIKey:[SOLKeyReader keyForDictionaryKey:@"flickr_key"]
+                                            sharedSecret:[SOLKeyReader keyForDictionaryKey:@"flickr_secret"]];
         
         
         self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll

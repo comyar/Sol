@@ -28,12 +28,12 @@
 
 #pragma mark - Imports
 
-#import "SOLKeyManager.h"
+#import "SOLKeyReader.h"
 
 
 #pragma mark - SOLKeyManager Implementation
 
-@implementation SOLKeyManager
+@implementation SOLKeyReader
 
 + (NSString *)keyForDictionaryKey:(NSString *)dictionaryKey
 {

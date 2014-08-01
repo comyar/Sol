@@ -22,7 +22,7 @@
 		DD677B8D17EEE5AC0078F41A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD677B8C17EEE5AC0078F41A /* MapKit.framework */; };
 		DD7155EF19878F2C009E9B96 /* SOLNotificationGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */; };
 		DD7155F31987A2AD009E9B96 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD7155F21987A2AD009E9B96 /* Keys.plist */; };
-		DD7155FA1987AA79009E9B96 /* SOLKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7155F91987AA79009E9B96 /* SOLKeyManager.m */; };
+		DD7155FA1987AA79009E9B96 /* SOLKeyReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7155F91987AA79009E9B96 /* SOLKeyReader.m */; };
 		DD715653198801D5009E9B96 /* SOLWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD715652198801D5009E9B96 /* SOLWeatherData.m */; };
 		DD715656198808F8009E9B96 /* SOLSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD715655198808F8009E9B96 /* SOLSettingsManager.m */; };
 		DD9388F017B6DDA8004C5F42 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C344117B517950024AD9A /* SystemConfiguration.framework */; };
@@ -66,8 +66,8 @@
 		DD7155ED19878F14009E9B96 /* SOLNotificationGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SOLNotificationGlobals.h; path = Models/SOLNotificationGlobals.h; sourceTree = "<group>"; };
 		DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLNotificationGlobals.m; path = Models/SOLNotificationGlobals.m; sourceTree = "<group>"; };
 		DD7155F21987A2AD009E9B96 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = Resources/Keys.plist; sourceTree = "<group>"; };
-		DD7155F81987AA79009E9B96 /* SOLKeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLKeyManager.h; path = Models/SOLKeyManager.h; sourceTree = "<group>"; };
-		DD7155F91987AA79009E9B96 /* SOLKeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLKeyManager.m; path = Models/SOLKeyManager.m; sourceTree = "<group>"; };
+		DD7155F81987AA79009E9B96 /* SOLKeyReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLKeyReader.h; path = Models/SOLKeyReader.h; sourceTree = "<group>"; };
+		DD7155F91987AA79009E9B96 /* SOLKeyReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLKeyReader.m; path = Models/SOLKeyReader.m; sourceTree = "<group>"; };
 		DD715651198801D5009E9B96 /* SOLWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherData.h; path = Models/SOLWeatherData.h; sourceTree = "<group>"; };
 		DD715652198801D5009E9B96 /* SOLWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherData.m; path = Models/SOLWeatherData.m; sourceTree = "<group>"; };
 		DD715654198808F8009E9B96 /* SOLSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLSettingsManager.h; path = Models/SOLSettingsManager.h; sourceTree = "<group>"; };
@@ -191,8 +191,8 @@
 				DD24A4A0197419BF0079A4C9 /* SOLWeatherViewModel.m */,
 				DD7155ED19878F14009E9B96 /* SOLNotificationGlobals.h */,
 				DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */,
-				DD7155F81987AA79009E9B96 /* SOLKeyManager.h */,
-				DD7155F91987AA79009E9B96 /* SOLKeyManager.m */,
+				DD7155F81987AA79009E9B96 /* SOLKeyReader.h */,
+				DD7155F91987AA79009E9B96 /* SOLKeyReader.m */,
 				DD715651198801D5009E9B96 /* SOLWeatherData.h */,
 				DD715652198801D5009E9B96 /* SOLWeatherData.m */,
 				DD715654198808F8009E9B96 /* SOLSettingsManager.h */,
@@ -350,7 +350,7 @@
 				DD4F968117A8994300E0E7D0 /* main.m in Sources */,
 				DD4F968517A8994300E0E7D0 /* SOLAppDelegate.m in Sources */,
 				DDB7B8EB17ED516500857D15 /* SOLSettingsViewController.m in Sources */,
-				DD7155FA1987AA79009E9B96 /* SOLKeyManager.m in Sources */,
+				DD7155FA1987AA79009E9B96 /* SOLKeyReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

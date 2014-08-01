@@ -30,7 +30,7 @@
 
 #import "SOLWeatherViewController.h"
 #import "SOLWeatherView.h"
-#import "SOLKeyManager.h"
+#import "SOLKeyReader.h"
 #import "SOLWeatherViewModel.h"
 #import "SOLSettingsManager.h"
 #import "SOLNotificationGlobals.h"
@@ -124,11 +124,11 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
     
     CZWeatherRequest *currentConditionRequest = [CZWeatherRequest requestWithType:CZCurrentConditionsRequestType];
     currentConditionRequest.location   = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
-    currentConditionRequest.service    = [CZWundergroundService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"wunderground"]];
+    currentConditionRequest.service    = [CZWundergroundService serviceWithKey:[SOLKeyReader keyForDictionaryKey:@"wunderground"]];
     
     CZWeatherRequest *forecastConditionsRequest = [CZWeatherRequest requestWithType:CZForecastRequestType];
     forecastConditionsRequest.location  = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
-    forecastConditionsRequest.service   = [CZWundergroundService serviceWithKey:[SOLKeyManager keyForDictionaryKey:@"wunderground"]];
+    forecastConditionsRequest.service   = [CZWundergroundService serviceWithKey:[SOLKeyReader keyForDictionaryKey:@"wunderground"]];
     
     [currentConditionRequest performRequestWithHandler: ^ (id data, NSError *error) {
         if (data) {
