@@ -91,7 +91,7 @@ static const NSTimeInterval dayLength               = 86400.0;
         CGFloat todayForecastLowTemperature     = (celsius)? todayForecastCondition.lowTemperature.c : todayForecastCondition.lowTemperature.f;
         self.currentTemperatureLabelString = [NSString stringWithFormat:@"%.0f°", todayCurrentTemperature];
         
-        self.highLowTemperatureLabelString = [NSString stringWithFormat:@"%.0f / %.0f",
+        self.highLowTemperatureLabelString = [NSString stringWithFormat:@"H %.0f / L %.0f",
                                               todayForecastHighTemperature,
                                               todayForecastLowTemperature];
         

@@ -94,7 +94,4 @@
 //  Indicates whether data is being downloaded for this weather view
 @property (nonatomic, readonly) LLARingSpinnerView      *activityIndicator;
 
-// Background image view 
-@property (nonatomic, readonly) UIImageView             *backgroundImageView;
-
 @end

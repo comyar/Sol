@@ -84,9 +84,6 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 // Indicates whether data is being downloaded for this weather view
 @property (nonatomic) LLARingSpinnerView        *activityIndicator;
 
-// Background image view to display image of city fetched from Flickr (or defaults)
-@property (nonatomic) UIImageView               *backgroundImageView;
-
 @end
 
 
@@ -97,15 +94,6 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self = [super initWithFrame:frame]) {
-        
-        self.backgroundColor = [UIColor clearColor];
-        
-        self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.bounds];
-        
-        self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.backgroundImageView.clipsToBounds = YES;
-        self.backgroundImageView.backgroundColor = [UIColor blackColor];
-        [self addSubview:self.backgroundImageView];
         
         //  Initialize Container
         self.container = [[UIView alloc]initWithFrame:self.bounds];

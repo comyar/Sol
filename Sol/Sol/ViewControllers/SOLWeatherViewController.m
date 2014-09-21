@@ -39,7 +39,8 @@
 
 #pragma mark - Constants
 
-static NSString * const CelsiusKeyPathName = @"celsius";
+static NSString * const CelsiusKeyPathName  = @"celsius";
+static NSString * const DefaultGradientName = @"gradient5";
 
 // Minimum number of seconds between updates
 static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
@@ -103,6 +104,7 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
     [super viewDidLoad];
     
     self.weatherView = [[SOLWeatherView alloc]initWithFrame:self.view.bounds];
+    self.weatherView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:DefaultGradientName]];
     [self.view addSubview:self.weatherView];
 }
 
