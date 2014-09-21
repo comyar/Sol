@@ -1,5 +1,5 @@
-
 pod 'UIImageEffects'
 pod 'AFNetworking'
 pod 'SPGooglePlacesAutocomplete'
 pod 'CZWeatherKit'
+pod 'LLARingSpinnerView'

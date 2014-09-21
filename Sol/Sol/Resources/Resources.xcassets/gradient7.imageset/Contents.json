@@ -10,7 +10,11 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "gradient1@2x.png"
+      "filename" : "gradient7@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

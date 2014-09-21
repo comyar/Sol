@@ -28,7 +28,6 @@
 #pragma mark - Imports
 
 @import CoreLocation;
-#import <FlickrKit/FlickrKit.h>
 #import <UIImageEffects/UIImage+ImageEffects.h>
 #import "SOLSettingsViewController.h"
 #import "SOLAddLocationViewController.h"

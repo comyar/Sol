@@ -45,12 +45,6 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 // Contains all label views
 @property (nonatomic) UIView                    *container;
 
-// Light-Colored ribbon to display temperatures and forecasts on
-@property (nonatomic) UIVisualEffectView        *ribbon;
-
-// Vibrancy effect view for ribbon
-@property (nonatomic) UIVisualEffectView        *ribbonVibrancyView;
-
 // Displays the time the weather data for this view was last updated
 @property (nonatomic) UILabel                   *updatedLabel;
 
@@ -88,7 +82,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 @property (nonatomic) UILabel                   *forecastIconThreeLabel;
 
 // Indicates whether data is being downloaded for this weather view
-@property (nonatomic) UIActivityIndicatorView   *activityIndicator;
+@property (nonatomic) LLARingSpinnerView        *activityIndicator;
 
 // Background image view to display image of city fetched from Flickr (or defaults)
 @property (nonatomic) UIImageView               *backgroundImageView;
@@ -118,19 +112,10 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
         [self.container setBackgroundColor:[UIColor clearColor]];
         [self addSubview:self.container];
         
-        //  Initialize Ribbon
-        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVibrancyEffect *vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:blurEffect];
-        
-        self.ribbon = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
-        self.ribbon.frame = CGRectMake(0, 1.30 * self.center.y, self.bounds.size.width, 80);
-        self.ribbonVibrancyView = [[UIVisualEffectView alloc]initWithEffect:vibrancyEffect];
-        self.ribbonVibrancyView.frame = self.ribbon.bounds;
-        [self.ribbon.contentView addSubview:self.ribbonVibrancyView];
-        [self.backgroundImageView addSubview:self.ribbon];
-        
         //  Initialize Activity Indicator
-        self.activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.activityIndicator = [[LLARingSpinnerView alloc]initWithFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];
+        self.activityIndicator.tintColor = [UIColor whiteColor];
+        self.activityIndicator.hidesWhenStopped = YES;
         self.activityIndicator.center = self.center;
         [self.container addSubview:self.activityIndicator];
         
@@ -226,7 +211,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
     [self.currentTemperatureLabel setBackgroundColor:[UIColor clearColor]];
     [self.currentTemperatureLabel setTextColor:[UIColor whiteColor]];
     [self.currentTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.ribbonVibrancyView.contentView addSubview:self.currentTemperatureLabel];
+    [self.container addSubview:self.currentTemperatureLabel];
 }
 
 - (void)initializeHiLoTemperatureLabel
@@ -240,7 +225,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
     [self.highLowTemperatureLabel setBackgroundColor:[UIColor clearColor]];
     [self.highLowTemperatureLabel setTextColor:[UIColor whiteColor]];
     [self.highLowTemperatureLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.ribbonVibrancyView.contentView addSubview:self.highLowTemperatureLabel];
+    [self.container addSubview:self.highLowTemperatureLabel];
 }
 
 - (void)initializeForecastDayLabels
@@ -258,7 +243,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
         [forecastDayLabel setBackgroundColor:[UIColor clearColor]];
         [forecastDayLabel setTextColor:[UIColor whiteColor]];
         [forecastDayLabel setTextAlignment:NSTextAlignmentCenter];
-        [self.ribbonVibrancyView.contentView addSubview:forecastDayLabel];
+        [self.container addSubview:forecastDayLabel];
     }
 }
 
@@ -277,7 +262,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
         [forecastIconLabel setBackgroundColor:[UIColor clearColor]];
         [forecastIconLabel setTextColor:[UIColor whiteColor]];
         [forecastIconLabel setTextAlignment:NSTextAlignmentCenter];
-        [self.ribbonVibrancyView.contentView addSubview:forecastIconLabel];
+        [self.container addSubview:forecastIconLabel];
     }
 }
 

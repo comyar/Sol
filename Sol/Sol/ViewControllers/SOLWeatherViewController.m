@@ -73,7 +73,18 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    return [self initWithPlacemark:nil currentCondition:nil forecastConditions:nil];
+}
+
+- (instancetype)initWithPlacemark:(CLPlacemark *)placemark
+                 currentCondition:(CZWeatherCondition *)currentCondition
+               forecastConditions:(NSArray *)forecastConditions
+{
+    if (self = [super initWithNibName:nil bundle:nil]) {
+        self.placemark = placemark;
+        self.currentCondition = currentCondition;
+        self.forecastConditions = forecastConditions;
+        
         [[SOLSettingsManager sharedManager]addObserver:self
                                             forKeyPath:CelsiusKeyPathName
                                                options:NSKeyValueObservingOptionNew
@@ -82,6 +93,7 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
                                                 selector:@selector(observeNotification:)
                                                     name:SOLAppDidBecomeActiveNotification
                                                   object:nil];
+        [self updateWeatherView];
     }
     return self;
 }
@@ -148,7 +160,6 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
                     self.forecastConditions = forecastConditions;
                     self.dirtyPlacemark = NO;
                     self.updating = NO;
-                    
                     [self updateWeatherView];
                 } else {
                     [self updateDidFail];
@@ -182,6 +193,11 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
         self.weatherView.forecastIconOneLabel.text      = weatherViewModel.forecastIconOneLabelString;
         self.weatherView.forecastIconTwoLabel.text      = weatherViewModel.forecastIconTwoLabelString;
         self.weatherView.forecastIconThreeLabel.text    = weatherViewModel.forecastIconThreeLabelString;
+        
+        if (self.currentCondition) {
+            self.weatherView.activityIndicator.center = CGPointMake(self.weatherView.activityIndicator.center.x,
+                                                                    0.85 * CGRectGetHeight(self.weatherView.bounds));
+        }
     }
 }
 

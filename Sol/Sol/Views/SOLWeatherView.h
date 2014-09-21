@@ -29,6 +29,7 @@
 #pragma mark - Imports
 
 #import <CZWeatherKit/CZWeatherKit.h>
+#import <LLARingSpinnerView/LLARingSpinnerView.h>
 
 
 #pragma mark - Forward Declarations
@@ -45,55 +46,55 @@
 // @name Properties
 // -----
 
-//  Displays the time the weather data for this view was last updated
+// Displays the time the weather data for this view was last updated
 @property (nonatomic, readonly) UILabel                 *updatedLabel;
 
-//  Displays the icon for current conditions
+// Displays the icon for current conditions
 @property (nonatomic, readonly) UILabel                 *conditionIconLabel;
 
-//  Displays the description of current conditions
+// Displays the description of current conditions
 @property (nonatomic, readonly) UILabel                 *conditionDescriptionLabel;
 
-//  Displays the location whose weather data is being represented by this weather view
+// Displays the location whose weather data is being represented by this weather view
 @property (nonatomic, readonly) UILabel                 *locationLabel;
 
-//  Displayes the current temperature
+// Displayes the current temperature
 @property (nonatomic, readonly) UILabel                 *currentTemperatureLabel;
 
-//  Displays both the high and low temperatures for today
+// Displays both the high and low temperatures for today
 @property (nonatomic, readonly) UILabel                 *highLowTemperatureLabel;
 
-//  Displays the day of the week for the first forecast snapshot
+// Displays the day of the week for the first forecast snapshot
 @property (nonatomic, readonly) UILabel                 *forecastDayOneLabel;
 
-//  Displays the day of the week for the second forecast snapshot
+// Displays the day of the week for the second forecast snapshot
 @property (nonatomic, readonly) UILabel                 *forecastDayTwoLabel;
 
-//  Displays the day of the week for the third forecast snapshot
+// Displays the day of the week for the third forecast snapshot
 @property (nonatomic, readonly) UILabel                 *forecastDayThreeLabel;
 
-//  Displays the icon representing the predicted conditions for the first forecast snapshot
+// Displays the icon representing the predicted conditions for the first forecast snapshot
 @property (nonatomic, readonly) UILabel                 *forecastIconOneLabel;
 
-//  Displays the icon representing the predicted conditions for the second forecast snapshot
+// Displays the icon representing the predicted conditions for the second forecast snapshot
 @property (nonatomic, readonly) UILabel                 *forecastIconTwoLabel;
 
-//  Displays the icon representing the predicted conditions for the third forecast snapshot
+// Displays the icon representing the predicted conditions for the third forecast snapshot
 @property (nonatomic, readonly) UILabel                 *forecastIconThreeLabel;
 
-//
+// Displays the first forecast day's temperature
 @property (nonatomic, readonly) UILabel                 *forecastTemperatureOneLabel;
 
-//
+// Displays the second forecast day's temperature
 @property (nonatomic, readonly) UILabel                 *forecastTemperatureTwoLabel;
 
-//
+// Displays the third forecast day's temperature
 @property (nonatomic, readonly) UILabel                 *forecastTemperatureThreeLabel;
 
 //  Indicates whether data is being downloaded for this weather view
-@property (nonatomic, readonly) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, readonly) LLARingSpinnerView      *activityIndicator;
 
-// Background image view to display image of city fetched from Flickr (or defaults)
+// Background image view 
 @property (nonatomic, readonly) UIImageView             *backgroundImageView;
 
 @end

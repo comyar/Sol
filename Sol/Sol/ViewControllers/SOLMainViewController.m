@@ -46,6 +46,9 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
 // Geocoder used to geocode the user's current location
 @property (nonatomic) CLGeocoder                    *geocoder;
 
+// Temperature and forecast ribbon
+@property (nonatomic) UIView                        *ribbon;
+
 // Location manager to get the user's current location
 @property (nonatomic) CLLocationManager             *locationManager;
 
@@ -131,6 +134,14 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
     });
     [self.view addSubview:self.settingsButton];
     
+    self.ribbon = ({
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 1.30 * self.view.center.y, CGRectGetWidth(self.view.bounds), 80)];
+        view.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.25];
+        view.userInteractionEnabled = NO;
+        view;
+    });
+    [self.view addSubview:self.ribbon];
+    
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingLocation];
 }
@@ -153,8 +164,7 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
     if (status != kCLAuthorizationStatusNotDetermined) {
         // add non local weather view controllers
     
-        if (status == kCLAuthorizationStatusAuthorized          ||
-            status == kCLAuthorizationStatusAuthorizedAlways    ||
+        if (status == kCLAuthorizationStatusAuthorizedAlways    ||
             status == kCLAuthorizationStatusAuthorizedWhenInUse) {
             SOLWeatherViewController *localWeatherViewController = [SOLWeatherViewController new];
             localWeatherViewController.local = YES;
