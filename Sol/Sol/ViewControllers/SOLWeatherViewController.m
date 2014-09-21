@@ -36,10 +36,10 @@
 #import "SOLNotificationGlobals.h"
 #import "UIImage+CZTint.h"
 
+
 #pragma mark - Constants
 
-// ID for the Flickr group to fetch background images from
-static NSString * const flickrGroupID = @"1463451@N25";
+static NSString * const CelsiusKeyPathName = @"celsius";
 
 // Minimum number of seconds between updates
 static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
@@ -52,8 +52,17 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 // YES if the weather view controller is currently fetching data for an update
 @property (nonatomic, getter=isUpdating) BOOL   updating;
 
+// YES if the placemark has changed and a successful update has not occurred.
+@property (nonatomic) BOOL                      dirtyPlacemark;
+
 // Redefinition of weather view property
 @property (nonatomic) SOLWeatherView            *weatherView;
+
+// Redefinition of current condition property
+@property (nonatomic) CZWeatherCondition        *currentCondition;
+
+// Redefinition of forecast conditions property
+@property (nonatomic) NSArray                   *forecastConditions;
 
 @end
 
@@ -66,7 +75,7 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         [[SOLSettingsManager sharedManager]addObserver:self
-                                            forKeyPath:@"celsius"
+                                            forKeyPath:CelsiusKeyPathName
                                                options:NSKeyValueObservingOptionNew
                                                context:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self
@@ -88,7 +97,7 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (object == [SOLSettingsManager sharedManager]) {
-        if ([keyPath isEqualToString:@"celsius"]) {
+        if ([keyPath isEqualToString:CelsiusKeyPathName]) {
             [self updateWeatherView];
         }
     }
@@ -105,9 +114,8 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 
 - (void)update
 {
-    // If the time since the last update hasn't exceed an hour
-    // don't update
-    if (self.currentCondition) {
+    // If the time since the last update hasn't exceed an hour, don't update
+    if (!self.dirtyPlacemark && self.currentCondition) {
         if ([self.currentCondition.date timeIntervalSinceNow] > -minimumTimeBetweenUpdates) {
             return;
         }
@@ -120,15 +128,14 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
     
     self.updating = YES;
     [self.weatherView.activityIndicator startAnimating];
-    [self updateBackgroundImageWithLocation:self.placemark];
     
-    CZWeatherRequest *currentConditionRequest = [CZWeatherRequest requestWithType:CZCurrentConditionsRequestType];
-    currentConditionRequest.location   = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
-    currentConditionRequest.service    = [CZWundergroundService serviceWithKey:[SOLKeyReader keyForDictionaryKey:@"wunderground"]];
+    CZWeatherRequest *currentConditionRequest   = [CZWeatherRequest requestWithType:CZCurrentConditionsRequestType];
+    currentConditionRequest.location            = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
+    currentConditionRequest.service             = [CZWundergroundService serviceWithKey:[SOLKeyReader keyForDictionaryKey:WundergroundKeyName]];
     
     CZWeatherRequest *forecastConditionsRequest = [CZWeatherRequest requestWithType:CZForecastRequestType];
-    forecastConditionsRequest.location  = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
-    forecastConditionsRequest.service   = [CZWundergroundService serviceWithKey:[SOLKeyReader keyForDictionaryKey:@"wunderground"]];
+    forecastConditionsRequest.location          = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
+    forecastConditionsRequest.service           = [CZWundergroundService serviceWithKey:[SOLKeyReader keyForDictionaryKey:WundergroundKeyName]];
     
     [currentConditionRequest performRequestWithHandler: ^ (id data, NSError *error) {
         if (data) {
@@ -139,7 +146,9 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
                     NSArray *forecastConditions = (NSArray *)data;
                     self.currentCondition   = currentCondition;
                     self.forecastConditions = forecastConditions;
+                    self.dirtyPlacemark = NO;
                     self.updating = NO;
+                    
                     [self updateWeatherView];
                 } else {
                     [self updateDidFail];
@@ -153,32 +162,6 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
     }];
     
     
-}
-
-- (void)updateBackgroundImageWithLocation:(CLPlacemark *)placemark
-{
-    NSString *latitudeString = [NSString stringWithFormat:@"%f", placemark.location.coordinate.latitude];
-    NSString *longitudeString = [NSString stringWithFormat:@"%f", placemark.location.coordinate.longitude];
-    
-    [[FlickrKit sharedFlickrKit]call:@"flickr.photos.search" args:@{@"group_id": flickrGroupID, @"accuracy":@"11", @"lat": latitudeString, @"lon":longitudeString} maxCacheAge:FKDUMaxAgeOneDay completion:^(NSDictionary *response, NSError *error) {
-        if (response) {
-            NSMutableArray *photoURLs = [NSMutableArray array];
-            for (NSDictionary *photoData in [response valueForKeyPath:@"photos.photo"]) {
-                NSURL *url = [[FlickrKit sharedFlickrKit]photoURLForSize:FKPhotoSizeLarge1024 fromPhotoDictionary:photoData];
-                [photoURLs addObject:url];
-            }
-            
-            if ([photoURLs count] > 0) {
-                NSURL *photoURL = photoURLs[arc4random() % [photoURLs count]];
-                
-                __weak __block UIImageView *weakBackgroundImageView = self.weatherView.backgroundImageView;
-                [self.weatherView.backgroundImageView setImageWithURLRequest:[NSURLRequest requestWithURL:photoURL] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                    weakBackgroundImageView.image = [image imageWithTintColor:[UIColor colorWithWhite:0.11 alpha:0.73]
-                                                                    blendMode:kCGBlendModeMultiply];
-                } failure:nil];
-            }
-        }
-    }];
 }
 
 - (void)updateWeatherView
@@ -209,7 +192,17 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 
 - (void)dealloc
 {
-    [[SOLSettingsManager sharedManager]removeObserver:self forKeyPath:@"celsius"];
+    [[SOLSettingsManager sharedManager]removeObserver:self
+                                           forKeyPath:CelsiusKeyPathName];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+#pragma mark Setters
+
+- (void)setPlacemark:(CLPlacemark *)placemark
+{
+    _placemark = placemark;
+    self.dirtyPlacemark = YES;
 }
 
 @end

@@ -32,18 +32,11 @@
 #import "SOLWeatherViewController.h"
 #import "SOLAddLocationViewController.h"
 #import "SOLSettingsViewController.h"
-#import "SOLKeyReader.h"
-
 
 
 #pragma mark - Constants
 
 static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
-
-
-
-//static const NSInteger maxNumWeatherViews           = 5;
-//static const NSTimeInterval minTimeBetweenUpdates   = 3600.0;
 
 
 #pragma mark - SOLMainViewController Class Extension
@@ -84,10 +77,6 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        [[FlickrKit sharedFlickrKit]initializeWithAPIKey:[SOLKeyReader keyForDictionaryKey:@"flickr_key"]
-                                            sharedSecret:[SOLKeyReader keyForDictionaryKey:@"flickr_secret"]];
-        
-        
         self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                                                                options:nil];
@@ -191,9 +180,11 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
         CLPlacemark *placemark = [placemarks firstObject];
         
         if (placemark) {
-            SOLWeatherViewController *localWeatherViewController = [self.weatherViewControllers firstObject];
-            localWeatherViewController.placemark = placemark;
-            [localWeatherViewController update];
+            SOLWeatherViewController *weatherViewController = [self.weatherViewControllers firstObject];
+            if (weatherViewController.isLocal) {
+                weatherViewController.placemark = placemark;
+                [weatherViewController update];
+            }
         }
     }];
 }

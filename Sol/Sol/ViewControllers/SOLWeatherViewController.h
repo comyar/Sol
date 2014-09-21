@@ -30,7 +30,6 @@
 
 @import UIKit;
 @import CoreLocation;
-#import <FlickrKit/FlickrKit.h>
 #import <CZWeatherKit/CZWeatherKit.h>
 #import <UIImageEffects/UIImage+ImageEffects.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
@@ -48,10 +47,25 @@
 @interface SOLWeatherViewController : UIViewController
 
 // -----
+// @name Creating a Weather View Controller
+// -----
+
+/**
+ Create a weather view controller for the given parameters.
+ @param placemark           Placemark for the weather location
+ @param currentCondition    Current weather condition
+ @param forecastConditions  Weather forecast conditions
+ */
+- (instancetype)initWithPlacemark:(CLPlacemark *)placemark
+                 currentCondition:(CZWeatherCondition *)currentCondition
+               forecastConditions:(NSArray *)forecastConditions;
+
+// -----
 // @name Using a Weather View Controller
 // -----
 
 /**
+ Updates the content of the weather view controller
  */
 - (void)update;
 
@@ -60,23 +74,27 @@
 // -----
 
 /**
+ YES if the weather view controller is displaying local weather conditions.
  */
-@property (nonatomic, getter=isLocal) BOOL      local;
+@property (nonatomic, getter=isLocal) BOOL          local;
+
+/**
+ Placemark for the weather location.
+ */
+@property (nonatomic) CLPlacemark         *placemark;
+
+/**
+ Current condition at the weather location.
+ */
+@property (nonatomic, readonly) CZWeatherCondition  *currentCondition;
+
+/**
+ Forecast conditions at the weather location.
+ */
+@property (nonatomic, readonly) NSArray             *forecastConditions;
 
 /**
  */
-@property (nonatomic) CLPlacemark               *placemark;
-
-/**
- */
-@property (nonatomic) CZWeatherCondition        *currentCondition;
-
-/**
- */
-@property (nonatomic) NSArray                   *forecastConditions;
-
-/**
- */
-@property (nonatomic, readonly) SOLWeatherView  *weatherView;
+@property (nonatomic, readonly) SOLWeatherView      *weatherView;
 
 @end

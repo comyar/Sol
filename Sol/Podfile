@@ -1,6 +1,5 @@
 
 pod 'UIImageEffects'
 pod 'AFNetworking'
-pod 'FlickrKit', :git => "https://github.com/comyarzaheri/FlickrKit"
 pod 'SPGooglePlacesAutocomplete'
 pod 'CZWeatherKit'

@@ -31,6 +31,11 @@
 @import Foundation;
 
 
+#pragma mark - Constants
+
+extern NSString * const WundergroundKeyName;
+
+
 #pragma mark - SOLKeyManager Interface
 
 /**

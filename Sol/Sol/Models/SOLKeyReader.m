@@ -31,6 +31,11 @@
 #import "SOLKeyReader.h"
 
 
+#pragma mark - Constants
+
+NSString * const WundergroundKeyName = @"wunderground";
+
+
 #pragma mark - SOLKeyManager Implementation
 
 @implementation SOLKeyReader

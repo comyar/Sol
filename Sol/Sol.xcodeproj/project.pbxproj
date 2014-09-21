@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DD065C8F198A4767002BC3E0 /* UIImage+CZTint.m in Sources */ = {isa = PBXBuildFile; fileRef = DD065C8E198A4767002BC3E0 /* UIImage+CZTint.m */; };
+		DD18B6DF19CEC111003B7BBA /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD18B6DE19CEC111003B7BBA /* Keys.plist */; };
 		DD24A49B19740E380079A4C9 /* SOLWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24A49A19740E380079A4C9 /* SOLWeatherViewController.m */; };
 		DD24A4A1197419BF0079A4C9 /* SOLWeatherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24A4A0197419BF0079A4C9 /* SOLWeatherViewModel.m */; };
 		DD43184418C5D2540022E87E /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD43184318C5D2540022E87E /* Resources.xcassets */; };
@@ -21,7 +22,6 @@
 		DD548DE317A8A95800E08E29 /* SOLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD548DE217A8A95800E08E29 /* SOLMainViewController.m */; };
 		DD677B8D17EEE5AC0078F41A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD677B8C17EEE5AC0078F41A /* MapKit.framework */; };
 		DD7155EF19878F2C009E9B96 /* SOLNotificationGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */; };
-		DD7155F31987A2AD009E9B96 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD7155F21987A2AD009E9B96 /* Keys.plist */; };
 		DD7155FA1987AA79009E9B96 /* SOLKeyReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7155F91987AA79009E9B96 /* SOLKeyReader.m */; };
 		DD715653198801D5009E9B96 /* SOLWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD715652198801D5009E9B96 /* SOLWeatherData.m */; };
 		DD715656198808F8009E9B96 /* SOLSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD715655198808F8009E9B96 /* SOLSettingsManager.m */; };
@@ -42,6 +42,7 @@
 		DD065C8E198A4767002BC3E0 /* UIImage+CZTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZTint.m"; path = "Categories/UIImage+CZTint.m"; sourceTree = "<group>"; };
 		DD0C344117B517950024AD9A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DD0C344317B5179C0024AD9A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		DD18B6DE19CEC111003B7BBA /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = Resources/Keys.plist; sourceTree = "<group>"; };
 		DD24A49919740E380079A4C9 /* SOLWeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherViewController.h; path = ViewControllers/SOLWeatherViewController.h; sourceTree = "<group>"; };
 		DD24A49A19740E380079A4C9 /* SOLWeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherViewController.m; path = ViewControllers/SOLWeatherViewController.m; sourceTree = "<group>"; };
 		DD24A49F197419BF0079A4C9 /* SOLWeatherViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherViewModel.h; path = Models/SOLWeatherViewModel.h; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 		DD677B8C17EEE5AC0078F41A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DD7155ED19878F14009E9B96 /* SOLNotificationGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SOLNotificationGlobals.h; path = Models/SOLNotificationGlobals.h; sourceTree = "<group>"; };
 		DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLNotificationGlobals.m; path = Models/SOLNotificationGlobals.m; sourceTree = "<group>"; };
-		DD7155F21987A2AD009E9B96 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = Resources/Keys.plist; sourceTree = "<group>"; };
 		DD7155F81987AA79009E9B96 /* SOLKeyReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLKeyReader.h; path = Models/SOLKeyReader.h; sourceTree = "<group>"; };
 		DD7155F91987AA79009E9B96 /* SOLKeyReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLKeyReader.m; path = Models/SOLKeyReader.m; sourceTree = "<group>"; };
 		DD715651198801D5009E9B96 /* SOLWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherData.h; path = Models/SOLWeatherData.h; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 			children = (
 				DD43184318C5D2540022E87E /* Resources.xcassets */,
 				DD93A81A17FA9C12006DD1BC /* Climacons.ttf */,
-				DD7155F21987A2AD009E9B96 /* Keys.plist */,
+				DD18B6DE19CEC111003B7BBA /* Keys.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -291,7 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD7155F31987A2AD009E9B96 /* Keys.plist in Resources */,
+				DD18B6DF19CEC111003B7BBA /* Keys.plist in Resources */,
 				DD93A81B17FA9C12006DD1BC /* Climacons.ttf in Resources */,
 				DD43184418C5D2540022E87E /* Resources.xcassets in Resources */,
 				DD4F967F17A8994300E0E7D0 /* InfoPlist.strings in Resources */,
@@ -470,7 +470,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
