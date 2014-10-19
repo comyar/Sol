@@ -32,6 +32,7 @@
 		DDB7B8E517ECF59100857D15 /* SOLAddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8E417ECF59100857D15 /* SOLAddLocationViewController.m */; };
 		DDB7B8EB17ED516500857D15 /* SOLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8EA17ED516500857D15 /* SOLSettingsViewController.m */; };
 		DDBFDDCA17B23F3F002A886D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBFDDC917B23F3F002A886D /* QuartzCore.framework */; };
+		DDFEBC9319F3436000406EFF /* SOLWeatherDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFEBC9219F3436000406EFF /* SOLWeatherDataManager.m */; };
 		F280CA0AD296435F859E19D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27545E381C0B49B9A854131D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,8 @@
 		DDB7B8E917ED516500857D15 /* SOLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLSettingsViewController.h; path = ViewControllers/SOLSettingsViewController.h; sourceTree = "<group>"; };
 		DDB7B8EA17ED516500857D15 /* SOLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLSettingsViewController.m; path = ViewControllers/SOLSettingsViewController.m; sourceTree = "<group>"; };
 		DDBFDDC917B23F3F002A886D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DDFEBC9119F3436000406EFF /* SOLWeatherDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherDataManager.h; path = Models/SOLWeatherDataManager.h; sourceTree = "<group>"; };
+		DDFEBC9219F3436000406EFF /* SOLWeatherDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherDataManager.m; path = Models/SOLWeatherDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +200,8 @@
 				DD715652198801D5009E9B96 /* SOLWeatherData.m */,
 				DD715654198808F8009E9B96 /* SOLSettingsManager.h */,
 				DD715655198808F8009E9B96 /* SOLSettingsManager.m */,
+				DDFEBC9119F3436000406EFF /* SOLWeatherDataManager.h */,
+				DDFEBC9219F3436000406EFF /* SOLWeatherDataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				DD4F968517A8994300E0E7D0 /* SOLAppDelegate.m in Sources */,
 				DDB7B8EB17ED516500857D15 /* SOLSettingsViewController.m in Sources */,
 				DD7155FA1987AA79009E9B96 /* SOLKeyReader.m in Sources */,
+				DDFEBC9319F3436000406EFF /* SOLWeatherDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

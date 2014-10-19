@@ -37,11 +37,21 @@
  */
 @interface SOLSettingsManager : NSObject
 
+// -----
+// @name Getting the Settings Manager
+// -----
 
+/**
+ */
 + (SOLSettingsManager *)sharedManager;
 
+// -----
+// @name Properties
+// -----
 
+#pragma mark Properties
+
+//
 @property (nonatomic, getter=isCelsius) BOOL celsius;
-
 
 @end

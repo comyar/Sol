@@ -32,7 +32,6 @@
 @import CoreLocation;
 #import <CZWeatherKit/CZWeatherKit.h>
 #import <UIImageEffects/UIImage+ImageEffects.h>
-#import <AFNetworking/UIImageView+AFNetworking.h>
 
 
 #pragma mark - Forward Declarations
@@ -81,7 +80,7 @@
 /**
  Placemark for the weather location.
  */
-@property (nonatomic) CLPlacemark         *placemark;
+@property (nonatomic) CLPlacemark                   *placemark;
 
 /**
  Current condition at the weather location.

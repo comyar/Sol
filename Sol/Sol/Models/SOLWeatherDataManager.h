@@ -1,5 +1,5 @@
 //
-//  SOLSettingsViewController.h
+//  SOLWeatherDataManager.h
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -28,45 +28,34 @@
 
 #pragma mark - Imports
 
-@import UIKit;
+@import Foundation;
 
 
-#pragma mark - SOLSettingsViewControllerDelegate Protocol
-
-/**
- */
-@protocol SOLSettingsViewControllerDelegate <NSObject>
-
-/**
- Called by a SOLSettingsViewController when a weather view is moved by the user
- @param sourceIndex         Current index of the weather view to move
- @param destinationIndex    Index to move the weather view to
- */
-- (void)didMoveWeatherViewAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex;
-
-/**
- Called by a SOLSettingsViewController when a weather view is removed by the user
- @param tag Tag of the weather view to remove
- */
-- (void)didRemoveWeatherViewWithTag:(NSInteger)tag;
-
-@end
-
-
-#pragma mark - SOLSettingsViewController Interface
+#pragma mark - SOLWeatherDataManager Interface
 
 /**
  */
-@interface SOLSettingsViewController : UIViewController 
+@interface SOLWeatherDataManager : NSObject
+
+// -----
+// @name Getting the Weather Data Manager
+// -----
+
+/**
+ */
++ (SOLWeatherDataManager *)sharedManager;
 
 // -----
 // @name Properties
 // -----
 
-// List of location metadata to display in the locations table view
-@property (strong, nonatomic)           NSMutableArray      *locations;
+//
+@property (nonatomic) NSArray       *localPlacemark;
 
-// Object that implements the SOLSettingsViewController Delegate Protocol
-@property (weak, nonatomic) id<SOLSettingsViewControllerDelegate> delegate;
+//
+@property (nonatomic) NSArray       *nonLocalPlacemarks;
+
+//
+@property (nonatomic) NSDictionary  *weatherData;
 
 @end

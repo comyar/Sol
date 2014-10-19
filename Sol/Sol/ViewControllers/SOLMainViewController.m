@@ -153,7 +153,7 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
     if (button == self.addLocationButton) {
         [self presentViewController:self.addLocationViewController animated:YES completion:nil];
     } else if (button == self.settingsButton) {
-        
+        [self presentViewController:self.settingsViewController animated:YES completion:nil];
     }
 }
 
@@ -197,6 +197,25 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
             }
         }
     }];
+}
+
+#pragma mark - SOLAddLocationViewControllerDelegate Methods
+
+- (void)didAddLocationWithPlacemark:(CLPlacemark *)placemark
+{
+    
+}
+
+#pragma mark - SOLSettingsViewControllerDelegate Methods
+
+- (void)didRemoveWeatherViewWithTag:(NSInteger)tag
+{
+    
+}
+
+- (void)didMoveWeatherViewAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex
+{
+    
 }
 
 #pragma mark UIPageViewControllerDataSource Methods

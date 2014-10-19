@@ -34,7 +34,6 @@
 #import "SOLWeatherViewModel.h"
 #import "SOLSettingsManager.h"
 #import "SOLNotificationGlobals.h"
-#import "UIImage+CZTint.h"
 
 
 #pragma mark - Constants
@@ -155,7 +154,7 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
         if (data) {
             __block CZWeatherCondition *currentCondition = (CZWeatherCondition *)data;
             
-            [forecastConditionsRequest performRequestWithHandler:^(id data, NSError *error) {
+            [forecastConditionsRequest performRequestWithHandler: ^ (id data, NSError *error) {
                 if (data) {
                     NSArray *forecastConditions = (NSArray *)data;
                     self.currentCondition   = currentCondition;
@@ -205,6 +204,7 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 
 - (void)updateDidFail
 {
+    
     self.updating = NO;
 }
 

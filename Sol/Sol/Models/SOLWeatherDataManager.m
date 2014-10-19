@@ -1,5 +1,5 @@
 //
-//  SOLSettingsViewController.h
+//  SOLWeatherDataManager.m
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -28,45 +28,11 @@
 
 #pragma mark - Imports
 
-@import UIKit;
+#import "SOLWeatherDataManager.h"
 
 
-#pragma mark - SOLSettingsViewControllerDelegate Protocol
+#pragma mark - SOLWeatherDataManager Implementation
 
-/**
- */
-@protocol SOLSettingsViewControllerDelegate <NSObject>
-
-/**
- Called by a SOLSettingsViewController when a weather view is moved by the user
- @param sourceIndex         Current index of the weather view to move
- @param destinationIndex    Index to move the weather view to
- */
-- (void)didMoveWeatherViewAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex;
-
-/**
- Called by a SOLSettingsViewController when a weather view is removed by the user
- @param tag Tag of the weather view to remove
- */
-- (void)didRemoveWeatherViewWithTag:(NSInteger)tag;
-
-@end
-
-
-#pragma mark - SOLSettingsViewController Interface
-
-/**
- */
-@interface SOLSettingsViewController : UIViewController 
-
-// -----
-// @name Properties
-// -----
-
-// List of location metadata to display in the locations table view
-@property (strong, nonatomic)           NSMutableArray      *locations;
-
-// Object that implements the SOLSettingsViewController Delegate Protocol
-@property (weak, nonatomic) id<SOLSettingsViewControllerDelegate> delegate;
+@implementation SOLWeatherDataManager
 
 @end

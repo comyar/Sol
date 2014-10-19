@@ -28,7 +28,6 @@
 #pragma mark - Imports
 
 @import CoreLocation;
-#import <UIImageEffects/UIImage+ImageEffects.h>
 #import "SOLSettingsViewController.h"
 #import "SOLAddLocationViewController.h"
 
@@ -37,10 +36,10 @@
 #pragma mark - SOLMainViewController Interface
 
 /**
- SOLMainViewController is the first view controller presented. It manages a colleciton of weather view 
+ SOLMainViewController is the first view controller presented. It manages a collection of weather view
  controllers and allows for navigation to the add location view controller and the settings view controller.
  */
-@interface SOLMainViewController : UIViewController
+@interface SOLMainViewController : UIViewController <SOLSettingsViewControllerDelegate, SOLAddLocationViewControllerDelegate>
 
 // -----
 // @name Properties
