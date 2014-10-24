@@ -34,6 +34,10 @@
 #import "SOLWeatherViewModel.h"
 #import "SOLSettingsManager.h"
 #import "SOLNotificationGlobals.h"
+#import "SOLWeatherData.h"
+#import "SOLWeatherDataDownloader.h"
+#import "DateTools.h"
+#import "SOLWeatherDataManager.h"
 
 
 #pragma mark - Constants
@@ -58,11 +62,7 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 // Redefinition of weather view property
 @property (nonatomic) SOLWeatherView            *weatherView;
 
-// Redefinition of current condition property
-@property (nonatomic) CZWeatherCondition        *currentCondition;
-
-// Redefinition of forecast conditions property
-@property (nonatomic) NSArray                   *forecastConditions;
+@property (nonatomic) SOLWeatherData            *weatherData;
 
 @end
 
@@ -73,17 +73,15 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    return [self initWithPlacemark:nil currentCondition:nil forecastConditions:nil];
+    return [self initWithPlacemark:nil weatherData:nil];
 }
 
 - (instancetype)initWithPlacemark:(CLPlacemark *)placemark
-                 currentCondition:(CZWeatherCondition *)currentCondition
-               forecastConditions:(NSArray *)forecastConditions
+                      weatherData:(SOLWeatherData *)weatherData
 {
     if (self = [super initWithNibName:nil bundle:nil]) {
         self.placemark = placemark;
-        self.currentCondition = currentCondition;
-        self.forecastConditions = forecastConditions;
+        self.weatherData = weatherData;
         
         [[SOLSettingsManager sharedManager]addObserver:self
                                             forKeyPath:CelsiusKeyPathName
@@ -127,9 +125,13 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
 
 - (void)update
 {
+    if (self.weatherData) {
+        self.weatherView.updatedLabel.text = [[NSString stringWithFormat:@"Updated %@", [self.weatherData.timestamp timeAgoSinceNow]]capitalizedString];
+    }
+    
     // If the time since the last update hasn't exceed an hour, don't update
-    if (!self.dirtyPlacemark && self.currentCondition) {
-        if ([self.currentCondition.date timeIntervalSinceNow] > -minimumTimeBetweenUpdates) {
+    if (!self.dirtyPlacemark && self.weatherData) {
+        if ([self.weatherData.currentCondition.date timeIntervalSinceNow] > -minimumTimeBetweenUpdates) {
             return;
         }
     }
@@ -142,46 +144,22 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
     self.updating = YES;
     [self.weatherView.activityIndicator startAnimating];
     
-    CZWeatherRequest *currentConditionRequest   = [CZWeatherRequest requestWithType:CZCurrentConditionsRequestType];
-    currentConditionRequest.location            = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
-    currentConditionRequest.service             = [CZWundergroundService serviceWithKey:[SOLKeyReader keyForDictionaryKey:WundergroundKeyName]];
-    
-    CZWeatherRequest *forecastConditionsRequest = [CZWeatherRequest requestWithType:CZForecastRequestType];
-    forecastConditionsRequest.location          = [CZWeatherLocation locationWithCLLocationCoordinate2D:self.placemark.location.coordinate];
-    forecastConditionsRequest.service           = [CZWundergroundService serviceWithKey:[SOLKeyReader keyForDictionaryKey:WundergroundKeyName]];
-    
-    [currentConditionRequest performRequestWithHandler: ^ (id data, NSError *error) {
-        if (data) {
-            __block CZWeatherCondition *currentCondition = (CZWeatherCondition *)data;
-            
-            [forecastConditionsRequest performRequestWithHandler: ^ (id data, NSError *error) {
-                if (data) {
-                    NSArray *forecastConditions = (NSArray *)data;
-                    self.currentCondition   = currentCondition;
-                    self.forecastConditions = forecastConditions;
-                    self.dirtyPlacemark = NO;
-                    self.updating = NO;
-                    [self updateWeatherView];
-                } else {
-                    [self updateDidFail];
-                }
-                [self.weatherView.activityIndicator stopAnimating];
-            }];
-        } else {
-            [self updateDidFail];
-            [self.weatherView.activityIndicator stopAnimating];
+    [SOLWeatherDataDownloader weatherDataForPlacemark:self.placemark withCompletion: ^ (SOLWeatherData *weatherData) {
+        if (weatherData) {
+            self.weatherData = weatherData;
         }
+        [self.weatherView.activityIndicator stopAnimating];
+        [self updateWeatherView];
+        self.updating = NO;
     }];
-    
     
 }
 
 - (void)updateWeatherView
 {
-    if (self.placemark && self.currentCondition && self.forecastConditions) {
+    if (self.placemark && self.weatherData) {
         SOLWeatherViewModel *weatherViewModel = [SOLWeatherViewModel weatherViewModelForPlacemark:self.placemark
-                                                                         currentWeatherCondition:self.currentCondition
-                                                                       forecastWeatherConditions:self.forecastConditions
+                                                                                      weatherData:self.weatherData
                                                                                          celsius:[SOLSettingsManager sharedManager].isCelsius];
         self.weatherView.locationLabel.text             = weatherViewModel.locationLabelString;
         self.weatherView.conditionIconLabel.text        = weatherViewModel.conditionIconString;
@@ -195,10 +173,11 @@ static const NSTimeInterval minimumTimeBetweenUpdates = 3600.0;
         self.weatherView.forecastIconTwoLabel.text      = weatherViewModel.forecastIconTwoLabelString;
         self.weatherView.forecastIconThreeLabel.text    = weatherViewModel.forecastIconThreeLabelString;
         
-        if (self.currentCondition) {
-            self.weatherView.activityIndicator.center = CGPointMake(self.weatherView.activityIndicator.center.x,
-                                                                    0.85 * CGRectGetHeight(self.weatherView.bounds));
-        }
+        self.weatherView.activityIndicator.center = CGPointMake(self.weatherView.activityIndicator.center.x,
+                                                                0.85 * CGRectGetHeight(self.weatherView.bounds));
+        self.weatherView.updatedLabel.text = [[NSString stringWithFormat:@"Updated %@", [self.weatherData.timestamp timeAgoSinceNow]]capitalizedString];
+    } else {
+        // show failure
     }
 }
 

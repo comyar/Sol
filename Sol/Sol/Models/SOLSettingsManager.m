@@ -58,6 +58,11 @@ static NSString * const SOLSettingsCelsiusName = @"SOLSettingsCelsiusName";
     return self;
 }
 
+- (instancetype)init
+{
+    @throw [NSException exceptionWithName:nil reason:nil userInfo:nil];
+}
+
 #pragma mark Setters
 
 - (void)setCelsius:(BOOL)celsius

@@ -143,7 +143,7 @@ static NSString * const ULTRALIGHT_FONT = @"HelveticaNeue-UltraLight";
 - (void)initializeUpdatedLabel
 {
     static const CGFloat fontSize = 16.0;
-    self.updatedLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, -1.5 * fontSize, self.bounds.size.width, 1.5 * fontSize)];
+    self.updatedLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - 1.8 * fontSize, self.bounds.size.width, 1.5 * fontSize)];
     [self.updatedLabel setNumberOfLines:0];
     [self.updatedLabel setAdjustsFontSizeToFitWidth:YES];
     [self.updatedLabel setFont:[UIFont fontWithName:LIGHT_FONT size:fontSize]];

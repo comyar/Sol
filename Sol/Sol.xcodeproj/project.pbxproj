@@ -32,13 +32,14 @@
 		DDB7B8E517ECF59100857D15 /* SOLAddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8E417ECF59100857D15 /* SOLAddLocationViewController.m */; };
 		DDB7B8EB17ED516500857D15 /* SOLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB7B8EA17ED516500857D15 /* SOLSettingsViewController.m */; };
 		DDBFDDCA17B23F3F002A886D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBFDDC917B23F3F002A886D /* QuartzCore.framework */; };
-		DDFEBC9319F3436000406EFF /* SOLWeatherDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFEBC9219F3436000406EFF /* SOLWeatherDataManager.m */; };
+		DDFEBC9919FA5F2D00406EFF /* SOLWeatherRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFEBC9819FA5F2D00406EFF /* SOLWeatherRequestHandler.m */; };
 		F280CA0AD296435F859E19D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27545E381C0B49B9A854131D /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00A5E1CFE10269716C19C32A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		27545E381C0B49B9A854131D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		350FFE16664849A0BFE7624F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A291A2EBF12BAD6249DF6E86 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DD065C8D198A4767002BC3E0 /* UIImage+CZTint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZTint.h"; path = "Categories/UIImage+CZTint.h"; sourceTree = "<group>"; };
 		DD065C8E198A4767002BC3E0 /* UIImage+CZTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZTint.m"; path = "Categories/UIImage+CZTint.m"; sourceTree = "<group>"; };
 		DD0C344117B517950024AD9A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -81,8 +82,8 @@
 		DDB7B8E917ED516500857D15 /* SOLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLSettingsViewController.h; path = ViewControllers/SOLSettingsViewController.h; sourceTree = "<group>"; };
 		DDB7B8EA17ED516500857D15 /* SOLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLSettingsViewController.m; path = ViewControllers/SOLSettingsViewController.m; sourceTree = "<group>"; };
 		DDBFDDC917B23F3F002A886D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		DDFEBC9119F3436000406EFF /* SOLWeatherDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherDataManager.h; path = Models/SOLWeatherDataManager.h; sourceTree = "<group>"; };
-		DDFEBC9219F3436000406EFF /* SOLWeatherDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherDataManager.m; path = Models/SOLWeatherDataManager.m; sourceTree = "<group>"; };
+		DDFEBC9719FA5F2D00406EFF /* SOLWeatherRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherRequestHandler.h; path = Models/SOLWeatherRequestHandler.h; sourceTree = "<group>"; };
+		DDFEBC9819FA5F2D00406EFF /* SOLWeatherRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherRequestHandler.m; path = Models/SOLWeatherRequestHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4953E44FA6284148F921E890 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				00A5E1CFE10269716C19C32A /* Pods.debug.xcconfig */,
+				A291A2EBF12BAD6249DF6E86 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DD065C8C198A473E002BC3E0 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +130,7 @@
 				DD4F967A17A8994300E0E7D0 /* Sol */,
 				DD4F967317A8994300E0E7D0 /* Frameworks */,
 				DD4F967217A8994300E0E7D0 /* Products */,
-				350FFE16664849A0BFE7624F /* Pods.xcconfig */,
+				4953E44FA6284148F921E890 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,18 +200,15 @@
 		DD548DDF17A8A92300E08E29 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DD24A49F197419BF0079A4C9 /* SOLWeatherViewModel.h */,
-				DD24A4A0197419BF0079A4C9 /* SOLWeatherViewModel.m */,
+				DDFEBC9F19FA642900406EFF /* View Models */,
+				DDFEBC9E19FA635D00406EFF /* Data */,
+				DDFEBC9D19FA61A700406EFF /* WeatherRequestHandler */,
 				DD7155ED19878F14009E9B96 /* SOLNotificationGlobals.h */,
 				DD7155EE19878F2C009E9B96 /* SOLNotificationGlobals.m */,
 				DD7155F81987AA79009E9B96 /* SOLKeyReader.h */,
 				DD7155F91987AA79009E9B96 /* SOLKeyReader.m */,
-				DD715651198801D5009E9B96 /* SOLWeatherData.h */,
-				DD715652198801D5009E9B96 /* SOLWeatherData.m */,
 				DD715654198808F8009E9B96 /* SOLSettingsManager.h */,
 				DD715655198808F8009E9B96 /* SOLSettingsManager.m */,
-				DDFEBC9119F3436000406EFF /* SOLWeatherDataManager.h */,
-				DDFEBC9219F3436000406EFF /* SOLWeatherDataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -235,6 +242,33 @@
 				DD548DDE17A8A91B00E08E29 /* ViewControllers */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		DDFEBC9D19FA61A700406EFF /* WeatherRequestHandler */ = {
+			isa = PBXGroup;
+			children = (
+				DDFEBC9719FA5F2D00406EFF /* SOLWeatherRequestHandler.h */,
+				DDFEBC9819FA5F2D00406EFF /* SOLWeatherRequestHandler.m */,
+			);
+			name = WeatherRequestHandler;
+			sourceTree = "<group>";
+		};
+		DDFEBC9E19FA635D00406EFF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DD715651198801D5009E9B96 /* SOLWeatherData.h */,
+				DD715652198801D5009E9B96 /* SOLWeatherData.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		DDFEBC9F19FA642900406EFF /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				DD24A49F197419BF0079A4C9 /* SOLWeatherViewModel.h */,
+				DD24A4A0197419BF0079A4C9 /* SOLWeatherViewModel.m */,
+			);
+			name = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,7 +367,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -352,11 +386,11 @@
 				DD065C8F198A4767002BC3E0 /* UIImage+CZTint.m in Sources */,
 				DD24A49B19740E380079A4C9 /* SOLWeatherViewController.m in Sources */,
 				DD7155EF19878F2C009E9B96 /* SOLNotificationGlobals.m in Sources */,
+				DDFEBC9919FA5F2D00406EFF /* SOLWeatherRequestHandler.m in Sources */,
 				DD4F968117A8994300E0E7D0 /* main.m in Sources */,
 				DD4F968517A8994300E0E7D0 /* SOLAppDelegate.m in Sources */,
 				DDB7B8EB17ED516500857D15 /* SOLSettingsViewController.m in Sources */,
 				DD7155FA1987AA79009E9B96 /* SOLKeyReader.m in Sources */,
-				DDFEBC9319F3436000406EFF /* SOLWeatherDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,7 +478,7 @@
 		};
 		DD4F969E17A8994300E0E7D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 350FFE16664849A0BFE7624F /* Pods.xcconfig */;
+			baseConfigurationReference = 00A5E1CFE10269716C19C32A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -471,7 +505,7 @@
 		};
 		DD4F969F17A8994300E0E7D0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 350FFE16664849A0BFE7624F /* Pods.xcconfig */;
+			baseConfigurationReference = A291A2EBF12BAD6249DF6E86 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

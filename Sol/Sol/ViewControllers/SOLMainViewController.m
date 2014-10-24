@@ -32,6 +32,8 @@
 #import "SOLWeatherViewController.h"
 #import "SOLAddLocationViewController.h"
 #import "SOLSettingsViewController.h"
+#import "SOLWeatherDataManager.h"
+#import "SOLWeatherData.h"
 
 
 #pragma mark - Constants
@@ -162,11 +164,29 @@ static const CLLocationDistance locationManagerDistanceFilter = 3000.0;
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
     if (status != kCLAuthorizationStatusNotDetermined) {
-        // add non local weather view controllers
     
+        for (CLPlacemark *nonLocalPlacemark in [SOLWeatherDataManager sharedManager].nonLocalPlacemarks) {
+            SOLWeatherData *nonLocalWeatherData = [SOLWeatherDataManager sharedManager].nonLocalWeatherData[nonLocalPlacemark];
+            SOLWeatherViewController *nonLocalWeatherViewController = [[SOLWeatherViewController alloc]initWithPlacemark:nonLocalPlacemark
+                                                                                                             weatherData:nonLocalWeatherData];
+            [self.weatherViewControllers addObject:nonLocalWeatherViewController];
+        }
+        
+        if ([self.weatherViewControllers count] > 0) {
+            [self.pageViewController setViewControllers:@[[self.weatherViewControllers firstObject]]
+                                              direction:UIPageViewControllerNavigationDirectionForward
+                                               animated:YES
+                                             completion:nil];
+        }
+        
         if (status == kCLAuthorizationStatusAuthorizedAlways    ||
             status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-            SOLWeatherViewController *localWeatherViewController = [SOLWeatherViewController new];
+            
+            CLPlacemark *localPlacemark = [SOLWeatherDataManager sharedManager].localPlacemark;
+            SOLWeatherData *localWeatherData = [SOLWeatherDataManager sharedManager].localWeatherData;
+            
+            SOLWeatherViewController *localWeatherViewController = [[SOLWeatherViewController alloc]initWithPlacemark:localPlacemark
+                                                                                                          weatherData:localWeatherData];
             localWeatherViewController.local = YES;
             [self.weatherViewControllers insertObject:localWeatherViewController atIndex:0];
             [self.pageViewController setViewControllers:@[localWeatherViewController]

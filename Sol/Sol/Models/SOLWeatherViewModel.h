@@ -28,8 +28,21 @@
 
 #pragma mark - Imports
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import <CZWeatherKit/CZWeatherKit.h>
+
+
+#pragma mark - Forward Declarations
+
+@class SOLWeatherData;
+
+
+#pragma mark - Type Definitions
+
+typedef NS_ENUM(u_int16_t, SOLWeatherViewTemperatureMode) {
+    SOLFahrenheitMode = 0,
+    SOLCelsiusMode
+};
 
 
 #pragma mark - SOLWeatherViewModel Interface
@@ -45,13 +58,19 @@
 /**
  */
 + (SOLWeatherViewModel *)weatherViewModelForPlacemark:(CLPlacemark *)placemark
-                              currentWeatherCondition:(CZWeatherCondition *)currentWeatherCondition
-                            forecastWeatherConditions:(NSArray *)forecastWeatherConditions
-                                              celsius:(BOOL)celsius;
+                                     currentCondition:(CZWeatherCondition *)currentCondition
+                                   forecastConditions:(NSArray *)forecastConditions;
+
++ (SOLWeatherViewModel *)weatherViewModelForPlacemark:(CLPlacemark *)placemark
+                                     currentCondition:(CZWeatherCondition *)currentCondition
+                                   forecastConditions:(NSArray *)forecastConditions
+                                      temperatureMode:(SOLWeatherViewTemperatureMode)temperatureMode;
 
 // -----
 // @name Properties
 // -----
+
+@property (nonatomic) SOLWeatherViewTemperatureMode temperatureMode;
 
 //
 @property (nonatomic, readonly) NSString *conditionIconString;

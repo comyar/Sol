@@ -31,13 +31,12 @@
 @import UIKit;
 @import CoreLocation;
 #import <CZWeatherKit/CZWeatherKit.h>
-#import <UIImageEffects/UIImage+ImageEffects.h>
 
 
 #pragma mark - Forward Declarations
 
 @class SOLWeatherView;
-
+@class SOLWeatherData;
 
 #pragma mark - SOLWeatherViewController Interface
 
@@ -56,8 +55,7 @@
  @param forecastConditions  Weather forecast conditions
  */
 - (instancetype)initWithPlacemark:(CLPlacemark *)placemark
-                 currentCondition:(CZWeatherCondition *)currentCondition
-               forecastConditions:(NSArray *)forecastConditions;
+                      weatherData:(SOLWeatherData *)weatherData;
 
 // -----
 // @name Using a Weather View Controller
@@ -82,15 +80,7 @@
  */
 @property (nonatomic) CLPlacemark                   *placemark;
 
-/**
- Current condition at the weather location.
- */
-@property (nonatomic, readonly) CZWeatherCondition  *currentCondition;
-
-/**
- Forecast conditions at the weather location.
- */
-@property (nonatomic, readonly) NSArray             *forecastConditions;
+@property (nonatomic, readonly) SOLWeatherData      *weatherData;
 
 /**
  */

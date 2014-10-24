@@ -1,5 +1,5 @@
-pod 'UIImageEffects'
-pod 'AFNetworking'
+source 'https://github.com/CocoaPods/Specs.git'
+pod 'DateTools'
 pod 'SPGooglePlacesAutocomplete'
 pod 'CZWeatherKit'
 pod 'LLARingSpinnerView'

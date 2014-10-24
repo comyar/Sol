@@ -1,42 +1,19 @@
 PODS:
-  - AFNetworking (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
-  - AFNetworking/UIKit (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - CZWeatherKit (0.9.0)
+  - CZWeatherKit (1.0.0)
+  - DateTools (1.4.3)
   - LLARingSpinnerView (0.1.2)
   - SPGooglePlacesAutocomplete (1.0.3)
-  - UIImageEffects (0.0.1)
 
 DEPENDENCIES:
-  - AFNetworking
   - CZWeatherKit
+  - DateTools
   - LLARingSpinnerView
   - SPGooglePlacesAutocomplete
-  - UIImageEffects
 
 SPEC CHECKSUMS:
-  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  CZWeatherKit: 19a3bc923d897cbd537f1fa2187dfcf3b2eced97
+  CZWeatherKit: 87265f050e9a7c14fe219c4e66e27f842e2aed91
+  DateTools: 7c2d233ea2d4bda3a717d0cd5f58da926a5998d0
   LLARingSpinnerView: b9ee4453c976bc8edca6cc41a4d7e41280f85fc6
   SPGooglePlacesAutocomplete: 4caf647c644fe749df0d63a7e2c3e63f57990fdd
-  UIImageEffects: 69cd1e1f8fc4042a8fefcf4a0727cbf213e4dbfb
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.4

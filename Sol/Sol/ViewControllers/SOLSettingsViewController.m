@@ -180,7 +180,7 @@
 
 - (void)doneButtonPressed
 {
-    [self.delegate dismissSettingsViewController];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Temperature Control Methods

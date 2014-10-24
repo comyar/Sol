@@ -31,25 +31,47 @@
 #import "SOLWeatherData.h"
 
 
+#pragma mark - SOLWeatherData Class Extension
+
+@interface SOLWeatherData ()
+
+@property (nonatomic) SOLWeatherViewModel     *weatherViewModel;
+@property (nonatomic) CLPlacemark             *placemark;
+@property (nonatomic) NSDate                  *timestamp;
+
+@end
+
+
 #pragma mark - SOLWeatherData Implementation
 
 @implementation SOLWeatherData
 
++ (SOLWeatherData *)weatherDataForWeatherViewModel:(SOLWeatherViewModel *)weatherViewModel
+                                         placemark:(CLPlacemark *)placemark
+                                         timestamp:(NSDate *)timestamp
+{
+    SOLWeatherData *weatherData = [SOLWeatherData new];
+    weatherData.weatherViewModel = weatherViewModel;
+    weatherData.placemark = placemark;
+    weatherData.timestamp = timestamp;
+    return weatherData;
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super init]) {
+        self.weatherViewModel = [aDecoder decodeObjectForKey:@"weatherViewModel"];
         self.placemark = [aDecoder decodeObjectForKey:@"placemark"];
-        self.currentCondition = [aDecoder decodeObjectForKey:@"currentCondition"];
-        self.forecastConditions = [aDecoder decodeObjectForKey:@"forecastConditions"];
+        self.timestamp = [aDecoder decodeObjectForKey:@"timestamp"];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
+    [aCoder encodeObject:self.weatherViewModel forKey:@"weatherViewModel"];
     [aCoder encodeObject:self.placemark forKey:@"placemark"];
-    [aCoder encodeObject:self.currentCondition forKey:@"currentCondition"];
-    [aCoder encodeObject:self.forecastConditions forKey:@"forecastConditions"];
+    [aCoder encodeObject:self.timestamp forKey:@"timestamp"];
 }
 
 @end

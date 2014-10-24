@@ -33,14 +33,37 @@
 #import <CZWeatherKit/CZWeatherKit.h>
 
 
+#pragma mark - Forward Declarations
+
+@class SOLWeatherViewModel;
+
+
 #pragma mark - SOLWeatherData Interface
 
 /**
  */
 @interface SOLWeatherData : NSObject <NSCoding>
 
-@property (nonatomic) CLPlacemark           *placemark;
-@property (nonatomic) CZWeatherCondition    *currentCondition;
-@property (nonatomic) NSArray               *forecastConditions;
+// -----
+// @name Creating a Weather Data
+// -----
+
+#pragma mark Creating a Weather Data
+
+/**
+ */
++ (SOLWeatherData *)weatherDataForWeatherViewModel:(SOLWeatherViewModel *)weatherViewModel
+                                         placemark:(CLPlacemark *)placemark
+                                         timestamp:(NSDate *)timestamp;
+
+// -----
+// @name Properties
+// -----
+
+#pragma mark Properties
+
+@property (nonatomic, readonly) SOLWeatherViewModel     *weatherViewModel;
+@property (nonatomic, readonly) CLPlacemark             *placemark;
+@property (nonatomic, readonly) NSDate                  *timestamp;
 
 @end
