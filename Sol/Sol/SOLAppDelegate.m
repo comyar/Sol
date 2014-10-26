@@ -32,6 +32,7 @@
 #import "SOLMainViewController.h"
 #import "SOLNotificationGlobals.h"
 
+
 #pragma mark - SOLAppDelegate Class Extension
 
 @interface SOLAppDelegate ()
@@ -51,16 +52,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //  Set the status bar text color to white
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor blackColor];
     
-    //  Initialize main view controller
     self.mainViewController = [SOLMainViewController new];
     
-    //  Set our window's root view controller and make the app window visible
     self.window.rootViewController = self.mainViewController;
     [self.window makeKeyAndVisible];
     
@@ -69,7 +67,6 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    //  Make sure any changes to userdefaults are saved to disk
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
@@ -80,7 +77,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    //  Make sure any changes to userdefaults are saved to disk
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 

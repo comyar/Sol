@@ -187,9 +187,7 @@
 
 - (void)temperatureControlChanged:(UISegmentedControl *)control
 {
-//    SOLTemperatureScale scale = (SOLTemperatureScale)[control selectedSegmentIndex];
-//    [SOLStateManager setTemperatureScale:scale];
-//    [self.delegate didChangeTemperatureScale:scale];
+    
 }
 
 #pragma mark UITableViewDelegate Methods

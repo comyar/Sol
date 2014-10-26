@@ -29,7 +29,6 @@
 #pragma mark - Imports
 
 #import "SOLWeatherViewModel.h"
-#import "SOLWeatherData.h"
 
 
 #pragma mark - Constants
@@ -135,6 +134,49 @@ static const NSTimeInterval dayLength               = 86400.0;
         self.forecastIconThreeLabelString = [NSString stringWithFormat:@"%c", dayThreeForecastCondition.climaconCharacter];
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super init]) {
+        self.conditionIconString                = [aDecoder decodeObjectForKey:@"conditionIconString"];
+        self.conditionLabelString               = [aDecoder decodeObjectForKey:@"conditionLabelString"];
+        self.locationLabelString                = [aDecoder decodeObjectForKey:@"locationLabelString"];
+        self.currentTemperatureLabelString      = [aDecoder decodeObjectForKey:@"currentTemperatureLabelString"];
+        self.highLowTemperatureLabelString      = [aDecoder decodeObjectForKey:@"highLowTemperatureLabelString"];
+        self.forecastDayOneLabelString          = [aDecoder decodeObjectForKey:@"forecastDayOneLabelString"];
+        self.forecastIconOneLabelString         = [aDecoder decodeObjectForKey:@"forecastIconOneLabelString"];
+        self.forecastDayTwoLabelString          = [aDecoder decodeObjectForKey:@"forecastDayTwoLabelString"];
+        self.forecastIconTwoLabelString         = [aDecoder decodeObjectForKey:@"forecastIconTwoLabelString"];
+        self.forecastDayThreeLabelString        = [aDecoder decodeObjectForKey:@"forecastDayThreeLabelString"];
+        self.forecastIconThreeLabelString       = [aDecoder decodeObjectForKey:@"forecastIconThreeLabelString"];
+        
+        self.currentTemperatureCelsiusString    = [aDecoder decodeObjectForKey:@"currentTemperatureCelsiusString"];
+        self.currentTemperatureFahrenheitString = [aDecoder decodeObjectForKey:@"currentTemperatureFahrenheitString"];
+        self.highLowTemperatureCelsiusString    = [aDecoder decodeObjectForKey:@"highLowTemperatureCelsiusString"];
+        self.highLowTemperatureFahrenheitString = [aDecoder decodeObjectForKey:@"highLowTemperatureFahrenheitString"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.conditionIconString forKey:@"conditionIconString"];
+    [aCoder encodeObject:self.conditionLabelString forKey:@"conditionLabelString"];
+    [aCoder encodeObject:self.locationLabelString forKey:@"locationLabelString"];
+    [aCoder encodeObject:self.currentTemperatureLabelString forKey:@"currentTemperatureLabelString"];
+    [aCoder encodeObject:self.highLowTemperatureLabelString forKey:@"highLowTemperatureLabelString"];
+    [aCoder encodeObject:self.forecastDayOneLabelString forKey:@"forecastDayOneLabelString"];
+    [aCoder encodeObject:self.forecastIconOneLabelString forKey:@"forecastIconOneLabelString"];
+    [aCoder encodeObject:self.forecastDayTwoLabelString forKey:@"forecastDayTwoLabelString"];
+    [aCoder encodeObject:self.forecastIconTwoLabelString forKey:@"forecastIconTwoLabelString"];
+    [aCoder encodeObject:self.forecastDayThreeLabelString forKey:@"forecastDayThreeLabelString"];
+    [aCoder encodeObject:self.forecastIconThreeLabelString forKey:@"forecastIconThreeLabelString"];
+
+    [aCoder encodeObject:self.currentTemperatureCelsiusString forKey:@"currentTemperatureCelsiusString"];
+    [aCoder encodeObject:self.currentTemperatureFahrenheitString forKey:@"currentTemperatureFahrenheitString"];
+    [aCoder encodeObject:self.highLowTemperatureCelsiusString forKey:@"highLowTemperatureCelsiusString"];
+    [aCoder encodeObject:self.highLowTemperatureFahrenheitString forKey:@"highLowTemperatureFahrenheitString"];
 }
 
 + (BOOL)validPlacemark:(CLPlacemark *)placemark

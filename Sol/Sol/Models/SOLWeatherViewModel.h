@@ -49,7 +49,7 @@ typedef NS_ENUM(u_int16_t, SOLWeatherViewTemperatureMode) {
 
 /**
  */
-@interface SOLWeatherViewModel : NSObject
+@interface SOLWeatherViewModel : NSObject <NSCoding>
 
 // -----
 // @name Creating a SOLWeatherViewModel
