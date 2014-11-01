@@ -1,5 +1,5 @@
 //
-//  SOLWeatherRequestHandler.m
+//  SOLWeatherData.m
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -25,42 +25,37 @@
 //  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-
-#pragma mark - Imports
-
-#import "SOLWeatherRequestHandler.h"
-#import "SOLWeatherViewModel.h"
-#import "SOLWeatherDataCache.h"
-#import "SOLWeatherDataDownloader.h"
-
-#pragma mark - Constants
-
-static const NSTimeInterval kDefaultFreshness = 3600;
+#import "SOLWeatherData.h"
 
 
-#pragma mark - SOLWeatherRequestHandler Implementation
+#pragma mark - SOLWeatherData Implementation
 
-@implementation SOLWeatherRequestHandler
+@implementation SOLWeatherData
 
-+ (void)weatherViewModelForRequest:(CLPlacemark *)placemark
-               completion:(SOLWeatherRequestHandlerCompletion)completion
+#pragma mark Creating a Weather Data
+
++ (SOLWeatherData *)weatherDataForWeatherViewModel:(SOLWeatherViewModel *)weatherViewModel
+                                         timestamp:(NSDate *)timestamp
 {
-    [SOLWeatherRequestHandler weatherViewModelForRequest:placemark freshness:kDefaultFreshness completion:completion];
+    SOLWeatherData *weatherData = [SOLWeatherData new];
+    weatherData.weatherViewModel = weatherViewModel;
+    weatherData.timestamp = timestamp;
+    return weatherData;
 }
 
-+ (void)weatherViewModelForRequest:(CLPlacemark *)placemark
-                    freshness:(NSTimeInterval)freshness
-               completion:(SOLWeatherRequestHandlerCompletion)completion
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    SOLWeatherViewModel *weatherViewModel = [SOLWeatherDataCache weatherViewModelForPlacemark:placemark freshness:freshness];
-    if (weatherViewModel) {
-        completion(weatherViewModel);
-    } else {
-        [SOLWeatherDataDownloader weatherDataForPlacemark:placemark withCompletion: ^ (SOLWeatherViewModel *weatherViewModel) {
-            [SOLWeatherDataCache setWeatherViewModel:weatherViewModel forPlacemark:placemark];
-            completion(weatherViewModel);
-        }];
+    if (self = [super init]) {
+        self.weatherViewModel = [aDecoder decodeObjectForKey:@"weatherViewModel"];
+        self.timestamp = [aDecoder decodeObjectForKey:@"timestamp"];
     }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.weatherViewModel forKey:@"weatherViewModel"];
+    [aCoder encodeObject:self.timestamp forKey:@"timestamp"];
 }
 
 @end

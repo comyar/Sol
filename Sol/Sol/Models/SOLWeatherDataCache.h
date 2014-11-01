@@ -1,5 +1,5 @@
 //
-//  SOLWeatherRequestHandler.m
+//  SOLWeatherDataCache.h
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -28,39 +28,32 @@
 
 #pragma mark - Imports
 
-#import "SOLWeatherRequestHandler.h"
-#import "SOLWeatherViewModel.h"
-#import "SOLWeatherDataCache.h"
-#import "SOLWeatherDataDownloader.h"
-
-#pragma mark - Constants
-
-static const NSTimeInterval kDefaultFreshness = 3600;
+@import Foundation;
 
 
-#pragma mark - SOLWeatherRequestHandler Implementation
+#pragma mark - Forward Declarations
 
-@implementation SOLWeatherRequestHandler
+@class SOLWeatherViewModel;
 
-+ (void)weatherViewModelForRequest:(CLPlacemark *)placemark
-               completion:(SOLWeatherRequestHandlerCompletion)completion
-{
-    [SOLWeatherRequestHandler weatherViewModelForRequest:placemark freshness:kDefaultFreshness completion:completion];
-}
 
-+ (void)weatherViewModelForRequest:(CLPlacemark *)placemark
-                    freshness:(NSTimeInterval)freshness
-               completion:(SOLWeatherRequestHandlerCompletion)completion
-{
-    SOLWeatherViewModel *weatherViewModel = [SOLWeatherDataCache weatherViewModelForPlacemark:placemark freshness:freshness];
-    if (weatherViewModel) {
-        completion(weatherViewModel);
-    } else {
-        [SOLWeatherDataDownloader weatherDataForPlacemark:placemark withCompletion: ^ (SOLWeatherViewModel *weatherViewModel) {
-            [SOLWeatherDataCache setWeatherViewModel:weatherViewModel forPlacemark:placemark];
-            completion(weatherViewModel);
-        }];
-    }
-}
+#pragma mark - SOLWeatherDataCache Interface
+
+/**
+ */
+@interface SOLWeatherDataCache : NSObject
+
+// -----
+// @name Using the Weather Data Cache
+// -----
+
+#pragma mark Using the Weather Data Cache
+
+/**
+ */
++ (SOLWeatherViewModel *)weatherViewModelForPlacemark:(CLPlacemark *)placemark freshness:(NSTimeInterval)freshness;
+
+/**
+ */
++ (void)setWeatherViewModel:(SOLWeatherViewModel *)weatherViewModel forPlacemark:(CLPlacemark *)placemark;
 
 @end

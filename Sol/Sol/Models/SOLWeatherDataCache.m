@@ -1,5 +1,5 @@
 //
-//  SOLWeatherRequestHandler.m
+//  SOLWeatherDataCache.m
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -28,38 +28,36 @@
 
 #pragma mark - Imports
 
-#import "SOLWeatherRequestHandler.h"
-#import "SOLWeatherViewModel.h"
 #import "SOLWeatherDataCache.h"
-#import "SOLWeatherDataDownloader.h"
-
-#pragma mark - Constants
-
-static const NSTimeInterval kDefaultFreshness = 3600;
+#import "SOLWeatherData.h"
 
 
-#pragma mark - SOLWeatherRequestHandler Implementation
+#pragma mark - SOLWeatherDataCache Implementation
 
-@implementation SOLWeatherRequestHandler
+@implementation SOLWeatherDataCache
 
-+ (void)weatherViewModelForRequest:(CLPlacemark *)placemark
-               completion:(SOLWeatherRequestHandlerCompletion)completion
++ (SOLWeatherViewModel *)weatherViewModelForPlacemark:(CLPlacemark *)placemark freshness:(NSTimeInterval)freshness
 {
-    [SOLWeatherRequestHandler weatherViewModelForRequest:placemark freshness:kDefaultFreshness completion:completion];
+    if (placemark) {
+        NSString *key = [NSString stringWithFormat:@"%ld", placemark.hash];
+        NSData *archivedData = [[NSUserDefaults standardUserDefaults]objectForKey:key];
+        if (archivedData) {
+            SOLWeatherData *weatherData = [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
+            if ([weatherData.timestamp timeIntervalSinceNow] > -freshness) {
+                return weatherData.weatherViewModel;
+            }
+        }
+    }
+    return nil;
 }
 
-+ (void)weatherViewModelForRequest:(CLPlacemark *)placemark
-                    freshness:(NSTimeInterval)freshness
-               completion:(SOLWeatherRequestHandlerCompletion)completion
++ (void)setWeatherViewModel:(SOLWeatherViewModel *)weatherViewModel forPlacemark:(CLPlacemark *)placemark
 {
-    SOLWeatherViewModel *weatherViewModel = [SOLWeatherDataCache weatherViewModelForPlacemark:placemark freshness:freshness];
-    if (weatherViewModel) {
-        completion(weatherViewModel);
-    } else {
-        [SOLWeatherDataDownloader weatherDataForPlacemark:placemark withCompletion: ^ (SOLWeatherViewModel *weatherViewModel) {
-            [SOLWeatherDataCache setWeatherViewModel:weatherViewModel forPlacemark:placemark];
-            completion(weatherViewModel);
-        }];
+    if (placemark && weatherViewModel) {
+        SOLWeatherData *weatherData = [SOLWeatherData weatherDataForWeatherViewModel:weatherViewModel
+                                                                           timestamp:[NSDate date]];
+        NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:weatherData];
+        [[NSUserDefaults standardUserDefaults]setObject:archivedData forKey:[NSString stringWithFormat:@"%ld", placemark.hash]];
     }
 }
 

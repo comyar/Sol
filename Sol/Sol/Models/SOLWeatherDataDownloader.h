@@ -1,5 +1,5 @@
 //
-//  SOLWeatherRequestHandler.m
+//  SOLWeatherDataDownloader.h
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -28,39 +28,32 @@
 
 #pragma mark - Imports
 
-#import "SOLWeatherRequestHandler.h"
-#import "SOLWeatherViewModel.h"
-#import "SOLWeatherDataCache.h"
-#import "SOLWeatherDataDownloader.h"
-
-#pragma mark - Constants
-
-static const NSTimeInterval kDefaultFreshness = 3600;
+@import Foundation;
+#import <CZWeatherKit/CZWeatherKit.h>
 
 
-#pragma mark - SOLWeatherRequestHandler Implementation
+#pragma mark - Forward Declarations
 
-@implementation SOLWeatherRequestHandler
+@class SOLWeatherViewModel;
 
-+ (void)weatherViewModelForRequest:(CLPlacemark *)placemark
-               completion:(SOLWeatherRequestHandlerCompletion)completion
-{
-    [SOLWeatherRequestHandler weatherViewModelForRequest:placemark freshness:kDefaultFreshness completion:completion];
-}
 
-+ (void)weatherViewModelForRequest:(CLPlacemark *)placemark
-                    freshness:(NSTimeInterval)freshness
-               completion:(SOLWeatherRequestHandlerCompletion)completion
-{
-    SOLWeatherViewModel *weatherViewModel = [SOLWeatherDataCache weatherViewModelForPlacemark:placemark freshness:freshness];
-    if (weatherViewModel) {
-        completion(weatherViewModel);
-    } else {
-        [SOLWeatherDataDownloader weatherDataForPlacemark:placemark withCompletion: ^ (SOLWeatherViewModel *weatherViewModel) {
-            [SOLWeatherDataCache setWeatherViewModel:weatherViewModel forPlacemark:placemark];
-            completion(weatherViewModel);
-        }];
-    }
-}
+#pragma mark - Type Definition
+
+typedef void (^SOLWeatherDataDownloaderCompletion) (SOLWeatherViewModel *weatherViewModel);
+
+
+#pragma mark - SOLWeatherDataDownloader Interface
+
+/**
+ */
+@interface SOLWeatherDataDownloader : NSObject
+
+// -----
+// @name Using the Weather Data Downloader
+// -----
+
+/**
+ */
++ (void)weatherDataForPlacemark:(CLPlacemark *)placemark withCompletion:(SOLWeatherDataDownloaderCompletion)completion;
 
 @end
