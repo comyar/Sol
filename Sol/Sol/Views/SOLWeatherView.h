@@ -36,15 +36,22 @@
 
 @class SOLWeatherData;
 
+
+#pragma mark - SOLWeatherView Interface
+
 /**
- SOLWeatherView is used to display weather data for a single location to the user. Every instance
- of SOLWeatherView is managed by SOLMainViewController only.
+ SOLWeatherView 
+ 
+ Discussion:
+    Used to display weather data for a single location.
  */
 @interface SOLWeatherView : UIView
 
 // -----
 // @name Properties
 // -----
+
+#pragma mark Properties
 
 // Displays the time the weather data for this view was last updated
 @property (nonatomic, readonly) UILabel                 *updatedLabel;

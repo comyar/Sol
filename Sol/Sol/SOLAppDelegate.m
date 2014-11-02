@@ -37,7 +37,7 @@
 
 @interface SOLAppDelegate ()
 
-//  The initial view controller presented
+//  Root view controller
 @property (nonatomic) SOLMainViewController *mainViewController;
 
 @end

@@ -30,13 +30,11 @@
 
 @import UIKit;
 @import CoreLocation;
-#import <CZWeatherKit/CZWeatherKit.h>
-
+#import <DateTools/DateTools.h>
 
 #pragma mark - Forward Declarations
 
 @class SOLWeatherView;
-@class SOLWeatherData;
 
 #pragma mark - SOLWeatherViewController Interface
 
@@ -54,8 +52,7 @@
  @param currentCondition    Current weather condition
  @param forecastConditions  Weather forecast conditions
  */
-- (instancetype)initWithPlacemark:(CLPlacemark *)placemark
-                      weatherData:(SOLWeatherData *)weatherData;
+- (instancetype)initWithPlacemark:(CLPlacemark *)placemark;
 
 // -----
 // @name Using a Weather View Controller
@@ -70,20 +67,7 @@
 // @name Properties
 // -----
 
-/**
- YES if the weather view controller is displaying local weather conditions.
- */
-@property (nonatomic, getter=isLocal) BOOL          local;
-
-/**
- Placemark for the weather location.
- */
+// Placemark for the weather location
 @property (nonatomic) CLPlacemark                   *placemark;
-
-@property (nonatomic, readonly) SOLWeatherData      *weatherData;
-
-/**
- */
-@property (nonatomic, readonly) SOLWeatherView      *weatherView;
 
 @end

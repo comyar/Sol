@@ -1,5 +1,5 @@
 //
-//  SOLAppDelegate.h
+//  SOLErrorView.m
 //  Copyright (c) 2014, Comyar Zaheri, http://comyar.io
 //  All rights reserved.
 //
@@ -28,17 +28,11 @@
 
 #pragma mark - Imports
 
-@import UIKit;
+#import "SOLErrorView.h"
 
 
-#pragma mark - SOLAppDelegate Interface
+#pragma mark - SOLErrorView Implementation
 
-/**
- SOLAppDelegate
- 
- Discussion:
-    Application delegate.
- */
-@interface SOLAppDelegate : UIResponder <UIApplicationDelegate>
+@implementation SOLErrorView
 
 @end

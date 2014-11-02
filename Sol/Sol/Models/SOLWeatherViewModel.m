@@ -45,7 +45,7 @@ static const NSTimeInterval dayLength               = 86400.0;
 @interface SOLWeatherViewModel ()
 
 @property (nonatomic) NSString *conditionIconString;
-@property (nonatomic) NSString *conditionLabelString;
+@property (nonatomic) NSString *conditionDescriptionLabelString;
 @property (nonatomic) NSString *locationLabelString;
 @property (nonatomic) NSString *currentTemperatureLabelString;
 @property (nonatomic) NSString *highLowTemperatureLabelString;
@@ -102,7 +102,7 @@ static const NSTimeInterval dayLength               = 86400.0;
         
         self.temperatureMode = temperatureMode;
         
-        self.conditionLabelString = currentCondition.summary;
+        self.conditionDescriptionLabelString = currentCondition.summary;
         self.conditionIconString = [NSString stringWithFormat:@"%c", currentCondition.climaconCharacter];
         self.locationLabelString = [NSString stringWithFormat:@"%@, %@", placemark.locality,
                                     [placemark.country isEqualToString:@"United States"]? placemark.administrativeArea : placemark.country];
@@ -140,7 +140,7 @@ static const NSTimeInterval dayLength               = 86400.0;
 {
     if (self = [super init]) {
         self.conditionIconString                = [aDecoder decodeObjectForKey:@"conditionIconString"];
-        self.conditionLabelString               = [aDecoder decodeObjectForKey:@"conditionLabelString"];
+        self.conditionDescriptionLabelString               = [aDecoder decodeObjectForKey:@"conditionLabelString"];
         self.locationLabelString                = [aDecoder decodeObjectForKey:@"locationLabelString"];
         self.currentTemperatureLabelString      = [aDecoder decodeObjectForKey:@"currentTemperatureLabelString"];
         self.highLowTemperatureLabelString      = [aDecoder decodeObjectForKey:@"highLowTemperatureLabelString"];
@@ -162,7 +162,7 @@ static const NSTimeInterval dayLength               = 86400.0;
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.conditionIconString forKey:@"conditionIconString"];
-    [aCoder encodeObject:self.conditionLabelString forKey:@"conditionLabelString"];
+    [aCoder encodeObject:self.conditionDescriptionLabelString forKey:@"conditionLabelString"];
     [aCoder encodeObject:self.locationLabelString forKey:@"locationLabelString"];
     [aCoder encodeObject:self.currentTemperatureLabelString forKey:@"currentTemperatureLabelString"];
     [aCoder encodeObject:self.highLowTemperatureLabelString forKey:@"highLowTemperatureLabelString"];

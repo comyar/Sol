@@ -76,7 +76,7 @@ typedef NS_ENUM(u_int16_t, SOLWeatherViewTemperatureMode) {
 @property (nonatomic, readonly) NSString *conditionIconString;
 
 //
-@property (nonatomic, readonly) NSString *conditionLabelString;
+@property (nonatomic, readonly) NSString *conditionDescriptionLabelString;
 
 //
 @property (nonatomic, readonly) NSString *locationLabelString;
