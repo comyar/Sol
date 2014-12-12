@@ -20,6 +20,7 @@
 		DD548DE317A8A95800E08E29 /* SOLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD548DE217A8A95800E08E29 /* SOLMainViewController.m */; };
 		DD548DE717A8ADCC00E08E29 /* SOLPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD548DE617A8ADCC00E08E29 /* SOLPagingScrollView.m */; };
 		DD677B8D17EEE5AC0078F41A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD677B8C17EEE5AC0078F41A /* MapKit.framework */; };
+		DD8929A71A3A920E009207F3 /* API_KEY in Resources */ = {isa = PBXBuildFile; fileRef = DD8929A61A3A920E009207F3 /* API_KEY */; };
 		DD9388E617B6D898004C5F42 /* NSString+Substring.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9388E517B6D898004C5F42 /* NSString+Substring.m */; };
 		DD9388F017B6DDA8004C5F42 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C344117B517950024AD9A /* SystemConfiguration.framework */; };
 		DD9388F117B6DDB2004C5F42 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C344317B5179C0024AD9A /* MobileCoreServices.framework */; };
@@ -58,6 +59,7 @@
 		DD548DE517A8ADCC00E08E29 /* SOLPagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLPagingScrollView.h; path = Views/SOLPagingScrollView.h; sourceTree = "<group>"; };
 		DD548DE617A8ADCC00E08E29 /* SOLPagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLPagingScrollView.m; path = Views/SOLPagingScrollView.m; sourceTree = "<group>"; };
 		DD677B8C17EEE5AC0078F41A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DD8929A61A3A920E009207F3 /* API_KEY */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = API_KEY; path = Resources/API_KEY; sourceTree = "<group>"; };
 		DD8AA01517D52B2E00D4F7BA /* Climacons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Climacons.h; path = Model/Climacons.h; sourceTree = "<group>"; };
 		DD8AA01817D533BA00D4F7BA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DD9388E417B6D898004C5F42 /* NSString+Substring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Substring.h"; path = "Model/Categories/NSString+Substring.h"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				DD548DDF17A8A92300E08E29 /* Model */,
 				DD548DDE17A8A91B00E08E29 /* ViewControllers */,
 				DD4F967B17A8994300E0E7D0 /* Supporting Files */,
+				DD8929A61A3A920E009207F3 /* API_KEY */,
 			);
 			path = Sol;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD93A81B17FA9C12006DD1BC /* Climacons.ttf in Resources */,
+				DD8929A71A3A920E009207F3 /* API_KEY in Resources */,
 				DD43184418C5D2540022E87E /* Resources.xcassets in Resources */,
 				DD4F967F17A8994300E0E7D0 /* InfoPlist.strings in Resources */,
 			);
