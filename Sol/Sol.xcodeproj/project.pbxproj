@@ -11,16 +11,12 @@
 		DD43184418C5D2540022E87E /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD43184318C5D2540022E87E /* Resources.xcassets */; };
 		DD46272A17ADC3A1000A6A33 /* SOLWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD46272917ADC3A1000A6A33 /* SOLWeatherView.m */; };
 		DD46272D17ADC3E6000A6A33 /* SOLWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD46272C17ADC3E6000A6A33 /* SOLWeatherData.m */; };
-		DD4C7D0918FA701300129A2E /* API_KEY in Resources */ = {isa = PBXBuildFile; fileRef = DD4C7D0818FA701300129A2E /* API_KEY */; };
 		DD4F967517A8994300E0E7D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F967417A8994300E0E7D0 /* Foundation.framework */; };
 		DD4F967717A8994300E0E7D0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F967617A8994300E0E7D0 /* CoreGraphics.framework */; };
 		DD4F967917A8994300E0E7D0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F967817A8994300E0E7D0 /* UIKit.framework */; };
 		DD4F967F17A8994300E0E7D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD4F967D17A8994300E0E7D0 /* InfoPlist.strings */; };
 		DD4F968117A8994300E0E7D0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4F968017A8994300E0E7D0 /* main.m */; };
 		DD4F968517A8994300E0E7D0 /* SOLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4F968417A8994300E0E7D0 /* SOLAppDelegate.m */; };
-		DD4F968E17A8994300E0E7D0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F968D17A8994300E0E7D0 /* XCTest.framework */; };
-		DD4F968F17A8994300E0E7D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F967417A8994300E0E7D0 /* Foundation.framework */; };
-		DD4F969017A8994300E0E7D0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F967817A8994300E0E7D0 /* UIKit.framework */; };
 		DD548DE317A8A95800E08E29 /* SOLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD548DE217A8A95800E08E29 /* SOLMainViewController.m */; };
 		DD548DE717A8ADCC00E08E29 /* SOLPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD548DE617A8ADCC00E08E29 /* SOLPagingScrollView.m */; };
 		DD677B8D17EEE5AC0078F41A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD677B8C17EEE5AC0078F41A /* MapKit.framework */; };
@@ -36,16 +32,6 @@
 		DDBFDDCD17B286B7002A886D /* SOLWundergroundDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBFDDCC17B286B7002A886D /* SOLWundergroundDownloader.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		DD4F969117A8994300E0E7D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DD4F966917A8994200E0E7D0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DD4F967017A8994300E0E7D0;
-			remoteInfo = Sol;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		DD0C344117B517950024AD9A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DD0C344317B5179C0024AD9A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -56,7 +42,6 @@
 		DD46272917ADC3A1000A6A33 /* SOLWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherView.m; path = Views/SOLWeatherView.m; sourceTree = "<group>"; };
 		DD46272B17ADC3E6000A6A33 /* SOLWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLWeatherData.h; path = Model/SOLWeatherData.h; sourceTree = "<group>"; };
 		DD46272C17ADC3E6000A6A33 /* SOLWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLWeatherData.m; path = Model/SOLWeatherData.m; sourceTree = "<group>"; };
-		DD4C7D0818FA701300129A2E /* API_KEY */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = API_KEY; path = Resources/API_KEY; sourceTree = "<group>"; };
 		DD4F967117A8994300E0E7D0 /* Sol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4F967417A8994300E0E7D0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DD4F967617A8994300E0E7D0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,7 +52,6 @@
 		DD4F968217A8994300E0E7D0 /* Sol-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sol-Prefix.pch"; sourceTree = "<group>"; };
 		DD4F968317A8994300E0E7D0 /* SOLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOLAppDelegate.h; sourceTree = "<group>"; };
 		DD4F968417A8994300E0E7D0 /* SOLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SOLAppDelegate.m; sourceTree = "<group>"; };
-		DD4F968C17A8994300E0E7D0 /* SolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4F968D17A8994300E0E7D0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DD548DE117A8A95800E08E29 /* SOLMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOLMainViewController.h; path = ViewControllers/SOLMainViewController.h; sourceTree = "<group>"; };
 		DD548DE217A8A95800E08E29 /* SOLMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SOLMainViewController.m; path = ViewControllers/SOLMainViewController.m; sourceTree = "<group>"; };
@@ -107,16 +91,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DD4F968917A8994300E0E7D0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DD4F968E17A8994300E0E7D0 /* XCTest.framework in Frameworks */,
-				DD4F969017A8994300E0E7D0 /* UIKit.framework in Frameworks */,
-				DD4F968F17A8994300E0E7D0 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -134,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				DD4F967117A8994300E0E7D0 /* Sol.app */,
-				DD4F968C17A8994300E0E7D0 /* SolTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,7 +132,6 @@
 		DD4F967A17A8994300E0E7D0 /* Sol */ = {
 			isa = PBXGroup;
 			children = (
-				DD4C7D0818FA701300129A2E /* API_KEY */,
 				DD93A81917FA9C08006DD1BC /* Fonts */,
 				DD548DDD17A8A90600E08E29 /* AppDelegate */,
 				DD548DE017A8A92700E08E29 /* Views */,
@@ -276,24 +248,6 @@
 			productReference = DD4F967117A8994300E0E7D0 /* Sol.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DD4F968B17A8994300E0E7D0 /* SolTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DD4F96A017A8994300E0E7D0 /* Build configuration list for PBXNativeTarget "SolTests" */;
-			buildPhases = (
-				DD4F968817A8994300E0E7D0 /* Sources */,
-				DD4F968917A8994300E0E7D0 /* Frameworks */,
-				DD4F968A17A8994300E0E7D0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DD4F969217A8994300E0E7D0 /* PBXTargetDependency */,
-			);
-			name = SolTests;
-			productName = SolTests;
-			productReference = DD4F968C17A8994300E0E7D0 /* SolTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -306,9 +260,6 @@
 				TargetAttributes = {
 					DD4F967017A8994300E0E7D0 = {
 						DevelopmentTeam = TRMC2X2YJ7;
-					};
-					DD4F968B17A8994300E0E7D0 = {
-						TestTargetID = DD4F967017A8994300E0E7D0;
 					};
 				};
 			};
@@ -325,7 +276,6 @@
 			projectRoot = "";
 			targets = (
 				DD4F967017A8994300E0E7D0 /* Sol */,
-				DD4F968B17A8994300E0E7D0 /* SolTests */,
 			);
 		};
 /* End PBXProject section */
@@ -336,16 +286,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD93A81B17FA9C12006DD1BC /* Climacons.ttf in Resources */,
-				DD4C7D0918FA701300129A2E /* API_KEY in Resources */,
 				DD43184418C5D2540022E87E /* Resources.xcassets in Resources */,
 				DD4F967F17A8994300E0E7D0 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD4F968A17A8994300E0E7D0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,22 +313,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DD4F968817A8994300E0E7D0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DD4F969217A8994300E0E7D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DD4F967017A8994300E0E7D0 /* Sol */;
-			targetProxy = DD4F969117A8994300E0E7D0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DD4F967D17A8994300E0E7D0 /* InfoPlist.strings */ = {
@@ -475,10 +402,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/Comyar/Dropbox/Development/Sol/Sol,
-				);
+				FRAMEWORK_SEARCH_PATHS = "./**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sol/Sol-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Sol/SupportingFiles/Sol-Info.plist";
@@ -497,10 +421,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/Comyar/Dropbox/Development/Sol/Sol,
-				);
+				FRAMEWORK_SEARCH_PATHS = "./**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sol/Sol-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Sol/SupportingFiles/Sol-Info.plist";
@@ -509,46 +430,6 @@
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		DD4F96A117A8994300E0E7D0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sol.app/Sol";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Sol/Sol-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "SolTests/SolTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		DD4F96A217A8994300E0E7D0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sol.app/Sol";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Sol/Sol-Prefix.pch";
-				INFOPLIST_FILE = "SolTests/SolTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -569,15 +450,6 @@
 			buildConfigurations = (
 				DD4F969E17A8994300E0E7D0 /* Debug */,
 				DD4F969F17A8994300E0E7D0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DD4F96A017A8994300E0E7D0 /* Build configuration list for PBXNativeTarget "SolTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DD4F96A117A8994300E0E7D0 /* Debug */,
-				DD4F96A217A8994300E0E7D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
