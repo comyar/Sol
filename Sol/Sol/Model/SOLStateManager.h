@@ -60,4 +60,14 @@ typedef enum {
  */
 + (void)setWeatherTags:(NSArray *)weatherTags;
 
+/**
+ Get saved name of locality of current location
+ */
++ (NSString *)localityName;
+
+/**
+ Save the given name of localcity of current location
+ */
++ (void)setLocalityName:(NSString *)localityName;
+
 @end
