@@ -1,5 +1,6 @@
 Sol° for iOS
 ===
+[![git-brag-stats](https://labs.turbo.run/git-brag?user=comyar&repo=Sol)](https://github.com/comyar/Sol)
 
 Sol° beautifully displays weather information so you can plan your day accordingly. 
 Check the weather in your current location or any city around the world. 
