@@ -464,6 +464,17 @@
                         [self downloadDidFailForWeatherViewWithTag:weatherView.tag];
                     }
                 }];
+                
+                if ([locations lastObject]) {
+                    CLGeocoder *geocoder =[[CLGeocoder alloc] init];
+                    __block NSString *localityName;
+                    [geocoder reverseGeocodeLocation:[locations lastObject] completionHandler:^(NSArray *placemarks, NSError *error) {
+                        for (CLPlacemark *placemark in placemarks) {
+                            localityName = placemark.locality;
+                        }
+                    }];
+                    [SOLStateManager setLocalityName:localityName];
+                }
             }
         }
     }
@@ -508,8 +519,10 @@
     //  Get cached weather data for the added placemark if it exists
     SOLWeatherData *weatherData = [self.weatherData objectForKey:[NSNumber numberWithInteger:placemark.locality.hash]];
     
+    
+    NSString *localityName = [SOLStateManager localityName];
     //  Only add a location if it is does not already exist
-    if(!weatherData) {
+    if(!weatherData && ![placemark.locality isEqualToString:localityName] ){
         
         //  Create a weather view for the newly added location
         SOLWeatherView *weatherView = [[SOLWeatherView alloc]initWithFrame:self.view.bounds];

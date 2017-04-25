@@ -55,4 +55,17 @@
     [[NSUserDefaults standardUserDefaults]setObject:encodedWeatherTags forKey:@"weather_tags"];
 }
 
++ (NSString *)localityName{
+    NSData *encodedLocalityName = [[NSUserDefaults standardUserDefaults] objectForKey:@"locality_name"];
+    if(encodedLocalityName){
+        return (NSString *)[NSKeyedUnarchiver unarchiveObjectWithData:encodedLocalityName];
+    }
+    return nil;
+}
+
++ (void)setLocalityName:(NSString *)localityName{
+    NSData *encodeLocalityName = [NSKeyedArchiver archivedDataWithRootObject:localityName];
+    [[NSUserDefaults standardUserDefaults] setObject:encodeLocalityName forKey:@"locality_name"];
+}
+
 @end
